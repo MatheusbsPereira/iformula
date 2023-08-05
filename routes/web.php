@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 \Illuminate\Support\Facades\Auth::routes();
 Route::middleware('auth')->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
+    //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
+    Route::get('/nutriente',[App\Http\Controllers\NutrienteController::class,'ndex'])->name('nutriente.index');
 });
 
 Route::get('/', function () {

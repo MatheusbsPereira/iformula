@@ -13,6 +13,7 @@ class NutrienteController extends Controller
     public function index()
     {
         //
+        return view('nutriente.index');
     }
 
     /**
