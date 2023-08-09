@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Nutriente extends Model
 {
     use HasFactory;
-    protected $fillable = ["nome","unidade"];
+    protected $guarded = [];
 }

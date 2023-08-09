@@ -18,5 +18,6 @@ class NutrienteComponent extends Component
     {
         $this->validate();
         Nutriente::query()->create($this->form->all());
+        $this->form->reset();
     }
 }

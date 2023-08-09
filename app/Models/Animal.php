@@ -9,4 +9,5 @@ class Animal extends Model
 {
     use HasFactory;
     protected $table = "animais";
+    protected $guarded;
 }

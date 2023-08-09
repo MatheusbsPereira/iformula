@@ -9,4 +9,5 @@ class IngredienteDeRacao extends Model
 {
     use HasFactory;
     protected $table = "ingediente_de_racoes";
+    protected $guarded = [];
 }
