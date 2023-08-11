@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
-    Route::get('/nutriente',[App\Http\Controllers\NutrienteController::class,'ndex'])->name('nutriente.index');
+    Route::get('/nutriente',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
 });
 
 Route::get('/', function () {
