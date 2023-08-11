@@ -9,8 +9,8 @@ class NutrienteCreateform extends Form
 {
     //
     #[Rule(['required','max:50'])]
-    public ?string $nome;
+    public string $nome = '';
     
     #[Rule(['required','max:6'])]
-    public ?string $unidade;
+    public string $unidade = '';
 }

@@ -47,7 +47,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{ route('home') }}">
                             <i class="bx bx-home-alt-2 icon"></i>
                             <span class="text nav-text">Home</span>
                         </a>
