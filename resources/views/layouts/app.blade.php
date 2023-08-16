@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{ route('ingrediente.index') }}">
                             <i class="bx bx-baguette icon"></i>
                             <span class="text nav-text">Ingredientes</span>
                         </a>
