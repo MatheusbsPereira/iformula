@@ -25,7 +25,7 @@ class IngredienteComponent extends Component
         $rules = [];
         $messages = [];
         foreach ($this->form->nutrientes as $key => $nutriente) {
-            $rules["valores.$nutriente"] = 'required|numeric';
+            $rules["valores.$nutriente"] = 'required|numeric|max:999999.99';
             $messages["valores.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
             $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
         }
