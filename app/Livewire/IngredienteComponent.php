@@ -16,24 +16,32 @@ class IngredienteComponent extends Component
     public $valores = [];
     public function render()
     {
-        return view('livewire.ingrediente-component',['nutrientes'=>Nutriente::get()]);
+        return view('livewire.ingrediente-component', ['nutrientes' => Nutriente::get(),'ingredientes'=>Ingrediente::orderByDesc('id')->paginate(6)]);
     }
-    public function save(){
-        //dd($this->valores);
-        
+    public function save()
+    {
+
         $this->validate();
+        $rules = [];
+        $messages = [];
+        foreach ($this->form->nutrientes as $key => $nutriente) {
+            $rules["valores.$nutriente"] = 'required|numeric';
+            $messages["valores.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
+            $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
+        }
+        $this->validate($rules,$messages);
+        
+
         Ingrediente::create([
             'nome' => $this->form->nome,
             'preco' => $this->form->preco
         ]);
         $ingrediente = Ingrediente::orderByDesc('id')->first();
-        //dd($ingrediente);
-        //dd($this->form->nutrientes);
         foreach ($this->form->nutrientes as $key => $nutriente) {
             Formacao::create([
-                'valor' =>$this->valores[$nutriente],
-                'nutriente_id' => $nutriente, 
-                'ingrediente_id' => $ingrediente->id 
+                'valor' => $this->valores[$nutriente],
+                'nutriente_id' => $nutriente,
+                'ingrediente_id' => $ingrediente->id
             ]);
         }
     }

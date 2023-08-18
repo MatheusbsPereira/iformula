@@ -38,6 +38,7 @@ class IngredienteController extends Controller
     public function show(Ingrediente $ingrediente)
     {
         //
+        return view('ingrediente.show',['ingrediente'=>$ingrediente]);
     }
 
     /**

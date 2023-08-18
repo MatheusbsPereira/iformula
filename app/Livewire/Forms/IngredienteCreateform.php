@@ -11,7 +11,7 @@ class IngredienteCreateform extends Form
     #[Rule(['required','max:50'])]
     public string $nome = '';
     
-    #[Rule(['required','max:8'])]
+    #[Rule(['required','max:8','numeric'])]
     public  $preco = '';
     public $nutrientes = [];
     

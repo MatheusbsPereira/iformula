@@ -27,10 +27,14 @@
                         @foreach ($nutrientes as $key => $nutriente)
                             <p>
                                 <input type="checkbox" value="{{ $nutriente['id'] }}" wire:model="form.nutrientes">
-                                <label for="">{{ $nutriente['nome'] }} |</label>  
+                                <label for="">{{ $nutriente['nome'] }} |</label>
                                 <label for="">Valor :</label>
-                                <input type="text" wire:model="valores.{{$nutriente['id']}}">
-                                <label for="">{{$nutriente['unidade']}}</label>
+                                <input type="text" wire:model="valores.{{ $nutriente['id'] }}">
+                                <label for="">{{ $nutriente['unidade'] }}</label>
+                                @error("valores.$nutriente[id]")
+                                    {{ $message }}
+                                @enderror
+
                             </p>
                         @endforeach
                     </div>
@@ -38,5 +42,17 @@
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
         </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            @foreach ($ingredientes as $key =>$ingrediente)
+                <div class="card" style="width: 18rem">
+                    <div class="card-body">
+                        <p>Nome: <a href="{{ route('ingrediente.show', ['ingrediente' => $ingrediente->id]) }}">{{$ingrediente['nome']}}</a></p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        {{$ingredientes->links()}}
     </div>
 </div>

@@ -9,4 +9,8 @@ class Ingrediente extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function nutrientes()
+    {
+        return $this->belongsToMany(Nutriente::class,'formacoes')->withPivot('valor');
+    }
 }
