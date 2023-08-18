@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function (){
     //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
     Route::get('/nutriente',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
     Route::get('/ingrediente',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
-    Route::get('/ingrediente/{ingrediente} ',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
+    Route::get('/ingrediente/{ingrediente}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
 });
 
 Route::get('/', function () {
