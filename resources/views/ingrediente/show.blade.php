@@ -14,9 +14,11 @@
             </tr>
         <tbody>
             @foreach ($ingrediente->nutrientes as $nutriente)
-                <td>{{ $nutriente->nome }}</td>
-                <td>{{ $nutriente->pivot->valor }}</td>
-                <td>{{ $nutriente->unidade }}</td>
+                <tr class="table-light">
+                    <td>{{ $nutriente->nome }}</td>
+                    <td>{{ $nutriente->pivot->valor }}</td>
+                    <td>{{ $nutriente->unidade }}</td>
+                </tr>
             @endforeach
         </tbody>
         </thead>
