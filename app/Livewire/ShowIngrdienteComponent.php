@@ -8,6 +8,7 @@ use Livewire\Component;
 
 class ShowIngrdienteComponent extends Component
 {
+
     public $ingrediente;
     public $valores = [];
     public $valoreseditar = [];
@@ -17,15 +18,17 @@ class ShowIngrdienteComponent extends Component
         $nutrientesNaoRelacionados = Nutriente::whereDoesntHave('ingredientes', function ($query) {
             $query->where('ingrediente_id', $this->ingrediente->id);
         })->get();
-
+        
         return view('livewire.show-ingrdiente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
     }
     public function mount($ingrediente)
     {
         $this->ingrediente = $ingrediente;
+        $this->resetarEditar();
+    }
+    public function resetarEditar(){
         foreach ($this->ingrediente->nutrientes as $nutriente) {
             $this->editarforms[$nutriente->pivot->id] = false;
-            $this->valoreseditar[$nutriente->pivot->id] = $nutriente->pivot->valor;
         }
     }
     public function adicionarNutriente($id)
@@ -43,6 +46,9 @@ class ShowIngrdienteComponent extends Component
             'nutriente_id' => $id,
             'ingrediente_id' => $this->ingrediente->id
         ]);
+        return redirect()->to(route('ingrediente.show',['ingrediente'=>$this->ingrediente]));
+
+
     }
     public function deletarNutrienter($id)
     {
