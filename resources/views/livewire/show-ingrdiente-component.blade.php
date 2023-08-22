@@ -10,6 +10,7 @@
                     <th>Nome</th>
                     <th>Valor</th>
                     <th>Unidade</th>
+                    <th></th>
                 </tr>
             <tbody>
                 @foreach ($ingrediente->nutrientes as $nutriente)
@@ -17,6 +18,7 @@
                         <td>{{ $nutriente->nome }}</td>
                         <td>{{ $nutriente->pivot->valor }}</td>
                         <td>{{ $nutriente->unidade }}</td>
+                        <td> <button wire:click="deletarNutrienter({{ $nutriente->pivot->id }})" class="btn btn-danger">Remover</button> </td>
                     </tr>
                 @endforeach
             </tbody>

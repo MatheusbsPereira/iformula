@@ -37,4 +37,9 @@ class ShowIngrdienteComponent extends Component
             'ingrediente_id' => $this->ingrediente->id
         ]);
     }
+    public function deletarNutrienter($id )
+    {
+        $formacao =Formacao::find($id);
+        $formacao->delete();
+    }
 }
