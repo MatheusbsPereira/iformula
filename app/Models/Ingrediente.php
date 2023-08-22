@@ -11,6 +11,6 @@ class Ingrediente extends Model
     protected $guarded = [];
     public function nutrientes()
     {
-        return $this->belongsToMany(Nutriente::class,'formacoes')->withPivot('valor');
+        return $this->belongsToMany(Nutriente::class,'formacoes')->withPivot('valor','id');
     }
 }
