@@ -11,14 +11,46 @@
                     <th>Valor</th>
                     <th>Unidade</th>
                     <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             <tbody>
                 @foreach ($ingrediente->nutrientes as $nutriente)
                     <tr class="table-light">
                         <td>{{ $nutriente->nome }}</td>
-                        <td>{{ $nutriente->pivot->valor }}</td>
+                        @if ($editarforms[$nutriente->pivot->id])
+                            <td>
+                                <form action="">
+                                    <input type="text" wire:model='valoreseditar.{{ $nutriente->pivot->id }}'>
+                                </form>
+                            </td>
+                        @else
+                            <td>{{ $nutriente->pivot->valor }}</td>
+                        @endif
                         <td>{{ $nutriente->unidade }}</td>
-                        <td> <button wire:click="deletarNutrienter({{ $nutriente->pivot->id }})" class="btn btn-danger">Remover</button> </td>
+                        <td> <button wire:click="deletarNutrienter({{ $nutriente->pivot->id }})"
+                                class="btn btn-danger">Remover
+                            </button>
+                        </td>
+                        @if ($editarforms[$nutriente->pivot->id] == false)
+                            <td> <button wire:click="editarValor({{ $nutriente->pivot->id }})"
+                                    class="btn btn-primary">Editar</button> </td>
+                        @else
+                            <td> <button wire:click="atualizarValor({{ $nutriente->pivot->id }})"
+                                    class="btn btn-success">Salvar</button>
+
+                            </td>
+                            <td>
+                                @php
+                                    $valorId = $nutriente->pivot->id;
+                                @endphp
+                                @error("valoreseditar.$valorId")
+                                    {{ $message }}
+                                @enderror
+                            </td>
+                        @endif
+
+
                     </tr>
                 @endforeach
             </tbody>
@@ -36,7 +68,7 @@
                         @error("valores.$nutriente->id")
                             {{ $message }}
                         @enderror
-                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                        <button type="submit" class="btn btn-success">Adicionar</button>
                     </form>
 
                 </div>
