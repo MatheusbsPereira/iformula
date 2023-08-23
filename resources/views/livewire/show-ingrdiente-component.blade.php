@@ -62,7 +62,6 @@
             <div class="card" style="width: 18rem">
                 <div class="card-body">
                     <p>Nutriente: {{ $nutriente->nome }}</p>
-                    <p>Id: {{ $nutriente->id }}</p>
                     <form action="" wire:submit="adicionarNutriente({{ $nutriente->id }})">
                         <label for="">Valor :</label>
                         <input type="text" wire:model='valores.{{ $nutriente->id }}'><br>

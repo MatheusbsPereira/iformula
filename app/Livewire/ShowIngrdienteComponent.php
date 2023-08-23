@@ -29,6 +29,7 @@ class ShowIngrdienteComponent extends Component
     public function resetarEditar(){
         foreach ($this->ingrediente->nutrientes as $nutriente) {
             $this->editarforms[$nutriente->pivot->id] = false;
+            $this->valoreseditar[$nutriente->pivot->id] = $nutriente->pivot->valor;
         }
     }
     public function adicionarNutriente($id)
@@ -54,6 +55,7 @@ class ShowIngrdienteComponent extends Component
     {
         $formacao = Formacao::find($id);
         $formacao->delete();
+        return redirect()->to(route('ingrediente.show',['ingrediente'=>$this->ingrediente]));
     }
     public function editarValor($id)
     {
