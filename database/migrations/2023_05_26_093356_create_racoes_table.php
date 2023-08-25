@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('racoes', function (Blueprint $table) {
             $table->id();
             $table->string('nome',50);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->unique(['nome','user_id']);
             $table->timestamps();
         });
     }

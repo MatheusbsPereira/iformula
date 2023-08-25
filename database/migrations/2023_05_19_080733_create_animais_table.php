@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('animais', function (Blueprint $table) {
             $table->id();
             $table->string('nome',50);
+            $table->string('tag',10);
             $table->text('descricao');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->unique(['nome','user_id']);
+            $table->unique(['tag','user_id']);
             $table->timestamps();
         });
     }

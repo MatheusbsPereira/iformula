@@ -16,8 +16,10 @@ return new class extends Migration
             $table->decimal('valor',8,2);
             $table->unsignedBigInteger('nutriente_id');
             $table->unsignedBigInteger('ingrediente_id');
-            $table->foreign('nutriente_id')->references('id')->on('nutrientes');
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('nutriente_id')->references('id')->on('nutrientes')->cascadeOnDelete();
+            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->cascadeOnDelete();
             $table->unique(['nutriente_id','ingrediente_id']);
             $table->timestamps();
         });

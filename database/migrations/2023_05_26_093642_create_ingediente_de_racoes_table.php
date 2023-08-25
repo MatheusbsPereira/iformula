@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('nutriente_id');
             $table->unsignedBigInteger('ingrediente_id');
             $table->unsignedBigInteger('racao_id');
-            $table->foreign('nutriente_id')->references('id')->on('nutrientes');
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
-            $table->foreign('racao_id')->references('id')->on('racoes');
-            $table->unique(['nutriente_id','ingrediente_id','racao_id']);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('nutriente_id')->references('id')->on('nutrientes')->cascadeOnDelete();
+            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->cascadeOnDelete();
+            $table->foreign('racao_id')->references('id')->on('racoes')->cascadeOnDelete();
+            $table->unique(['nutriente_id','ingrediente_id','racao_id'])->cascadeOnDelete();
             $table->timestamps();
         });
     }
