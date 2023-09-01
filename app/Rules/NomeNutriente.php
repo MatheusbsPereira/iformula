@@ -15,9 +15,12 @@ class NomeNutriente implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $nome = Nutriente::where('nome',$attribute)->where('user_id',auth()->id());
-        if ($nome) {
-            $fail('Você já cadastrou um nutriente com esse nome');
+        $nomeExistente = Nutriente::where('nome', $value)
+        ->where('user_id', auth()->id())
+        ->first();
+
+        if ($nomeExistente) {
+        $fail('Você já cadastrou um nutriente com esse nome');
         }
     }
 }
