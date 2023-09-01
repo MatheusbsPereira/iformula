@@ -15,7 +15,7 @@ class NomeIngrediente implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $nome = Ingrediente::where('nome',$attribute)->where('user_id',auth()->id());
+        $nome = Ingrediente::where('nome',$attribute)->where('user_id',auth()->id())->first();
         if ($nome) {
             $fail('Você já cadastrou um ingrediente com esse nome');
         }

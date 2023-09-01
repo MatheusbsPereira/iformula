@@ -19,7 +19,7 @@ class NutrienteComponent extends Component
     
     public function render()
     {
-        return view('livewire.nutriente-component',['nutrientes'=>Nutriente::orderByDesc('id')->paginate(6)]);
+        return view('livewire.nutriente-component',['nutrientes'=>Nutriente::orderByDesc('id')->where('user_id',auth()->id())->paginate(6)]);
     }
     public function save( ): void
     {

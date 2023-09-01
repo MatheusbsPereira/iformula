@@ -9,6 +9,5 @@ class Formacao extends Model
 {
     use HasFactory;
     protected $table = "formacoes";
-    protected $fillable = ['valor','nutriente_id','ingrediente_id'];
     protected $guarded = [];
 }

@@ -16,8 +16,8 @@ class ShowIngrdienteComponent extends Component
     public function render()
     {
         $nutrientesNaoRelacionados = Nutriente::whereDoesntHave('ingredientes', function ($query) {
-            $query->where('ingrediente_id', $this->ingrediente->id);
-        })->get();
+            $query->where('ingrediente_id', $this->ingrediente->id)->where('user_id',auth()->id());
+        })->where('user_id',auth()->id())->get();
         
         return view('livewire.show-ingrdiente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
     }
@@ -45,8 +45,10 @@ class ShowIngrdienteComponent extends Component
         Formacao::create([
             'valor' => $this->valores[$id],
             'nutriente_id' => $id,
-            'ingrediente_id' => $this->ingrediente->id
+            'ingrediente_id' => $this->ingrediente->id,
+            'user_id' => auth()->id()
         ]);
+        
         return redirect()->to(route('ingrediente.show',['ingrediente'=>$this->ingrediente]));
 
 

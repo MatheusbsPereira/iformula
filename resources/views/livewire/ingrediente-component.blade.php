@@ -6,27 +6,36 @@
                 <div class="mb-3 row">
                     <label for="nome" class="col-mb-2 col-form-label">Ingrediente:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="form.nome">
+                        <input type="text" class="form-control" wire:model="nome">
                     </div>
-                    @error('form.nome')
+                    @error('nome')
                         <div>{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 row">
-                    <label for="unidade" class="col-mb-2 col-form-label">Preço:</label>
+                    <label for="preco" class="col-mb-2 col-form-label">Preço:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="form.preco">
+                        <input type="text" class="form-control" wire:model="preco">
                     </div>
-                    @error('form.preco')
+                    @error('preco')
+                        <div>{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3 row">
+                    <label for="tag" class="col-mb-2 col-form-label">Tag:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" wire:model="tag">
+                    </div>
+                    @error('tag')
                         <div>{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 row">
                     <label for="nutrientes" class="col-mb-2 col-form-label">Nutrientes:</label>
                     <div class="col-sm-10">
-                        @foreach ($nutrientes as $key => $nutriente)
+                        @foreach ($nutrientes_escolher as $key => $nutriente)
                             <p>
-                                <input type="checkbox" value="{{ $nutriente['id'] }}" wire:model="form.nutrientes">
+                                <input type="checkbox" value="{{ $nutriente['id'] }}" wire:model="nutrientes">
                                 <label for="">{{ $nutriente['nome'] }} |</label>
                                 <label for="">Valor :</label>
                                 <input type="text" wire:model="valores.{{ $nutriente['id'] }}">
