@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unique(['nome','user_id']);
-            $table->unique(['tag','user_id']);
             $table->timestamps();
         });
     }
