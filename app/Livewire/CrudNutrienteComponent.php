@@ -23,8 +23,9 @@ class CrudNutrienteComponent extends Component
         $this->nome = $nutriente->nome;
         $this->tag = $nutriente->tag;
         $this->unidade = $nutriente->unidade;
+        $this->dispatch('showModal');
     }
-    public function save( ): void
+    public function save( )
     {
         $this->validate($this->rules());
         $nutriente = Nutriente::find($this->id);
@@ -32,7 +33,7 @@ class CrudNutrienteComponent extends Component
         $nutriente->tag =$this->tag;
         $nutriente->unidade =$this->unidade;
         $nutriente->save();
-        $this->closeModal();
+        return redirect()->to(route('nutriente.index'));
     }
     public function rules()
     {
@@ -42,8 +43,5 @@ class CrudNutrienteComponent extends Component
             'tag' => ['required', 'max:10'],
         ];
     }
-    public function closeModal( ): void
-    {
-        $this->dispatch('closeModal');
-    }
+    
 }
