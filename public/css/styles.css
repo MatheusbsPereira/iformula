@@ -291,6 +291,10 @@ body.dark .switch::before {
         margin-top: 5px;
     }
 
+    .sidebar header {
+        margin-bottom: 10px;
+    }
+
     .sidebar .bottom-content {
         padding-bottom: 10px;
     }

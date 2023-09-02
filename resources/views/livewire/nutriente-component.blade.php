@@ -64,11 +64,11 @@
                     </div>
                 </a>
             @endforeach
-            @foreach ($nutrientes as $key =>$nutriente)
-                <livewire:crud_nutriente_component :id="$nutriente['id']"/>
-            @endforeach
         </div>
         {{$nutrientes->links()}}
     </div>
+    @foreach ($nutrientes as $key =>$nutriente)
+        <livewire:crud_nutriente_component :id="$nutriente['id']"/>
+    @endforeach
 </div>
 

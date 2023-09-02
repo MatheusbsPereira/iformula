@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->share('theme', \Cookie::get('theme', 'light'));
         Paginator::useBootstrapFive();
     }
 }
