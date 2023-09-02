@@ -52,7 +52,7 @@
         </div>
         <div class="row text-center">
             @foreach ($nutrientes as $key =>$nutriente)
-                <a  data-bs-toggle="modal" data-bs-target="#nutriente_{{$nutriente['id']}}" >
+                <a data-bs-toggle="modal" data-bs-target="#nutriente_{{$nutriente['id']}}" class="modal-toggle">
                     <div title="{{$nutriente['nome']}}" class="nutrientes-card card-animation">
                         <div class="card-body">
                             <div class="card-header">
@@ -60,10 +60,12 @@
                                 <div class='tag-label'> <p class='text'>{{$nutriente['tag']}}</p> </div>
                             </div>
                             <p class='unidade-text text'>{{$nutriente['unidade']}}</p>
-                            <livewire:crud_nutriente_component :id="$nutriente['id']"/>
                         </div>
                     </div>
                 </a>
+            @endforeach
+            @foreach ($nutrientes as $key =>$nutriente)
+                <livewire:crud_nutriente_component :id="$nutriente['id']"/>
             @endforeach
         </div>
         {{$nutrientes->links()}}

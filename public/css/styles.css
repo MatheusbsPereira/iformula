@@ -469,3 +469,9 @@ html,
         transform: scale(1);
     }
 }
+
+a.modal-toggle {
+    max-width: 225px;
+    width: 100%;
+    text-decoration: none;
+}

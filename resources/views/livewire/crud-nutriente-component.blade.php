@@ -44,7 +44,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"wire:click="save">Salvar</button>
+                    <button type="button" class="btn btn-primary"wire:click="salvar">Salvar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         wire:click="$dispatch('closeModal')">Fechar</button>
                 </div>

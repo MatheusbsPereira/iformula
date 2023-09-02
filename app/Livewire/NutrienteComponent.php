@@ -33,7 +33,7 @@ class NutrienteComponent extends Component
         $this->perPage = $value;
     }
 
-    public function save(): void
+    public function save()
     {
         $this->validate($this->rules());
         Nutriente::query()->create([
@@ -45,6 +45,7 @@ class NutrienteComponent extends Component
         $this->nome= "";
         $this->unidade = "";
         $this->tag = "";
+        return redirect()->to(route('nutriente.index'));
     }
     public function rules()
     {

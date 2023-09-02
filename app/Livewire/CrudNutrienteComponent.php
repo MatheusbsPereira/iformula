@@ -27,7 +27,7 @@ class CrudNutrienteComponent extends Component
         $this->unidade = $nutriente->unidade;
         $this->dispatch('showModal');
     }
-    public function save( )
+    public function salvar( )
     {
         if ($this->nome != $this->first_nome) {
            $this->validate($this->rulesNewName());
