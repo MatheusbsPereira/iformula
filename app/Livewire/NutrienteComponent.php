@@ -33,28 +33,8 @@ class NutrienteComponent extends Component
         $this->perPage = $value;
     }
 
-    public function save()
-    {
-        $this->validate($this->rules());
-        Nutriente::query()->create([
-            'nome' => $this->nome,
-            'unidade' => $this->unidade,
-            'tag' => $this->tag,
-            'user_id' => auth()->id()
-        ]);
-        $this->nome= "";
-        $this->unidade = "";
-        $this->tag = "";
-        return redirect()->to(route('nutriente.index'));
-    }
-    public function rules()
-    {
-        return [
-            'nome' => ['required', 'max:50', new NomeNutriente],
-            'unidade' => ['required', 'max:6'],
-            'tag' => ['required', 'max:10'],
-        ];
-    }
+    
+    
     
     
 }
