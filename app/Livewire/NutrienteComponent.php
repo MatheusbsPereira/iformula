@@ -16,12 +16,24 @@ class NutrienteComponent extends Component
     
     public string $unidade = '';
     public string $tag = '';
-    
+
+    public $perPage = 30;
+
     public function render()
     {
-        return view('livewire.nutriente-component',['nutrientes'=>Nutriente::orderByDesc('id')->where('user_id',auth()->id())->paginate(6)]);
+        $nutrientes = Nutriente::orderBy('id')
+            ->where('user_id', auth()->id())
+            ->paginate($this->perPage);
+
+        return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
     }
-    public function save( ): void
+
+    public function setPerPage($value)
+    {
+        $this->perPage = $value;
+    }
+
+    public function save(): void
     {
         $this->validate($this->rules());
         Nutriente::query()->create([
@@ -31,8 +43,8 @@ class NutrienteComponent extends Component
             'user_id' => auth()->id()
         ]);
         $this->nome= "";
-        $this->unidade ="";
-        $this->tag ="";
+        $this->unidade = "";
+        $this->tag = "";
     }
     public function rules()
     {

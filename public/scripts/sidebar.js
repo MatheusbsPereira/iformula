@@ -1,16 +1,14 @@
 const body = document.querySelector("body"),
       sidebar = body.querySelector(".sidebar"),
-      toggle = body.querySelector(".toggle"),
       modeSwitch = body.querySelector(".toggle-switch"),
       modeText = body.querySelector(".mode-text"),
       picture = body.querySelector(".image")
 
-      toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close")
-      })
+      sidebar.addEventListener('mouseleave', () => {
+        sidebar.classList.add("close")
+      });
 
-      picture.addEventListener("click", () => {
-        sidebar.classList.toggle("profile")
+      sidebar.addEventListener("click", () => {
         sidebar.classList.toggle("close")
       })
 

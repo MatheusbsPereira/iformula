@@ -35,12 +35,12 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">Marcos</span>
+                    <span class="name">{{ Auth::user()->name }}</span>
                     <span class="access">Contratante</span>
                 </div>
             </div>
 
-            <i class="bx bx-chevron-right toggle"></i>
+            <i class="toggle"></i>
         </header>
 
         <div class="menu-bar">

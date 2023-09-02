@@ -1,23 +1,32 @@
 <div class="">
     {{-- Care about people's approval and you will be their prisoner. --}}
     <div class="card">
-        <div class="card-body">
+    <div class="card-body">
             <form wire:submit="save">
                 <div class="mb-3 row">
                     <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model.live="form.nome">
+                        <input type="text" class="form-control" wire:model.live="nome">
                     </div>
-                    @error('form.nome')
+                    @error('nome')
                         <div>{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 row">
                     <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model.live="form.unidade">
+                        <input type="text" class="form-control" wire:model.live="unidade">
                     </div>
-                    @error('form.unidade')
+                    @error('unidade')
+                        <div>{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3 row">
+                    <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" wire:model.live="tag">
+                    </div>
+                    @error('tag')
                         <div>{{ $message }}</div>
                     @enderror
                 </div>
@@ -25,18 +34,35 @@
             </form>
         </div>
     </div>
+    <div>
+        <label for="per_page">Itens por página:</label>
+        <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+            <option value="0" style="display:none;"></option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+    </div>
+    
     <div class="container text-center">
-        <div class="row">
+        <div class="body-header">
+            <!-- <span>Painel de Controle</span>
+            <span>Nutrientes</span> -->
+        </div>
+        <div class="row text-center">
             @foreach ($nutrientes as $key =>$nutriente)
-                <div class="card" style="width: 18rem">
+                <div title="{{$nutriente['nome']}}" class="nutrientes-card card-animation">
                     <div class="card-body">
-                        <p>Nome: {{$nutriente['nome']}}</p>
-                        <p>Unidade {{$nutriente['unidade']}}</p>
+                        <div class="card-header">
+                            <p class='nome-text'>{{$nutriente['nome']}}</p>
+                            <div class='tag-label'> <p class='text'>{{$nutriente['tag']}}</p> </div>
+                        </div>
+                        <p class='unidade-text text'>{{$nutriente['unidade']}}</p>
                     </div>
                 </div>
             @endforeach
         </div>
         {{$nutrientes->links()}}
     </div>
-    
 </div>
