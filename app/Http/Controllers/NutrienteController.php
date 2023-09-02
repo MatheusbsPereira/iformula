@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nutriente;
-use App\Rules\NomeNutriente;
 use Illuminate\Http\Request;
 
 class NutrienteController extends Controller
@@ -20,13 +19,9 @@ class NutrienteController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function rules()
+    public function create()
     {
-        return [
-            'nome' => ['required', 'max:50', new NomeNutriente],
-            'unidade' => ['required', 'max:6'],
-            'tag' => ['required', 'max:10'],
-        ];
+        //
     }
 
     /**
@@ -34,14 +29,7 @@ class NutrienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate($this->rules());
-        Nutriente::query()->create([
-            'nome' => $request->nome,
-            'unidade' => $request->unidade,
-            'tag' => $request->tag,
-            'user_id' => auth()->id()
-        ]);
-        return redirect()->to(route('nutriente.index'));
+        //
     }
 
     /**
