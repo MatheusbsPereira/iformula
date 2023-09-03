@@ -33,7 +33,16 @@ class NutrienteComponent extends Component
         $this->perPage = $value;
     }
 
-    public function save()
+    protected $listeners = ['nutrienteExcluido' => 'atualizarListaNutrientes'];
+
+    public function atualizarListaNutrientes()
+    {
+        Nutriente::orderBy('id')
+            ->where('user_id', auth()->id())
+            ->paginate($this->perPage);
+    }
+
+    public function save(): void
     {
         $this->validate($this->rules());
         Nutriente::query()->create([
@@ -45,7 +54,7 @@ class NutrienteComponent extends Component
         $this->nome= "";
         $this->unidade = "";
         $this->tag = "";
-        return redirect()->to(route('nutriente.index'));
+
     }
     public function rules()
     {

@@ -25,7 +25,6 @@ class CrudNutrienteComponent extends Component
         $this->first_nome = $this->nome ;
         $this->tag = $nutriente->tag;
         $this->unidade = $nutriente->unidade;
-        $this->dispatch('showModal');
     }
     public function salvar( )
     {
@@ -58,4 +57,9 @@ class CrudNutrienteComponent extends Component
         ];
     }
     
+    public function excluir() {
+        $nutriente = Nutriente::find($this->id);
+        $nutriente->delete();
+        $this->dispatch('nutrienteExcluido');
+    }
 }

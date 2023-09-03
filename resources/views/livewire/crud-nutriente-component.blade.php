@@ -6,8 +6,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Nutriente</h5>
-                    <button type="button" class="close" data-dismiss="modal" wire:click="$dispatch('closeModal')"
-                        aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </button>
@@ -44,9 +43,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"wire:click="salvar">Salvar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        wire:click="$dispatch('closeModal')">Fechar</button>
+                    <button type="button" class="btn btn-primary"wire:click="salvar" >Salvar</button>
+                    <button type="button" class="btn btn-primary"wire:click="excluir({{$id}})" data-bs-dismiss="modal">Excluir</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
