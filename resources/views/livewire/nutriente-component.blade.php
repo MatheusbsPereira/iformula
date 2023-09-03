@@ -6,7 +6,7 @@
                 <div class="mb-3 row">
                     <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="nome">
+                        <input type="text" maxlength="20" class="form-control" wire:model="nome">
                     </div>
                     @error('nome')
                         <div>{{ $message }}</div>
@@ -15,7 +15,7 @@
                 <div class="mb-3 row">
                     <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="unidade">
+                        <input type="unidade" maxlength="4" class="form-control" wire:model="unidade">
                     </div>
                     @error('unidade')
                         <div>{{ $message }}</div>
@@ -24,7 +24,7 @@
                 <div class="mb-3 row">
                     <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="tag">
+                        <input type="tag"  maxlength="6" class="form-control" wire:model="tag">
                     </div>
                     @error('tag')
                         <div>{{ $message }}</div>
@@ -38,23 +38,25 @@
         </div>
     </div>
 
-    <div>
-        <label for="per_page">Itens por página:</label>
-        <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
-            <option value="0" style="display:none;"></option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="50">50</option>
-            <!-- Adicione mais opções conforme necessário -->
-        </select>
-    </div>
-
-    <div class="container text-center">
+    <div class="container">
         <div class="body-header">
-            <!-- <span>Painel de Controle</span>
-            <span>Nutrientes</span> -->
+            <div class="page-title">
+                <span class="title-painel">Painel de Controle</span>
+                <span class="subtitle-painel">Nutrientes</span>
+            </div>
+            {{-- <div>
+                <label for="per_page">Itens por página:</label>
+                <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+                    <option value="0" style="display:none;"></option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <!-- Adicione mais opções conforme necessário -->
+                </select>
+            </div>  --}}
         </div>
-        <div class="row text-center">
+        
+        <div class="row container-nutrientes">
             @foreach ($nutrientes as $key => $nutriente)
                 <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}" class="modal-toggle">
                     <div title="{{ $nutriente['nome'] }}" class="nutrientes-card card-animation">
@@ -71,9 +73,10 @@
                 </a>
             @endforeach
         </div>
-        {{ $nutrientes->links() }}
     </div>
     @foreach ($nutrientes as $nutriente)
         <livewire:crud-nutriente-component :id="$nutriente['id']" :key="$nutriente['id']" />
     @endforeach
+    {{ $nutrientes->links() }}
 </div>
+
