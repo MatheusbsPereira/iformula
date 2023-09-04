@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('nutrientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',50);
+            $table->string('nome',20);
             $table->string('unidade',6);
             $table->string('tag',10);
             $table->unsignedBigInteger('user_id');
