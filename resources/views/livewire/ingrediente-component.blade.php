@@ -57,7 +57,7 @@
             @foreach ($ingredientes as $key =>$ingrediente)
                 <div class="card" style="width: 18rem">
                     <div class="card-body">
-                        <p>Nome: <a href="{{ route('ingrediente.show', ['ingrediente' => $ingrediente->id]) }}">{{$ingrediente['nome']}}</a></p>
+                        <p>Nome: <a href="{{ route('ingrediente.show', ['nome' => $ingrediente->nome]) }}">{{$ingrediente['nome']}}</a></p>
                     </div>
                 </div>
             @endforeach

@@ -35,10 +35,16 @@ class IngredienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ingrediente $ingrediente)
+    public function show(string $nome)
     {
         //
-        return view('ingrediente.show',['ingrediente'=>$ingrediente]);
+        $ingrediente = Ingrediente::where('nome',$nome)->where('user_id',auth()->id())->first();
+        if($ingrediente){
+            return view('ingrediente.show',['ingrediente'=>$ingrediente]);
+        }else{
+            return view('ingrediente.nao-encontrado');
+        }
+        
     }
 
     /**

@@ -16,8 +16,8 @@ class ShowIngrdienteComponent extends Component
     public function render()
     {
         $nutrientesNaoRelacionados = Nutriente::whereDoesntHave('ingredientes', function ($query) {
-            $query->where('ingrediente_id', $this->ingrediente->id)->where('user_id',auth()->id());
-        })->where('user_id',auth()->id())->get();
+            $query->where('ingrediente_id', $this->ingrediente->id)->where('ingredientes.user_id',auth()->id());
+        })->where('nutrientes.user_id',auth()->id())->get();
         
         return view('livewire.show-ingrdiente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
     }
@@ -49,7 +49,7 @@ class ShowIngrdienteComponent extends Component
             'user_id' => auth()->id()
         ]);
         
-        return redirect()->to(route('ingrediente.show',['ingrediente'=>$this->ingrediente]));
+        return redirect()->to(route('ingrediente.show',['nome'=>$this->ingrediente->nome]));
 
 
     }
@@ -57,8 +57,7 @@ class ShowIngrdienteComponent extends Component
     {
         $formacao = Formacao::find($id);
         $formacao->delete();
-        return redirect()->to(route('ingrediente.show',['ingrediente'=>$this->ingrediente]));
-    }
+        return redirect()->to(route('ingrediente.show',['nome'=>$this->ingrediente->nome]));    }
     public function editarValor($id)
     {
         $this->editarforms[$id] = true;
