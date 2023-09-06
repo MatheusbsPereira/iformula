@@ -17,7 +17,7 @@ class NutrienteComponent extends Component
     public string $unidade = '';
     public string $tag = '';
     public int $id_nutriente_exibir;
-    public $perPage = 30;
+    public $perPage = 36;
     public bool $exibirModal = false;
     public function render()
     {

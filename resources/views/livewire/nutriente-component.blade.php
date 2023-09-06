@@ -1,46 +1,62 @@
 <div style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
-    {{-- <div class="card">
-        <div class="card-body">
-            <form wire:submit.prevent="save">
-                <div class="mb-3 row">
-                    <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
-                    <div class="col-sm-10">
-                        <input type="text" maxlength="20" class="form-control" wire:model="nome">
-                    </div>
-                    @error('nome')
-                        <div>{{ $message }}</div>
-                    @enderror
+
+    <div class="modal fade" id="modalCriar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3 row">
-                    <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
-                    <div class="col-sm-10">
-                        <input type="unidade" maxlength="6" class="form-control" wire:model="unidade">
-                    </div>
-                    @error('unidade')
-                        <div>{{ $message }}</div>
-                    @enderror
+                <div class="modal-body">
+                    <form wire:submit.prevent="save">
+                        <div class="mb-3 row">
+                            <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
+                            <div class="col-sm-10">
+                                <input type="text" maxlength="20" class="form-control" wire:model="nome">
+                            </div>
+                            @error('nome')
+                                <div>{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
+                            <div class="col-sm-10">
+                                <input type="unidade" maxlength="6" class="form-control" wire:model="unidade">
+                            </div>
+                            @error('unidade')
+                                <div>{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
+                            <div class="col-sm-10">
+                                <input type="tag"  maxlength="10" class="form-control" wire:model="tag">
+                            </div>
+                            @error('tag')
+                                <div>{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" data-bs-dismiss="modal">
+                                <span wire:loading.remove>Salvar</span>
+                                <span wire:loading>Salvando...</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3 row">
-                    <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
-                    <div class="col-sm-10">
-                        <input type="tag"  maxlength="10" class="form-control" wire:model="tag">
-                    </div>
-                    @error('tag')
-                        <div>{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
-                    <span wire:loading.remove>Salvar</span>
-                    <span wire:loading>Salvando...</span>
-                </button>
-            </form>
+            </div>
         </div>
-    </div> --}}
+    </div>
+
     <div class="container">
         <div class="body-header">
             <div class="page-title">
                 <span class="title-painel">Painel de Controle</span>
                 <span class="subtitle-painel">Nutrientes</span>
+            </div>
+            <div class="page-tools">
+                <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">Criar</button>
             </div>
             {{-- <div>
             <label for="per_page">Itens por página:</label>
@@ -53,12 +69,11 @@
             </select>
         </div>  --}}
         </div>
-
-        <div class="container">
-
+        <div>
             <div class="row container-nutrientes">
                 @foreach ($nutrientes as $key => $nutriente)
-                    <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}" class="modal-toggle">
+                    <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}"
+                        class="modal-toggle col">
                         <div title="{{ $nutriente['nome'] }}" class="nutrientes-card card-animation">
                             <div class="card-body">
                                 <div class="card-header">
