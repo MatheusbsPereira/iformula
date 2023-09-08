@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--text-color);
 }
 
 :root {
@@ -61,11 +62,11 @@ body {
     opacity: 1;
 }
 
-.sidebar.close .text{
+.sidebar.close .text {
     display: none;
 }
 
-.sidebar .image{
+.sidebar .image {
     min-width: 60px;
     display: flex;
     align-items: center;
@@ -248,7 +249,7 @@ body.dark .switch::before {
 
 /* ======== Organização de Conteúdo ======== */
 
-.content-box > .container-fluid {
+.content-box>.container-fluid {
     background: var(--sidebar-color);
     border-radius: 12px;
     padding: 1.5rem;
@@ -269,14 +270,6 @@ body.dark .switch::before {
 
 /* ======== Tabela ======== */
 
-.dataTables_length {
-    margin-bottom: 1rem;
-}
-
-.bottom-tools,
-table.dataTable {
-    margin-top: .75rem !important;
-}
 
 ul.pagination,
 .dataTables_info {
@@ -284,26 +277,12 @@ ul.pagination,
     justify-content: center !important;
 }
 
-.dataTables_filter label > input,
-.dataTables_filter label {
-    width: 100% !important;
-    margin-left: 0 !important;
-}
 
-.page-link.active, .active > .page-link {
-    z-index: 3;
-    color: var(#ccc);
-    background-color: var(--primary-color);
-    border-color: var(--primary-color)
-}
 
 .page-link {
     color: var(--text-color);
 }
 
-* {
-    color: var(--text-color);
-}
 
 /* ======== CSS Reutilizável ======== */
 
@@ -318,6 +297,7 @@ html,
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+    align-items: center
 }
 
 .text {
@@ -337,9 +317,8 @@ html,
 /* Página de visuzalização dos Nutrientes */
 
 .nutrientes-card {
-    max-width: 225px;
     width: 100%;
-    height: 83px;
+    height: 100%;
     background-color: var(--primary-color-light);
     border-radius: 18px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
@@ -417,7 +396,7 @@ html,
 }
 
 .card-animation {
-    animation-name: slideIn; 
+    animation-name: slideIn;
     animation-duration: 0.5s;
     animation-timing-function: ease;
 }
@@ -426,6 +405,7 @@ html,
     from {
         transform: scale(0.9);
     }
+
     to {
         transform: scale(1);
     }
@@ -433,13 +413,26 @@ html,
 
 a.modal-toggle {
     max-width: 225px;
-    width: 100%;
+    height: 83px;
     text-decoration: none;
     padding: 0 !important;
+    margin: 8px;
+}
+
+.btn-adicionar {
+    width: 125px;
+    height: 32px;
+    background: linear-gradient(270deg, rgba(91, 229, 155, 0.8) 0%, rgba(53, 190, 116, 0.8) 50%, rgba(12, 182, 90, 0.8) 100%);
+    
+    border-radius: 15px;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
 }
 
 
-/* Para centralizar lista de nutrientes corretamente */
 body {
     padding-left: 88px;
 }
@@ -449,36 +442,21 @@ body {
     flex-direction: column;
 }
 
-/* .container-nutrientes {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-} */
-
 @media (max-width: 768px) {
     .nutrientes-card {
-        max-width: 165px;
-        width: 100%;
-        height: 120px;
+        height: 100%;
         padding: 10px !important;
-        margin-bottom: 20px;
-
     }
 
-    .nutrientes-card .nome-text{
+    .nutrientes-card .nome-text {
         white-space: normal;
     }
 
-    .nutrientes-card .card-body {
-        justify-content: space-between;
-    }
-
     a.modal-toggle {
-        max-width: 165px;
-        width: 100%;
-        height: 120px;
+        max-width: 250px !important;
+        min-width: 150px !important;
+        height: 120px !important;
         user-select: none;
-        margin-bottom: 20px;
     }
 
     .nutrientes-card .card-header {
@@ -500,19 +478,6 @@ body {
         pointer-events: none;
     }
 
-    .container-nutrientes {
-        padding: 1rem;
-    }
-
-}
-
-
-/* Solução porca com Media Query */
-
-@media (max-width: 375px) {
-    .container-nutrientes {
-        padding: 0.2rem;
-    }
 }
 
 
@@ -534,7 +499,7 @@ body {
     body {
         height: 100%;
     }
-    
+
     .sidebar.close header.image-text .text,
     .sidebar.close .menu-bar,
     .sidebar header .toggle {
@@ -545,7 +510,7 @@ body {
     .sidebar {
         transition: var(--tran-03);
         height: 500px;
-    } 
+    }
 
     .sidebar header .image-text .text,
     .sidebar .menu-bar,
@@ -574,15 +539,54 @@ main {
     padding: 7px !important;
 }
 
-.flex-left {
-    display: flex;
-    flex-wrap: wrap;
+
+a.modal-toggle {
+    max-width: 205px;
+    min-width: 170px;
+    height: 90px;
+    margin: 10px;
 }
 
-.outerContainer {
-    margin-top: 40px;
+::-webkit-scrollbar {
+    width: 10px;
+    background: #555;
+  }
+  
+  .modal-open {
+    padding-right: 0 !important;
+    overflow-y: inherit !important;
+  }
+
+/* Paginação */
+
+.page-link {
+    border-radius: 40% !important;
+    width: 36px !important;
+    margin: 10px;
+    color: #63686d;
+}
+
+.page-link.active {
+    color: var(--bs-pagination-active-color);
+    background: linear-gradient(270deg, rgba(91, 229, 155, 0.8) 0%, rgba(53, 190, 116, 0.8) 50%, rgba(12, 182, 90, 0.8) 100%);
+}
+
+.page-item:first-child .page-link, .page-item:last-child .page-link {
+    color: var(--bs-pagination-active-color);
+    background: linear-gradient(270deg, rgba(91, 229, 155, 0.8) 0%, rgba(53, 190, 116, 0.8) 50%, rgba(12, 182, 90, 0.8) 100%);
+    border: 0;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
-.container {
-    width: 100%;
+
+.active > .page-link  {
+    border: 0;
+    background: #f0f0f0;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.60);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #18191a;
 }
+

@@ -11,16 +11,11 @@
 
     <!--======== CSS ========-->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
-    {{-- <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.3/b-html5-2.3.3/rg-1.3.0/sl-1.5.0/datatables.min.css" /> --}}
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
 
     <!--======== Scripts ========-->
     <script defer src="{{ asset('scripts/bootstrap.js') }}"></script>
     <script defer src="{{ asset('scripts/sidebar.js') }}"></script>
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.3/b-html5-2.3.3/rg-1.3.0/sl-1.5.0/datatables.min.js">
-    </script>
 
     <!--======== CSS Boxicons ========-->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
