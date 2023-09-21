@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -19,11 +19,11 @@
 
     <!--======== CSS Boxicons ========-->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-
+    @yield('profile')
     <title>ifórmula - @yield('titulo')</title>
 </head>
 
-<body class="{{ $theme == 'dark' ? 'dark' : ''}}">
+<body class="{{ $theme == 'dark' ? 'dark' : '' }}">
     <script src="{{ asset('scripts/dark-theme.js') }}"></script>
     <nav class="sidebar close">
         <header>
@@ -33,8 +33,10 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">{{ Auth::user()->name }}</span>
-                    <span class="access">Contratante</span>
+                    <a href="{{ route('profile.edit') }}">
+                        <span class="name">{{ Auth::user()->name }}</span>
+                        <span class="access">Contratante</span>
+                    </a>
                 </div>
             </div>
 
@@ -77,12 +79,21 @@
                 </ul>
             </div>
             <div class="bottom-content">
-                <li class="nav-link">
-                    <a href="#">
-                        <i class="bx bx-log-out icon"></i>
-                        <span class="text nav-text">Sair</span>
-                    </a>
-                </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    <li class="nav-link">
+
+                        @csrf
+
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                            <i class="bx bx-log-out icon"></i>
+                            <span class="text nav-text">Sair</span>
+                        </a>
+
+
+                    </li>
+                </form>
                 <li class="mode">
                     <div class="moon-sun">
                         <i class="bx bx-moon icon moon"></i>
@@ -96,7 +107,7 @@
             </div>
         </div>
     </nav>
-    
+
     <main class="py-4">
         @yield('content')
     </main>
