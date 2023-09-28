@@ -51,8 +51,12 @@ php artisan migrate
 
 ```
 ### Configurando o front-end da aplicação
+#### Instalando os pacotes nodejs
 ```shell
 npm install
+```
+#### Compilando os assets do bootstap
+```shell
 npm run build
 ```
 
