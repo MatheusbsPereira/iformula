@@ -56,7 +56,7 @@ php artisan migrate
 ```shell
 npm install
 ```
-#### Compilando os assets do bootstap
+#### Compilando os assets do front end
 ```shell
 npm run build
 ```
