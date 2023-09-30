@@ -1,6 +1,7 @@
 
 # Bem Vindo ao Iformula
 
+<img src="https://raw.githubusercontent.com/MatheusbsPereira/iformula/main/public/images/iformula-logo.png" alt="iformula logo"></img>
 
 ## Requesitos :
 
