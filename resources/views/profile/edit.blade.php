@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'PROFILE')
+@section('titulo', 'Perfil')
 @section('scriptcss')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 @endsection

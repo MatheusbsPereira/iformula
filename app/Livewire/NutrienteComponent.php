@@ -21,7 +21,7 @@ class NutrienteComponent extends Component
     public bool $exibirModal = false;
     public function render()
     {
-        $nutrientes = Nutriente::orderBy('id')
+        $nutrientes = Nutriente::orderByDesc('id')
             ->where('user_id', auth()->id())
             ->paginate($this->perPage);
 

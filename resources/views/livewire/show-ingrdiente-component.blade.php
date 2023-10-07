@@ -64,7 +64,7 @@
                     <p>Nutriente: {{ $nutriente->nome }}</p>
                     <form action="" wire:submit="adicionarNutriente({{ $nutriente->id }})">
                         <label for="">Valor :</label>
-                        <input type="text" wire:model='valores.{{ $nutriente->id }}'><br>
+                        <input type="text" wire:model='valores.{{ $nutriente->id }}' class=""><br>
                         @error("valores.$nutriente->id")
                             {{ $message }}
                         @enderror

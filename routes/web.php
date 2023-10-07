@@ -18,13 +18,12 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
     Route::get('/nutrientes',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
     Route::get('/ingrediente',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
