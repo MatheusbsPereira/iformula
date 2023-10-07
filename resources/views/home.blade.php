@@ -15,8 +15,7 @@
                     @endif
 
                     {{ __('Bem vindo ao IFórmula') }}
-                    <p><a href="{{ route('login') }}">Login</a></p>
-                    <p><a href="{{ route('register') }}">Novo Usuário</a></p>
+                    
                 </div>
             </div>
         </div>
