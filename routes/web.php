@@ -26,8 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
     Route::get('/nutrientes',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
-    Route::get('/ingrediente',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
-    Route::get('/ingrediente/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
+    Route::get('/ingredientes',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
+    Route::get('/ingredientes/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
+    Route::get('/animais',[App\Http\Controllers\AnimalController::class,'index'])->name('animal.index');
+    Route::get('/animais/{nome}',[App\Http\Controllers\AnimalController::class,'show'])->name('animal.show');
 });
 Route::fallback(function () {
     return view('nao-encontrado');

@@ -268,7 +268,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{ route('animal.index') }}">
                             <i class="bx bx-bug-alt icon"></i>
                             <span class="text nav-text">Animais</span>
                         </a>

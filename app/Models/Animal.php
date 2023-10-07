@@ -9,5 +9,9 @@ class Animal extends Model
 {
     use HasFactory;
     protected $table = "animais";
-    protected $guarded;
+    protected $guarded = [];
+    public function nutrientes()
+    {
+        return $this->belongsToMany(Nutriente::class,'exigencias')->withPivot('valornut','id');
+    }
 }
