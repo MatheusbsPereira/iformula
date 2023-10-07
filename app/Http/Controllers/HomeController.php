@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         if (Auth::check()) {
             // O usuário está logado...
-            return view('profile.edit');
+            return view('home');
         }else {
             return view('welcome');
         }
