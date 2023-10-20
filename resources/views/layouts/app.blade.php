@@ -274,7 +274,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{ route('racao.index' ) }}">
                             <i class="bx bx-book-open icon"></i>
                             <span class="text nav-text">Rações</span>
                         </a>

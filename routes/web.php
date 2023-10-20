@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ingredientes/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
     Route::get('/animais',[App\Http\Controllers\AnimalController::class,'index'])->name('animal.index');
     Route::get('/animais/{nome}',[App\Http\Controllers\AnimalController::class,'show'])->name('animal.show');
+    Route::get('/racoes',[App\Http\Controllers\RacaoController::class,'index'])->name('racao.index');
 });
 Route::fallback(function () {
     return view('nao-encontrado');
