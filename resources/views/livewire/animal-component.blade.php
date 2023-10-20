@@ -36,13 +36,18 @@
                             <p>
                                 <input type="checkbox" value="{{ $nutriente['id'] }}" wire:model="nutrientes">
                                 <label for="">{{ $nutriente['nome'] }} |</label>
-                                <label for="">Valor :</label>
-                                <input type="text" wire:model="valores.{{ $nutriente['id'] }}">
+                                <label for="">Valor Minimo:</label>
+                                <input type="text" wire:model="valoresmin.{{ $nutriente['id'] }}">
                                 <label for="">{{ $nutriente['unidade'] }}</label>
-                                @error("valores.$nutriente[id]")
+                                @error("valoresmin.$nutriente[id]")
                                     {{ $message }}
                                 @enderror
-
+                                <label for="">Valor Maximo:</label>
+                                <input type="text" wire:model="valoresmax.{{ $nutriente['id'] }}">
+                                <label for="">{{ $nutriente['unidade'] }}</label>
+                                @error("valoresmax.$nutriente[id]")
+                                    {{ $message }}
+                                @enderror
                             </p>
                         @endforeach
                     </div>

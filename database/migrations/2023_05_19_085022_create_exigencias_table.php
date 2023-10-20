@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('exigencias', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valornut',8,2);
+            $table->decimal('valormin',8,2);
+            $table->decimal('valormax',8,2);
             $table->unsignedBigInteger('nutriente_id');
             $table->unsignedBigInteger('animal_id');
             $table->unsignedBigInteger('user_id');

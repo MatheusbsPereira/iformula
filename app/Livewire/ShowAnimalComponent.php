@@ -9,7 +9,8 @@ use Livewire\Component;
 class ShowAnimalComponent extends Component
 {
     public $animal;
-    public $valores = [];
+    public $valoresmin = [];
+    public $valoresmax = [];
     public $valoreseditar = [];
     public $editarforms = [];
     public function render()

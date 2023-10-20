@@ -16,7 +16,8 @@ class AnimalComponent extends Component
     public string $tag;
     public  $descricao = '';
     public $nutrientes = [];
-    public $valores = [];
+    public $valoresmin = [];
+    public $valoresmax = [];
     public function render()
     {
         return view('livewire.animal-component', ['nutrientes_escolher' => Nutriente::where('user_id',auth()->id())->get(),'animais'=>Animal::orderByDesc('id')->where('user_id',auth()->id())->paginate(6)]);
@@ -31,9 +32,13 @@ class AnimalComponent extends Component
         ];
         $messages = [];
         foreach ($this->nutrientes as $key => $nutriente) {
-            $rules["valores.$nutriente"] = 'required|numeric|max:999999.99';
-            $messages["valores.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
-            $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
+            $rules["valoresmin.$nutriente"] = 'required|numeric|max:999999.99';
+            $messages["valoresmin.$nutriente.required"] = "O valor mínimo do nutriente escolhido é obrigatório.";
+            $messages["valoresmin.$nutriente.numeric"] = "O valor mínimo do nutriente escolhido deve ser numérico.";
+            $rules["valoresmax.$nutriente"] = "required|numeric|max:999999.99|gt:valoresmin.$nutriente";
+            $messages["valoresmax.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
+            $messages["valoresmax.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
+            $messages["valoresmax.$nutriente.gt"] = "O valor máximo para $nutriente deve ser maior que o valor mínimo.";
         }
         $this->validate($rules,$messages);
         
@@ -47,7 +52,8 @@ class AnimalComponent extends Component
         $animal = Animal::orderByDesc('id')->first();
         foreach ($this->nutrientes as $key => $nutriente) {
             Exigencia::create([
-                'valornut' => $this->valores[$nutriente],
+                'valormin' => $this->valoresmin[$nutriente],
+                'valormax'=> $this->valoresmax[$nutriente],
                 'nutriente_id' => $nutriente,
                 'animal_id' => $animal->id,
                 'user_id'=>auth()->id()
