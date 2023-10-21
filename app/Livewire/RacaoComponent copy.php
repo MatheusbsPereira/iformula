@@ -8,17 +8,19 @@ use Livewire\Component;
 
 class RacaoComponent extends Component
 {
-    public $melhorMistura = [];
-    public $custoTotal;
-    public $animal;
-
     public function render()
     {
         $ingredientes = Ingrediente::where("user_id", auth()->user()->id)->get();
         $animais = Animal::where("user_id", auth()->user()->id)->get();
         return view('livewire.racao-component', ['ingredientes' => $ingredientes, 'animais' => $animais]);
     }
-    function calcularMelhorMistura($nutrientCoefficients, $nutrientMin, $nutrientMax, $ingredientPrices, $ingredientCount, &$bestMixture, &$minCost, $currentMixture = [], $ingredientIndex = 0)
+
+    public $animal;
+    public array $ingredientes = [];
+    public $custoTotal = 0;
+    public $melhorMistura = [];
+
+    public function calcularMelhorMistura($nutrientCoefficients, $nutrientMin, $nutrientMax, $ingredientPrices, $ingredientCount, &$bestMixture, &$minCost, $currentMixture = [], $ingredientIndex = 0)
     {
         if ($ingredientIndex == $ingredientCount) {
             // Todas as quantidades de ingredientes foram escolhidas, calcular custo e verificar se atende aos requisitos de nutrientes
@@ -56,46 +58,46 @@ class RacaoComponent extends Component
             }
         }
     }
+
     public function save()
     {
-        $ingredientes = Ingrediente::all();
-        $ingredientPrices = $ingredientes->pluck('preco')->toArray();
-        $ingredientCount = count($ingredientPrices);
-
         $animal = Animal::find($this->animal);
         $nutrientes = $animal->nutrientes()->get();
-        
+        $valormin = [];
+        $valormax = [];
         foreach ($nutrientes as $nutriente) {
-            $nutrientMin[] = (float) $nutriente->pivot->valormin;
-            $nutrientMax[] = (float) $nutriente->pivot->valormax;
-
-            $coefs = [];
-            
-            foreach ($ingredientes as $ingrediente) {
-                try {
-                    $valorNutriente = $ingrediente->nutrientes()->where('nutriente_id', $nutriente->id)->first()->pivot->valor;
-                } catch (\Exception $e) {
-                    $valorNutriente = 0;
-                }
-                $coefs[] = $valorNutriente;
-            }
-            $nutrientCoefficients[] = $coefs;
+            $valormin[] = $nutriente->pivot->valormin;
+            $valormax[] = $nutriente->pivot->valormax;
         }
 
+        $ingredientes = Ingrediente::all();
+        $ingredientPrices = $ingredientes->pluck('preco')->toArray();
+        $ingredientNutrientValues = [];
+
+        foreach ($ingredientes as $ingrediente) {
+            $nutrientValues = $ingrediente->nutrientes()->pluck('valor')->toArray();
+            $ingredientNutrientValues[] = $nutrientValues;
+        }
+
+        $ingredientCount = count($ingredientPrices);
+
+        // Inicialize $minCost com um valor alto
         $minCost = PHP_INT_MAX;
 
+        // Inicialize $bestMixture com quantidades zeros
         $bestMixture = array_fill(0, $ingredientCount, 0);
 
-        $this->calcularMelhorMistura($nutrientCoefficients, $nutrientMin, $nutrientMax, $ingredientPrices, $ingredientCount, $bestMixture, $minCost);
+        // Chame a função de cálculo da melhor mistura
+        $this->calcularMelhorMistura($ingredientNutrientValues, $valormin, $valormax, $ingredientPrices, $ingredientCount, $bestMixture, $minCost);
 
-        // Ajusta as quantidades para que somem 100%
+        // Normaliza as quantidades para que somem 100%
         $sum = array_sum($bestMixture);
-
         $bestMixture = array_map(function ($quantity) use ($sum) {
-            return ($quantity / $sum) * 100;
+            return ($sum > 0) ? ($quantity / $sum) * 100 : 0;
         }, $bestMixture);
 
         // Exibe a melhor mistura
+        $melhorMistura = [];
         for ($k = 0; $k < $ingredientCount; $k++) {
             $melhorMistura[] = ["ingrediente" => $k, "quantidade" => $bestMixture[$k]];
         }
@@ -104,5 +106,3 @@ class RacaoComponent extends Component
         $this->custoTotal = $minCost;
     }
 }
-
-
