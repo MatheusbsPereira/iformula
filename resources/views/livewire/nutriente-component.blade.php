@@ -30,14 +30,15 @@
                         <div class="mb-3 row">
                             <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
                             <div class="col-sm-10">
-                                <input type="tag"  maxlength="10" class="form-control" wire:model="tag">
+                                <input type="tag" maxlength="10" class="form-control" wire:model="tag">
                             </div>
                             @error('tag')
                                 <div>{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" data-bs-dismiss="modal">
+                            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
+                                data-bs-dismiss="modal">
                                 <span wire:loading.remove>Salvar</span>
                                 <span wire:loading>Salvando...</span>
                             </button>
@@ -50,12 +51,12 @@
     </div>
 
     <div class="container">
-        <div class="body-header">
-            <div class="page-title">
+        <div class="header-tools">
+            <div class="title-container">
                 <span class="title-painel">Painel de Controle</span>
                 <span class="subtitle-painel">Nutrientes</span>
             </div>
-            <div class="page-tools">
+            <div class="tools-container">
                 <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">Criar</button>
             </div>
             {{-- <div>
@@ -69,25 +70,22 @@
             </select>
         </div>  --}}
         </div>
-        <div>
-            <div class="row container-nutrientes">
-                @foreach ($nutrientes as $key => $nutriente)
-                    <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}"
-                        class="modal-toggle col">
-                        <div title="{{ $nutriente['nome'] }}" class="nutrientes-card card-animation">
-                            <div class="card-body">
-                                <div class="card-header">
-                                    <p class='nome-text'>{{ $nutriente['nome'] }}</p>
-                                    <div class='tag-label'>
-                                        <p class='text'>{{ $nutriente['tag'] }}</p>
-                                    </div>
+        <div class="container-nutrientes">
+            @foreach ($nutrientes as $key => $nutriente)
+                <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}" class="modal-toggle">
+                    <div title="{{ $nutriente['nome'] }}" class="nutrientes-card card-animation">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <p class='nome-text'>{{ $nutriente['nome'] }}</p>
+                                <div class='tag-label'>
+                                    <p class='text'>{{ $nutriente['tag'] }}</p>
                                 </div>
-                                <p class='unidade-text text'>{{ $nutriente['unidade'] }}</p>
                             </div>
+                            <p class='unidade-text text'>{{ $nutriente['unidade'] }}</p>
                         </div>
-                    </a>
-                @endforeach
-            </div>
+                    </div>
+                </a>
+            @endforeach
         </div>
     </div>
     <div>
