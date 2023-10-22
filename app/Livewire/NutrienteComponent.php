@@ -19,13 +19,14 @@ class NutrienteComponent extends Component
     public int $id_nutriente_exibir;
     public $perPage = 36;
     public bool $exibirModal = false;
+    public $search = '' ;
     public function render()
     {
-        $nutrientes = Nutriente::orderByDesc('id')
-            ->where('user_id', auth()->id())
-            ->paginate($this->perPage);
 
-        return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
+        return view('livewire.nutriente-component', ['nutrientes' => Nutriente::orderByDesc('id')
+        ->where('user_id', auth()->id())
+        ->where('nome','like',"%{$this->search}%")
+        ->paginate($this->perPage)]);
     }
 
     public function setPerPage($value)

@@ -57,6 +57,7 @@
             </div>
             <div class="page-tools">
                 <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">Criar</button>
+                <input type="text" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
             </div>
             {{-- <div>
             <label for="per_page">Itens por página:</label>
