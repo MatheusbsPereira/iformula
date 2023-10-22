@@ -13,20 +13,21 @@ class NutrienteComponent extends Component
     use WithPagination;
 
     public string $nome = '';
-    
+
     public string $unidade = '';
     public string $tag = '';
     public int $id_nutriente_exibir;
     public $perPage = 36;
     public bool $exibirModal = false;
-    public $search = '' ;
+    public $search = '';
     public function render()
     {
 
         return view('livewire.nutriente-component', ['nutrientes' => Nutriente::orderByDesc('id')
-        ->where('user_id', auth()->id())
-        ->where('nome','like',"%{$this->search}%")
-        ->paginate($this->perPage)]);
+            ->where('user_id', auth()->id())
+            ->where('nome', 'like', "%{$this->search}%")
+            ->orWhere('tag', 'like', "%{$this->search}%")
+            ->paginate($this->perPage)]);
     }
 
     public function setPerPage($value)
@@ -45,17 +46,20 @@ class NutrienteComponent extends Component
 
     public function save(): void
     {
-        $this->validate($this->rules());
-        Nutriente::query()->create([
-            'nome' => $this->nome,
-            'unidade' => $this->unidade,
-            'tag' => $this->tag,
-            'user_id' => auth()->id()
-        ]);
-        $this->nome= "";
-        $this->unidade = "";
-        $this->tag = "";
-
+        if ($this->validate($this->rules())) {
+            Nutriente::query()->create([
+                'nome' => $this->nome,
+                'unidade' => $this->unidade,
+                'tag' => $this->tag,
+                'user_id' => auth()->id()
+            ]);
+            $this->nome = "";
+            $this->unidade = "";
+            $this->tag = "";
+            $this->dispatch('fechar-modal');
+        } else {
+            $this->dispatch('exibir-modal');    
+        }
     }
     public function rules()
     {
@@ -65,6 +69,10 @@ class NutrienteComponent extends Component
             'tag' => ['required', 'max:10'],
         ];
     }
-    
-    
+    public function close()
+    {
+        $this->nome = "";
+        $this->unidade = "";
+        $this->tag = "";
+    }
 }
