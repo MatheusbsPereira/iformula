@@ -15,7 +15,8 @@ a.modal-toggle {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    padding: 5px
+    padding: 5px;
+    margin-bottom: 20px;
 }
 
 
@@ -110,7 +111,7 @@ a.modal-toggle {
 }
 
 /* Botão */
-.btn-adicionar,
+/* .btn-adicionar,
 .page-item:first-child .page-link,
 .page-item:last-child .page-link,
 .page-link.active {
@@ -126,6 +127,42 @@ a.modal-toggle {
     font-size: 12px;
     font-weight: 500;
     border: none
+} */
+.btn-adicionar,
+.page-item:first-child .page-link,
+.page-item:last-child .page-link,
+.page-link.active {
+    background: var(--grey-button);
+    border: none;
+    color: var(--text-color);
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-adicionar .bx {
+    margin-right: 5px;
+}
+
+.btn-adicionar:hover,
+.page-item:first-child .page-link:hover,
+.page-item:last-child .page-link:hover,
+.page-link.active:hover {
+    background: var(--light-grey-color)
+}
+
+.btn-adicionar:focus,
+.page-item:first-child .page-link:focus,
+.page-item:last-child .page-link:focus,
+.page-link.active:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile */
@@ -165,7 +202,7 @@ a.modal-toggle {
     }
 
     .container-nutrientes {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
 
     .header-tools {
