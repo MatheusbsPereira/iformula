@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-
 use App\Models\Nutriente;
 use App\Rules\NomeNutriente;
 use Livewire\Component;
@@ -13,35 +12,27 @@ class NutrienteComponent extends Component
     use WithPagination;
 
     public string $nome = '';
-
     public string $unidade = '';
     public string $tag = '';
-    public int $id_nutriente_exibir;
     public $perPage = 30;
     public bool $exibirModal = false;
     public $search = '';
+
     public function render()
     {
-
-        return view('livewire.nutriente-component', ['nutrientes' => Nutriente::orderByDesc('id')
+        $nutrientes = Nutriente::orderByDesc('id')
             ->where('user_id', auth()->id())
             ->where('nome', 'like', "%{$this->search}%")
             ->orWhere('tag', 'like', "%{$this->search}%")
-            ->paginate($this->perPage)]);
+            ->paginate($this->perPage);
+            $this->resetPage();
+        return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
     }
 
     public function setPerPage($value)
     {
         $this->perPage = $value;
-    }
-
-    protected $listeners = ['nutrienteExcluido' => 'atualizarListaNutrientes'];
-
-    public function atualizarListaNutrientes()
-    {
-        Nutriente::orderBy('id')
-            ->where('user_id', auth()->id())
-            ->paginate($this->perPage);
+        $this->resetPage();
     }
 
     public function save(): void
@@ -61,6 +52,7 @@ class NutrienteComponent extends Component
             $this->dispatch('exibir-modal');    
         }
     }
+
     public function rules()
     {
         return [
@@ -69,6 +61,7 @@ class NutrienteComponent extends Component
             'tag' => ['required', 'max:10'],
         ];
     }
+
     public function close()
     {
         $this->nome = "";
