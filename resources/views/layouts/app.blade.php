@@ -16,7 +16,7 @@
     <!--======== Scripts ========-->
     <script defer src="{{ asset('scripts/bootstrap.js') }}"></script>
     <script defer src="{{ asset('scripts/sidebar.js') }}"></script>
-
+    @yield('scriptjs')
     <!--======== CSS Boxicons ========-->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
