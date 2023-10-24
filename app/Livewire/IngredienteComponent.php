@@ -18,14 +18,30 @@ class IngredienteComponent extends Component
     public  $preco = '';
     public $nutrientes = [];
     public $valores = [];
+    public $perPage = 30;
+
+    public $search = '';
     public function render()
-    {
-        return view('livewire.ingrediente-component', ['nutrientes_escolher' => Nutriente::where('user_id',auth()->id())->get(),'ingredientes'=>Ingrediente::orderByDesc('id')->where('user_id',auth()->id())->paginate(6)]);
-    }
+{
+    $nutrientes_escolher = Nutriente::where('user_id', auth()->id())->get();
+
+    $ingredientes = Ingrediente::orderByDesc('id')
+        ->where(function ($query) {
+            $query->where('user_id', auth()->id())
+                ->where(function ($subquery) {
+                    $subquery->where('nome', 'like', "%{$this->search}%")
+                        ->orWhere('tag', 'like', "%{$this->search}%");
+                });
+        })
+        ->paginate($this->perPage);
+
+    $this->resetPage();
+
+    return view('livewire.ingrediente-component', ['nutrientes_escolher' => $nutrientes_escolher, 'ingredientes' => $ingredientes]);
+}
+
     public function save()
     {
-
-
         $rules = [
             'nome' => ['required', 'max:50', new NomeIngrediente],
             'preco' => ['required', 'max:9999.99','numeric'],
@@ -55,5 +71,9 @@ class IngredienteComponent extends Component
                 'user_id'=>auth()->id()
             ]);
         }
+    }
+    public function setPerPage($value)
+    {
+        $this->perPage = $value;
     }
 }

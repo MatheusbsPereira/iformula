@@ -21,10 +21,14 @@ class NutrienteComponent extends Component
     public function render()
     {
         $nutrientes = Nutriente::orderByDesc('id')
-            ->where('user_id', auth()->id())
-            ->where('nome', 'like', "%{$this->search}%")
-            ->orWhere('tag', 'like', "%{$this->search}%")
-            ->paginate($this->perPage);
+        ->where(function ($query) {
+            $query->where('user_id', auth()->id())
+                ->where(function ($subquery) {
+                    $subquery->where('nome', 'like', "%{$this->search}%")
+                        ->orWhere('tag', 'like', "%{$this->search}%");
+                });
+        })
+        ->paginate($this->perPage);
         $this->resetPage();
         return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
     }

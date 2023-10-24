@@ -1,6 +1,6 @@
 <div style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
     <div x-data="{ show: false }" x-show= "show" x-on:open-modal.window="show = true"
-        x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" class="mymodal" id="">
+        x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" class="mymodal" style="display: none">
         <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -105,17 +105,4 @@
     </div>
     {{ $nutrientes->links() }}
 </div>
-<script>
-    document.addEventListener('livewire:initialized', () => {
-        @this.on('fechar-modal', (event) => {
-            //
-            $('#modalCriar').modal('hide');
-        });
-        @this.on('exibir-modal', (event) => {
-            //
-            console.log('A validação falhou');
-            $('#modalCriar').modal('show');
 
-        });
-    });
-</script>

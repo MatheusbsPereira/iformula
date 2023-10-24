@@ -281,7 +281,7 @@
                 </ul>
             </div>
             <div class="bottom-content">
-                <form method="POST" action="{{ route('logout') }}">
+                {{-- <form method="POST" action="{{ route('logout') }}">
                     <li class="nav-link">
 
                         @csrf
@@ -289,13 +289,21 @@
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                         this.closest('form').submit();">
+
                             <i class="bx bx-log-out icon"></i>
-                            <span class="text nav-text">Sair</span>
+                            <span class="text nav-text">Sair</span>]
+                            
                         </a>
 
 
                     </li>
-                </form>
+                </form> --}}
+                <li class="nav-link user">
+                    <a href="{{ route('profile.edit' ) }}">
+                        <i class='bx bx-user icon'></i>
+                        <span style="text-decoration: underline" class="text nav-text">{{Auth::user()->name}}</span>
+                    </a>
+                </li>
                 <li class="mode">
                     <div class="moon-sun">
                         <i class="bx bx-moon icon moon"></i>

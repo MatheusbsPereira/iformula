@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome',50);
             $table->string('tag',10);
-            $table->text('descricao');
+            $table->string('descricao',70);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unique(['nome','user_id']);

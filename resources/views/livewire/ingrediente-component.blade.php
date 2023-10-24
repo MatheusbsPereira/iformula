@@ -1,67 +1,54 @@
-<div>
-    {{-- Success is as dangerous as failure. --}}
-    <div class="card">
-        <div class="card-body">
-            <form wire:submit="save">
-                <div class="mb-3 row">
-                    <label for="nome" class="col-mb-2 col-form-label">Ingrediente:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="nome">
-                    </div>
-                    @error('nome')
-                        <div>{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3 row">
-                    <label for="preco" class="col-mb-2 col-form-label">Preço:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="preco">
-                    </div>
-                    @error('preco')
-                        <div>{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3 row">
-                    <label for="tag" class="col-mb-2 col-form-label">Tag:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="tag">
-                    </div>
-                    @error('tag')
-                        <div>{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3 row">
-                    <label for="nutrientes" class="col-mb-2 col-form-label">Nutrientes:</label>
-                    <div class="col-sm-10">
-                        @foreach ($nutrientes_escolher as $key => $nutriente)
-                            <p>
-                                <input type="checkbox" value="{{ $nutriente['id'] }}" wire:model="nutrientes">
-                                <label for="">{{ $nutriente['nome'] }} |</label>
-                                <label for="">Valor :</label>
-                                <input type="text" wire:model="valores.{{ $nutriente['id'] }}">
-                                <label for="">{{ $nutriente['unidade'] }}</label>
-                                @error("valores.$nutriente[id]")
-                                    {{ $message }}
-                                @enderror
-
-                            </p>
-                        @endforeach
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
+<div style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+    <div class="container">
+        <div class="title-container">
+            <div class="page-title">
+                <span class="title-painel">Painel de Controle</span>
+                <span class="subtitle-painel">ingredientes</span>
+            </div>
+            <div>
+                <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+                        <option value="0" style="display:none;"></option>
+                        <option value="20">20 itens</option>
+                        <option value="30">30 itens</option>
+                        <option value="50">50 itens</option>
+                    <option value="9999">Todos</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="container text-center">
-        <div class="row">
-            @foreach ($ingredientes as $key =>$ingrediente)
-                <div class="card" style="width: 18rem">
-                    <div class="card-body">
-                        <p>Nome: <a href="{{ route('ingrediente.show', ['nome' => $ingrediente->nome]) }}">{{$ingrediente['nome']}}</a></p>
+
+        <div class="header-tools">
+            <div class="left-tools">
+                <button class="btn-adicionar" x-on:click="$dispatch('open-modal')">
+                    <i class='bx bx-plus'></i> Adicionar
+                </button>
+                <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
+            </div>
+
+            <div class="right-tools">
+                <input type="text" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
+            </div>
+        </div>
+
+        <div class="container-ingredientes">
+            @foreach ($ingredientes as $key => $ingrediente)
+                <a class="card-toggle" href="{{ route('ingrediente.show', ['nome' => $ingrediente->nome]) }}">
+                    <div title="{{ $ingrediente['nome'] }}" class="ingredientes-card card-animation">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <p class='nome-text'>{{ $ingrediente['nome'] }}</p>
+                                <div class='tag-label'>
+                                    <p class='text'>{{ $ingrediente['tag'] }}</p>
+                                </div>
+                            </div>
+                            <p class='unidade-text text'>{{ $ingrediente['preco'] }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
-        {{$ingredientes->links()}}
     </div>
+    <div>
+             </div>
+    {{ $ingredientes->links() }}
 </div>
+

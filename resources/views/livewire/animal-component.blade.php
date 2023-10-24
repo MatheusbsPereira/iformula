@@ -1,5 +1,5 @@
 <div>
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-body">
             <form wire:submit="save">
                 <div class="mb-3 row">
@@ -14,7 +14,7 @@
                 <div class="mb-3 row">
                     <label for="descricao" class="col-mb-2 col-form-label">Descrição:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" wire:model="descricao">
+                        <input type="text" class="form-control" wire:model="descricao" maxlength="700">
                     </div>
                     @error('descricao')
                         <div>{{ $message }}</div>
@@ -55,17 +55,57 @@
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
         </div>
-    </div>
-    <div class="container text-center">
-        <div class="row">
-            @foreach ($animais as $key =>$animal)
-                <div class="card" style="width: 18rem">
-                    <div class="card-body">
-                        <p>Nome: <a href="{{ route('animal.show', ['nome' => $animal->nome]) }}">{{$animal['nome']}}</a></p>
+    </div> --}}
+
+  <div class="container">
+        <div class="title-container">
+            <div class="page-title">
+                <span class="title-painel">Painel de Controle</span>
+                <span class="subtitle-painel">Animais</span>
+            </div>
+            <div>
+                <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+                        <option value="0" style="display:none;"></option>
+                        <option value="20">20 itens</option>
+                        <option value="30">30 itens</option>
+                        <option value="50">50 itens</option>
+                    <option value="9999">Todos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="header-tools">
+            <div class="left-tools">
+                <button class="btn-adicionar" x-on:click="$dispatch('open-modal')">
+                    <i class='bx bx-plus'></i> Adicionar
+                </button>
+                <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
+            </div>
+
+            <div class="right-tools">
+                <input type="text" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
+            </div>
+        </div>
+
+        <div class="container-animais">
+            @foreach ($animais as $key => $animal)
+                <a class="card-toggle" href="{{ route('animal.show', ['nome' => $animal->nome]) }}">
+                    <div title="{{ $animal['nome'] }}" class="animais-card card-animation">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <p class='nome-text'>{{ $animal['nome'] }}</p>
+                                <div class='tag-label'>
+                                    <p class='text'>{{ $animal['tag'] }}</p>
+                                </div>
+                            </div>
+                            <p class='unidade-text text'>{{ $animal['descricao'] }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
-        {{$animais->links()}}
     </div>
+    <div>
+             </div>
+    {{ $animais->links() }}
 </div>
