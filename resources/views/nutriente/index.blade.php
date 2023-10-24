@@ -6,4 +6,8 @@
 @section('scriptjs')
      
 @endsection
+@section('scriptcss')
+    <link rel="stylesheet" href="{{ asset('css/style-nutrientes.css') }}"/>
+@endsection
+
     

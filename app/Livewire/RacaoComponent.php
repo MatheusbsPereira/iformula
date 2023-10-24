@@ -105,4 +105,3 @@ class RacaoComponent extends Component
     }
 }
 
-

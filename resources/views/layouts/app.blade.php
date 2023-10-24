@@ -10,8 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--======== CSS ========-->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
     @yield('scriptcss')
     <!--======== Scripts ========-->
     <script defer src="{{ asset('scripts/bootstrap.js') }}"></script>
@@ -27,7 +27,7 @@
     <script src="{{ asset('scripts/dark-theme.js') }}"></script>
     <nav class="sidebar close">
         <header>
-            <div class="image-text">
+            <div class="sidebar-top">
                 <span class="image">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 993.00 251.00">
                         <!-- Acento -->
@@ -236,14 +236,11 @@
                         
                         
                 </span>
-
                 {{-- <div class="text header-text">
                     <span class="name">{{ Auth::user()->name }}</span>
                     <span class="access">Contratante</span>
                 </div> --}}
             </div>
-
-            <i class="toggle"></i>
         </header>
 
         <div class="menu-bar">
