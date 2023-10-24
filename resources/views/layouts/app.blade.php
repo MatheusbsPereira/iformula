@@ -21,6 +21,8 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <title>ifórmula - @yield('titulo')</title>
+    @livewireStyles
+    
 </head>
 
 <body class="{{ $theme == 'dark' ? 'dark' : ''}}">
@@ -312,6 +314,7 @@
         @yield('content')
     </main>
 
+    @livewireScripts
 </body>
 
 </html>
