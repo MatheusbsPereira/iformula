@@ -5,10 +5,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='close' aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='close'
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form >
+                    <form>
                         <div class="mb-3 row">
                             <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
                             <div class="col-sm-10">
@@ -37,14 +38,15 @@
                             @enderror
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary"    wire:click='save'>
+                            <button type="button" class="btn btn-primary" wire:click='save'>
                                 Salvar
-                            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
-                                data-bs-dismiss="modal">
-                                <span wire:loading.remove>Salvar</span>
-                                <span wire:loading>Salvando...</span>
-                            </button>
-                            <button type="button" class="btn btn-secondary" wire:click='close'  data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
+                                    data-bs-dismiss="modal">
+                                    <span wire:loading.remove>Salvar</span>
+                                    <span wire:loading>Salvando...</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" wire:click='close'
+                                    data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -53,26 +55,36 @@
     </div>
 
     <div class="container">
-        <div class="header-tools">
-            <div class="title-container">
+        <div class="title-container">
+            <div class="page-title">
                 <span class="title-painel">Painel de Controle</span>
                 <span class="subtitle-painel">Nutrientes</span>
             </div>
-            <div class="tools-container">
-                <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">Criar</button>
-                <input type="text" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
+            <div>
+                <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+                    <optgroup label="Exibir">
+                    <option value="0" style="display:none;"></option>
+                    <option value="20">20 itens</option>
+                    <option value="30">30 itens</option>
+                    <option value="50">50 itens</option>
+                    </optgroup>
+                </select>
             </div>
-             <div>
-            <label for="per_page">Itens por página:</label>
-            <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
-                <option value="0" style="display:none;"></option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="50">50</option>
-                <!-- Adicione mais opções conforme necessário -->
-            </select>
-        </div>  
         </div>
+       
+        <div class="header-tools">
+            <div class="left-tools">
+                <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">
+                    <i class='bx bx-plus'></i> Adicionar
+                </button>
+                <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
+            </div>
+
+            <div class="right-tools">
+                <input type="taext" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
+            </div>
+        </div>
+
         <div class="container-nutrientes">
             @foreach ($nutrientes as $key => $nutriente)
                 <a data-bs-toggle="modal" data-bs-target="#nutriente_{{ $nutriente['id'] }}" class="modal-toggle">
@@ -100,15 +112,15 @@
 </div>
 <script>
     document.addEventListener('livewire:initialized', () => {
-       @this.on('fechar-modal', (event) => {
-           //
-           $('#modalCriar').modal('hide');
-       });
-       @this.on('exibir-modal', (event) => {
-           //
-           console.log('A validação falhou');
-           $('#modalCriar').modal('show');
-           
-       });
+        @this.on('fechar-modal', (event) => {
+            //
+            $('#modalCriar').modal('hide');
+        });
+        @this.on('exibir-modal', (event) => {
+            //
+            console.log('A validação falhou');
+            $('#modalCriar').modal('show');
+
+        });
     });
 </script>
