@@ -25,7 +25,7 @@ class NutrienteComponent extends Component
             ->where('nome', 'like', "%{$this->search}%")
             ->orWhere('tag', 'like', "%{$this->search}%")
             ->paginate($this->perPage);
-            $this->resetPage();
+        $this->resetPage();
         return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
     }
 
@@ -34,7 +34,7 @@ class NutrienteComponent extends Component
         $this->perPage = $value;
     }
 
-    protected $listeners = ['nutrienteExcluido' => 'atualizarListaNutrientes','close-modal'=>'resetar'];
+    protected $listeners = ['nutrienteExcluido' => 'atualizarListaNutrientes', 'close-modal' => 'resetar'];
 
     public function atualizarListaNutrientes()
     {
@@ -45,20 +45,17 @@ class NutrienteComponent extends Component
 
     public function save(): void
     {
-        if ($this->validate($this->rules())) {
-            Nutriente::query()->create([
-                'nome' => $this->nome,
-                'unidade' => $this->unidade,
-                'tag' => $this->tag,
-                'user_id' => auth()->id()
-            ]);
-            $this->nome = "";
-            $this->unidade = "";
-            $this->tag = "";
-            $this->dispatch('fechar-modal');
-        } else {
-            $this->dispatch('exibir-modal');    
-        }
+        $this->validate($this->rules());
+        Nutriente::query()->create([
+            'nome' => $this->nome,
+            'unidade' => $this->unidade,
+            'tag' => $this->tag,
+            'user_id' => auth()->id()
+        ]);
+        $this->nome = "";
+        $this->unidade = "";
+        $this->tag = "";
+        $this->close();
     }
 
     public function rules()
