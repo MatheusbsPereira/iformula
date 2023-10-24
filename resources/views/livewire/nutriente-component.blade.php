@@ -1,10 +1,10 @@
 <div style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
-
-    <div class="modal fade" id="modalCriar" tabindex="-1" aria-hidden="true">
+    <div x-data="{ show: false }" x-show= "show" x-on:open-modal.window="show = true"
+        x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" class="mymodal" id="">
         <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='close'
                         aria-label="Close"></button>
                 </div>
@@ -13,7 +13,7 @@
                         <div class="mb-3 row">
                             <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
                             <div class="col-sm-10">
-                                <input type="text" maxlength="20" class="form-control" wire:model="nome">
+                                <input type="text" maxlength="20" class="form-control" wire:model.live="nome">
                             </div>
                             @error('nome')
                                 <div>{{ $message }}</div>
@@ -22,7 +22,7 @@
                         <div class="mb-3 row">
                             <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
                             <div class="col-sm-10">
-                                <input type="unidade" maxlength="6" class="form-control" wire:model="unidade">
+                                <input type="unidade" maxlength="6" class="form-control" wire:model.live="unidade">
                             </div>
                             @error('unidade')
                                 <div>{{ $message }}</div>
@@ -31,7 +31,7 @@
                         <div class="mb-3 row">
                             <label for="unidade" class="col-mb-2 col-form-label">Tag:</label>
                             <div class="col-sm-10">
-                                <input type="tag" maxlength="10" class="form-control" wire:model="tag">
+                                <input type="tag" maxlength="10" class="form-control" wire:model.live="tag">
                             </div>
                             @error('tag')
                                 <div>{{ $message }}</div>
@@ -40,19 +40,15 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" wire:click='save'>
                                 Salvar
-                                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
-                                    data-bs-dismiss="modal">
-                                    <span wire:loading.remove>Salvar</span>
-                                    <span wire:loading>Salvando...</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary" wire:click='close'
-                                    data-bs-dismiss="modal">Close</button>
+                            </button>
+                            <button type="button" class="btn btn-secondary" wire:click='close'>Fechar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="container">
         <div class="title-container">
@@ -62,25 +58,25 @@
             </div>
             <div>
                 <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
-                    <option value="0" style="display:none;"></option>
-                    <option value="20">20 itens</option>
-                    <option value="30">30 itens</option>
-                    <option value="50">50 itens</option>
+                        <option value="0" style="display:none;"></option>
+                        <option value="20">20 itens</option>
+                        <option value="30">30 itens</option>
+                        <option value="50">50 itens</option>
                     <option value="9999">Todos</option>
                 </select>
             </div>
         </div>
-       
+
         <div class="header-tools">
             <div class="left-tools">
-                <button class="btn-adicionar" data-bs-toggle="modal" data-bs-target="#modalCriar">
+                <button class="btn-adicionar" x-on:click="$dispatch('open-modal')">
                     <i class='bx bx-plus'></i> Adicionar
                 </button>
                 <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
             </div>
 
             <div class="right-tools">
-                <input type="taext" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
+                <input type="text" placeholder="Pesquisar" class="btn-pesquisar" wire:model.live='search'>
             </div>
         </div>
 
