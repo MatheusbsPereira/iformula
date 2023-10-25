@@ -17,10 +17,10 @@ class NutrientesExport implements FromCollection, WithHeadings, WithMapping
     {
         $data = Nutriente::where('user_id', auth()->id())
         ->get();
-        dd($data);
+        return $data;
     }
     public function headings(): array{
-        return ['nome','tag','unidade'];
+        return ['Nome','Tag','Unidade'];
     }
     public function map($linha): array
     {

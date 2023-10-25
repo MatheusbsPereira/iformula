@@ -1,7 +1,7 @@
 <div style="height: 100%;">
     <div style="display: flex;flex-direction: column;justify-content: space-between;">
         <x-my-modal name="cadastrar">
-            
+            <livewire:ingrediente_modal />
         </x-my-modal>
         <div class="container">
             <div class="title-container">
@@ -22,7 +22,7 @@
 
             <div class="header-tools">
                 <div class="left-tools">
-                    <button class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
+                    <button id="btnAddIng" class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
                         <i class='bx bx-plus'></i> Adicionar
                     </button>
                     <div class="dropdown btn-adicionar">

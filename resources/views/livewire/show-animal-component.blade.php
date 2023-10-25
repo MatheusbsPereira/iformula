@@ -8,7 +8,8 @@
                 </tr>
                 <tr class="table-light">
                     <th>Nome</th>
-                    <th>Valor</th>
+                    <th>Valor Mínimo</th>
+                    <th>Valor Maximo</th>
                     <th>Unidade</th>
                     <th></th>
                     <th></th>
