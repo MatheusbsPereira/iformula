@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //Route::resource('nutriente',App\Http\Controllers\NutrienteController::class);
     Route::get('/nutrientes',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
+    Route::get('/nutrientes/exportxlsx',[App\Http\Controllers\NutrienteController::class,'exports'])->name('nutriente.exportsxlsx');
     Route::get('/ingredientes',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
     Route::get('/ingredientes/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
     Route::get('/animais',[App\Http\Controllers\AnimalController::class,'index'])->name('animal.index');
