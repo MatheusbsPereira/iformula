@@ -19,7 +19,7 @@ class NutrienteController extends Controller
     }
     public function exports()
     {
-        return Excel::download( NutrientesExport::class,'nutrientes.xlsx');
+        return Excel::download(new NutrientesExport,'nutrientes.xlsx');
     }
     /**
      * Show the form for creating a new resource.

@@ -46,6 +46,9 @@ class NutrienteComponent extends Component
             ->where('user_id', auth()->id())
             ->paginate($this->perPage);
     }
+    public function exportToExcel(){
+         return redirect()->to(route('nutriente.exportsxlsx'));
+    }
 
     
 }
