@@ -16,7 +16,6 @@
         </div>
     </div>
     <div>
-        <!-- ... (código anterior) -->
     
         @if($melhorMistura)
             <div>

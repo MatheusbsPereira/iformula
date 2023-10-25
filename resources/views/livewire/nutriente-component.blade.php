@@ -1,6 +1,6 @@
 <div style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
-    <div x-data="{ show: false }" x-show= "show" x-on:open-modal.window="show = true"
-        x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" class="mymodal" style="display: none">
+    <div x-data="{ show: false }" x-show= "show" x-on:open-modal.window="show = true" x-on:close-modal.window="show = false"
+        x-on:keydown.escape.window="show = false" class="mymodal" style="display: none">
         <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -58,10 +58,10 @@
             </div>
             <div>
                 <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
-                        <option value="0" style="display:none;"></option>
-                        <option value="20">20 itens</option>
-                        <option value="30">30 itens</option>
-                        <option value="50">50 itens</option>
+                    <option value="0" style="display:none;"></option>
+                    <option value="20">20 itens</option>
+                    <option value="30">30 itens</option>
+                    <option value="50">50 itens</option>
                     <option value="9999">Todos</option>
                 </select>
             </div>
@@ -72,7 +72,16 @@
                 <button class="btn-adicionar" x-on:click="$dispatch('open-modal')">
                     <i class='bx bx-plus'></i> Adicionar
                 </button>
-                <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
+
+                <div class="dropdown btn-adicionar">
+                    <button class="dropdown-reset"><i class='bx bx-export'></i> Exportar</button>
+                    <div class="dropdown-content">
+                        <a href="#" wire:click="exportToPDF">PDF</a>
+                        <a href="#" wire:click="exportToExcel">Excel</a>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="right-tools">
@@ -105,4 +114,3 @@
     </div>
     {{ $nutrientes->links() }}
 </div>
-

@@ -51,7 +51,6 @@ a.modal-toggle {
     margin-bottom: 20px;
 }
 
-
 .nutrientes-card:hover .tag-label {
     pointer-events: none;
     visibility: hidden;

@@ -301,7 +301,7 @@
                 <li class="nav-link user">
                     <a href="{{ route('profile.edit' ) }}">
                         <i class='bx bx-user icon'></i>
-                        <span style="text-decoration: underline" class="text nav-text">{{Auth::user()->name}}</span>
+                        <span class="text nav-text">Meu Perfil</span>
                     </a>
                 </li>
                 <li class="mode">
