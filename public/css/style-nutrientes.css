@@ -31,6 +31,10 @@
     overflow-y: auto;
     outline: 0;
   }
+  .bgmodal {
+    background-color: gray;
+    
+  }
 a.modal-toggle {
     text-decoration: none;
     min-width: 170px;
