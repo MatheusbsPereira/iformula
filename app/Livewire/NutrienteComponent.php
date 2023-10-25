@@ -11,9 +11,9 @@ class NutrienteComponent extends Component
 {
     use WithPagination;
 
-    public string $nome = '';
-    public string $unidade = '';
-    public string $tag = '';
+    
+    public string $name = 'cadastrar';
+    
     public $perPage = 30;
     public bool $exibirModal = false;
     public $search = '';
@@ -47,38 +47,5 @@ class NutrienteComponent extends Component
             ->paginate($this->perPage);
     }
 
-    public function save(): void
-    {
-        $this->validate($this->rules());
-        Nutriente::query()->create([
-            'nome' => $this->nome,
-            'unidade' => $this->unidade,
-            'tag' => $this->tag,
-            'user_id' => auth()->id()
-        ]);
-        $this->nome = "";
-        $this->unidade = "";
-        $this->tag = "";
-        $this->close();
-    }
-
-    public function rules()
-    {
-        return [
-            'nome' => ['required', 'max:50', new NomeNutriente],
-            'unidade' => ['required', 'max:6'],
-            'tag' => ['required', 'max:10'],
-        ];
-    }
-
-    public function close()
-    {
-        $this->dispatch('close-modal');
-    }
-    public function resetar()
-    {
-        $this->nome = '';
-        $this->unidade = '';
-        $this->tag = '';
-    }
+    
 }

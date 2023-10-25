@@ -60,6 +60,9 @@ class CrudNutrienteComponent extends Component
     public function excluir() {
         $nutriente = Nutriente::find($this->id);
         $nutriente->delete();
-        $this->dispatch('nutrienteExcluido');
+        return redirect()->to(route('nutriente.index'));
+    }
+    public function fechar() {    
+        $this->dispatch('close-modal');
     }
 }
