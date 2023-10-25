@@ -71,7 +71,7 @@ class NutrientesSeeder extends Seeder
                 'nome' => $nutriente,
                 'unidade' => 'kcal',
                 'tag' => 'Vitamina',
-                'user_id' => 1
+                'user_id' => 2
             ]);
         }
     }
