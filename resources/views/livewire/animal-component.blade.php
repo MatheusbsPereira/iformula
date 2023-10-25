@@ -82,7 +82,13 @@
                 <button class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
                     <i class='bx bx-plus'></i> Adicionar
                 </button>
-                <button class="btn-adicionar"> <i class='bx bx-export'></i> Exportar</button>
+                <div class="dropdown btn-adicionar">
+                    <button class="dropdown-reset"><i class='bx bx-export'></i> Exportar</button>
+                    <div class="dropdown-content">
+                        <a href="#" wire:click="exportToPDF">PDF</a>
+                        <a href="#" wire:click="exportToExcel">Excel</a>
+                    </div>
+                </div>
             </div>
 
             <div class="right-tools">
