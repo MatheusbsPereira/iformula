@@ -1,7 +1,7 @@
-<div>
+<div style="height: 100%">
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
 
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Nutriente</h5>

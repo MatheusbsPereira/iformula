@@ -1,7 +1,7 @@
 <div style="height: 100%;">
     <div style="display: flex;flex-direction: column;justify-content: space-between;">
         <x-my-modal name="cadastrar">
-
+            
         </x-my-modal>
         <div class="container">
             <div class="title-container">

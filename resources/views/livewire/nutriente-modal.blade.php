@@ -1,4 +1,4 @@
-<div>
+<div style="height: 100%">
     <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
