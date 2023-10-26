@@ -250,8 +250,8 @@
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="{{ route('home') }}">
-                            <i class="bx bx-home-alt-2 icon"></i>
-                            <span class="text nav-text">Home</span>
+                            <i class='bx bx-buildings icon'></i>
+                            <span class="text nav-text">Fábricas</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -268,13 +268,7 @@
                     </li>
                     <li class="nav-link">
                         <a href="{{ route('animal.index') }}">
-                            <i class="bx bx-bug-alt icon"></i>
-                            <span class="text nav-text">Animais</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="{{ route('racao.index' ) }}">
-                            <i class="bx bx-book-open icon"></i>
+                            <i class='bx bx-food-menu icon'></i>
                             <span class="text nav-text">Rações</span>
                         </a>
                     </li>

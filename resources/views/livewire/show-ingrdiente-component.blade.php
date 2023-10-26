@@ -1,7 +1,8 @@
 <div>
     <div class="row justify-content-center">
         <table class="table table-striped">
-            Ingrediente: {{ $ingrediente->nome }}
+            <p>Ingrediente: {{ $ingrediente->nome }}</p>
+            <p>Descrição: {{ $ingrediente->descricao }}</p>
             <thead>
                 <tr class="table-light">
                     <th>Nutrientes:</th>

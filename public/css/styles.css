@@ -620,3 +620,7 @@ body.dark svg ellipse {
 .mymodal {
     --bs-modal-bg: var(--primary-color-light) !important;
 }
+
+.btn-close:focus {
+    box-shadow: none !important;
+}

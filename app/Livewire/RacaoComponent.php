@@ -92,6 +92,7 @@ class RacaoComponent extends Component
         $sum = array_sum($bestMixture);
 
         $bestMixture = array_map(function ($quantity) use ($sum) {
+            
             return ($quantity / $sum) * 100;
         }, $bestMixture);
 
@@ -99,8 +100,7 @@ class RacaoComponent extends Component
         for ($k = 0; $k < $ingredientCount; $k++) {
             $melhorMistura[] = ["ingrediente" => $k, "quantidade" => $bestMixture[$k]];
         }
-
-        $this->melhorMistura = $melhorMistura;
+                $this->melhorMistura = $melhorMistura;
         $this->custoTotal = $minCost;
     }
 }

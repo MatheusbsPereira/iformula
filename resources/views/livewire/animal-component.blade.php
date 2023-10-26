@@ -65,7 +65,7 @@
             <div class="title-container">
                 <div class="page-title">
                     <span class="title-painel">Painel de Controle</span>
-                    <span class="subtitle-painel">Animais</span>
+                    <span class="subtitle-painel">Rações</span>
                 </div>
                 <div>
                     <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
