@@ -72,6 +72,11 @@
     margin-bottom: 2rem !important;
 }
 
+.btnBack {
+    background: none;
+    border: none;
+}
+
 /* Cards */
 .container-ingredientes {
     display: grid;
@@ -368,7 +373,7 @@ a.card-toggle {
 }
 
 .progress-form__tabs-item::before {
-  background-color: hsl(var(--light-blue-500));
+  background: linear-gradient(270deg, rgba(91, 229, 155, .8) 0, rgba(53, 190, 116, .8) 50%, rgba(12, 182, 90, .8) 100%);
   content: "";
   height: 5px;
   left: 0;
