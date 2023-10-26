@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AnimaisExport;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnimalController extends Controller
 {
@@ -15,7 +17,10 @@ class AnimalController extends Controller
         //
         return view('animal.index');
     }
-
+    public function exports()
+    {
+        return Excel::download(new AnimaisExport,'animais.xlsx');
+    }
     /**
      * Show the form for creating a new resource.
      */

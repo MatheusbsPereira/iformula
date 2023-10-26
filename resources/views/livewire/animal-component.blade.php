@@ -87,7 +87,7 @@
                         <button class="dropdown-reset"><i class='bx bx-export'></i> Exportar</button>
                         <div class="dropdown-content">
                             <a href="#" wire:click="exportToPDF">PDF</a>
-                            <a href="#" wire:click="exportToExcel">Excel</a>
+                            <a href="{{ route('animal.exportsxlsx') }}" >Excel</a>
                         </div>
                     </div>
                 </div>

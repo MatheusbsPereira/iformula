@@ -28,9 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/nutrientes',[App\Http\Controllers\NutrienteController::class,'index'])->name('nutriente.index');
     Route::get('/nutrientes/exportxlsx',[App\Http\Controllers\NutrienteController::class,'exports'])->name('nutriente.exportsxlsx');
     Route::get('/ingredientes',[App\Http\Controllers\IngredienteController::class,'index'])->name('ingrediente.index');
-    Route::get('/ingredientes/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
+    Route::get('/ingredientes/exportxlsx',[App\Http\Controllers\IngredienteController::class,'exports'])->name('ingrediente.exportsxlsx');
+    Route::get('/ingredientes/exibir/{nome}',[App\Http\Controllers\IngredienteController::class,'show'])->name('ingrediente.show');
     Route::get('/animais',[App\Http\Controllers\AnimalController::class,'index'])->name('animal.index');
-    Route::get('/animais/{nome}',[App\Http\Controllers\AnimalController::class,'show'])->name('animal.show');
+    Route::get('/animais/exportxlsx/',[App\Http\Controllers\AnimalController::class,'exports'])->name('animal.exportsxlsx');
+    Route::get('/animais/exibir/{nome}',[App\Http\Controllers\AnimalController::class,'show'])->name('animal.show');
     Route::get('/racoes',[App\Http\Controllers\RacaoController::class,'index'])->name('racao.index');
 });
 Route::fallback(function () {

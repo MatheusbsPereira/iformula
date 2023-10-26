@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IngredientesExport;
 use App\Models\Ingrediente;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IngredienteController extends Controller
 {
@@ -15,7 +17,10 @@ class IngredienteController extends Controller
         //
         return view('ingrediente.index');
     }
-
+    public function exports()
+    {
+        return Excel::download(new IngredientesExport,'ingredientes.xlsx');
+    }
     /**
      * Show the form for creating a new resource.
      */
