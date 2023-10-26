@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ingredientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome',50);
+            $table->string('descricao',50);
             $table->decimal('preco',6,2);
             $table->string('tag',10);
             $table->unsignedBigInteger('user_id');

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingediente_de_racoes', function (Blueprint $table) {
+        Schema::create('ingrediente_de_racoes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nutriente_id');
             $table->unsignedBigInteger('ingrediente_id');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('nutriente_id')->references('id')->on('nutrientes')->cascadeOnDelete();
             $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->cascadeOnDelete();
             $table->foreign('racao_id')->references('id')->on('racoes')->cascadeOnDelete();
-            $table->unique(['nutriente_id','ingrediente_id','racao_id'])->cascadeOnDelete();
+            $table->unique(['nutriente_id','ingrediente_id','racao_id'],'ingrediente_de_racoes_unique')->cascadeOnDelete();
             $table->timestamps();
         });
     }
