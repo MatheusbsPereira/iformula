@@ -2,6 +2,6 @@
 @section('titulo', "Ingrediente $ingrediente->nome")
 @section('content')
     <div class="container">
-        <livewire:show_ingrdiente_component :ingrediente="$ingrediente" />
+        <livewire:show_ingrediente_component :ingrediente="$ingrediente" />
     </div>
 @endsection
