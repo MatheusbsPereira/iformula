@@ -249,6 +249,12 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
+                        <a href="{{ route('profile.edit' ) }}">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Meu Perfil</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
                         <a href="{{ route('home') }}">
                             <i class='bx bx-buildings icon'></i>
                             <span class="text nav-text">Fábricas</span>
@@ -262,20 +268,14 @@
                     </li>
                     <li class="nav-link">
                         <a href="{{ route('ingrediente.index') }}">
-                            <i class="bx bx-baguette icon"></i>
+                            <i class="bx bx-food-menu icon"></i>
                             <span class="text nav-text">Ingredientes</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="{{ route('animal.index') }}">
-                            <i class='bx bx-food-menu icon'></i>
-                            <span class="text nav-text">Rações</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="bottom-content">
-                {{-- <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}">
                     <li class="nav-link">
 
                         @csrf
@@ -285,19 +285,13 @@
                         this.closest('form').submit();">
 
                             <i class="bx bx-log-out icon"></i>
-                            <span class="text nav-text">Sair</span>]
+                            <span class="text nav-text">Sair</span>
                             
                         </a>
 
 
                     </li>
-                </form> --}}
-                <li class="nav-link user">
-                    <a href="{{ route('profile.edit' ) }}">
-                        <i class='bx bx-user icon'></i>
-                        <span class="text nav-text">Meu Perfil</span>
-                    </a>
-                </li>
+                </form>
                 <li class="mode">
                     <div class="moon-sun">
                         <i class="bx bx-moon icon moon"></i>
