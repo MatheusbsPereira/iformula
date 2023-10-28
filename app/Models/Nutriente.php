@@ -13,4 +13,5 @@ class Nutriente extends Model
     {
         return $this->belongsToMany(Ingrediente::class,'formacoes')->withPivot('valor','id');
     }
+    
 }
