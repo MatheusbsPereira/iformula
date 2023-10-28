@@ -6,7 +6,7 @@ use App\Models\Formacao;
 use App\Models\Nutriente;
 use Livewire\Component;
 
-class ShowIngrdienteComponent extends Component
+class ShowIngredienteComponent extends Component
 {
 
     public $ingrediente;
@@ -19,7 +19,7 @@ class ShowIngrdienteComponent extends Component
             $query->where('ingrediente_id', $this->ingrediente->id)->where('ingredientes.user_id',auth()->id());
         })->where('nutrientes.user_id',auth()->id())->get();
         
-        return view('livewire.show-ingrdiente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
+        return view('livewire.show-ingrediente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
     }
     public function mount($ingrediente)
     {
