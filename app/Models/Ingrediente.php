@@ -13,4 +13,8 @@ class Ingrediente extends Model
     {
         return $this->belongsToMany(Nutriente::class,'formacoes')->withPivot('valor','id');
     }
+    public function formulacoes()
+    {
+        return $this->belongsToMany(Formulacoes::class,'ingredientes_de_formulacoes')->withPivot('peso','id');
+    }
 }

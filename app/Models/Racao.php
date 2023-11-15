@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Racao extends Model
 {
     use HasFactory;
-    protected $table = "ingredientes_de_formulacoes";
+    protected $table = "racoes";
     protected $guarded = [];
+    public function nutrientes()
+    {
+        return $this->belongsToMany(Nutriente::class, 'exigencias')->withPivot('valornut', 'id');
+    }
+    public function fabrica()
+    {
+        return $this->belongsTo(Fabrica::class);
+    }
+    public function formulacao(){
+        return $this->hasOne(Formulacao::class);
+    }
 }
