@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingrediente_de_racoes', function (Blueprint $table) {
+        Schema::create('formulacoes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nutriente_id');
-            $table->unsignedBigInteger('ingrediente_id');
-            $table->unsignedBigInteger('racao_id');
+            $table->string('objetivo');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('racao_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('nutriente_id')->references('id')->on('nutrientes')->cascadeOnDelete();
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->cascadeOnDelete();
             $table->foreign('racao_id')->references('id')->on('racoes')->cascadeOnDelete();
-            $table->unique(['nutriente_id','ingrediente_id','racao_id'],'ingrediente_de_racoes_unique')->cascadeOnDelete();
+            $table->unique(['racao_id','user_id']);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingediente_de_racoes');
+        Schema::dropIfExists('formulacoes');
     }
 };

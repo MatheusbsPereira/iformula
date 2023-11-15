@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exigencias', function (Blueprint $table) {
+        Schema::create('racoes', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valormin',8,2);
-            $table->decimal('valormax',8,2);
-            $table->unsignedBigInteger('nutriente_id');
-            $table->unsignedBigInteger('animal_id');
+            $table->string('nome',50);
+            $table->string('tag',10);
+            $table->unsignedInteger('idade');
+            $table->unsignedDecimal('peso',8,2);
+            $table->string('descricao',70)->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('fabrica_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('nutriente_id')->references('id')->on('nutrientes')->cascadeOnDelete();
-            $table->foreign('animal_id')->references('id')->on('animais')->cascadeOnDelete();
-            $table->unique(['nutriente_id','animal_id']);
+            $table->foreign('fabrica_id')->references('id')->on('fabricas')->cascadeOnDelete();
+            $table->unique(['nome','fabrica_id']);
+            $table->index('tag');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exigencias');
+        Schema::dropIfExists('racoes');
     }
 };

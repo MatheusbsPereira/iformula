@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('animais', function (Blueprint $table) {
+        Schema::create('ingredientes_de_formulacoes', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',50);
-            $table->string('tag',10);
-            $table->string('descricao',70);
+            $table->unsignedBigInteger('ingrediente_id');
+            $table->unsignedBigInteger('formulacao_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->unique(['nome','user_id']);
-            $table->index('tag');
+            $table->foreign('formulacao_id')->references('id')->on('formulacoes')->cascadeOnDelete();
+            $table->unique(['ingrediente_id','formulacao_id'])->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('animais');
+        Schema::dropIfExists('ingredientes_de_formulacoes');
     }
 };
