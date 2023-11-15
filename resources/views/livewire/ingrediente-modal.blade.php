@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 
-                <!-- Step Navigation -->g
+                <!-- Step Navigation -->
                 <div class="d-flex align-items-start mb-3 sm:mb-5 progress-form__tabs" role="tablist">
                     <button id="progress-form__tab-1" class="flex-1 px-0 pt-2 progress-form__tabs-item" type="button"
                         role="tab" aria-controls="progress-form__panel-1" aria-selected="true">

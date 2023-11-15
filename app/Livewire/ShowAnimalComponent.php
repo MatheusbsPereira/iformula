@@ -11,7 +11,8 @@ class ShowAnimalComponent extends Component
     public $animal;
     public $valoresmin = [];
     public $valoresmax = [];
-    public $valoreseditar = [];
+    public $valoreseditarmin = [];
+    public $valoreseditarmax = [];
     public $editarforms = [];
     public function render()
     {
@@ -28,21 +29,26 @@ class ShowAnimalComponent extends Component
     public function resetarEditar(){
         foreach ($this->animal->nutrientes as $nutriente) {
             $this->editarforms[$nutriente->pivot->id] = false;
-            $this->valoreseditar[$nutriente->pivot->id] = $nutriente->pivot->valor;
+            $this->valoreseditarmax[$nutriente->pivot->id] = $nutriente->pivot->valormax;
+            $this->valoreseditarmin[$nutriente->pivot->id] = $nutriente->pivot->valormin;
         }
     }
     public function adicionarNutriente($id)
     {
         $rules = [
-            "valores.$id" => 'required|numeric|max:999999.99'
+            "valoresmin.$id" => 'required|numeric|max:999999.99',
+            "valoresmax.$id" => 'required|numeric|max:999999.99'
         ];
         $messages = [
-            "valores.$id.required" => "O valor do nutriente escolhido é obrigatório.",
-            "valores.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
+            "valoresmin.$id.required" => "O valor do nutriente escolhido é obrigatório.",
+            "valoresmin.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
+            "valoresmax.$id.required" => "O valor do nutriente escolhido é obrigatório.",
+            "valoresmax.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
         ];
         $this->validate($rules, $messages);
         Exigencia::create([
-            'valornut' => $this->valores[$id],
+            'valormin' => $this->valoresmin[$id],
+            'valormax' => $this->valoresmax[$id],
             'nutriente_id' => $id,
             'animal_id' => $this->animal->id,
             'user_id' => auth()->id()
@@ -65,15 +71,20 @@ class ShowAnimalComponent extends Component
     public function atualizarValor($id)
     {
         $rules = [
-            "valoreseditar.$id" => 'required|numeric|max:999999.99'
+            "valoreseditarmin.$id" => 'required|numeric|max:999999.99',
+            "valoreseditarmin.$id" => 'required|numeric|max:999999.99',
         ];
         $messages = [
-            "valoreseditar.$id.required" => "O valor do nutriente escolhido é obrigatório.",
-            "valoreseditar.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
+            "valoreseditarmin.$id.required" => "O valor do nutriente escolhido é obrigatório.",
+            "valoreseditarmin.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
+            "valoreseditarmax.$id.required" => "O valor do nutriente escolhido é obrigatório.",
+            "valoreseditarmax.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
+            
         ];
         $this->validate($rules, $messages);
         $exigencia = Exigencia::find($id);
-        $exigencia->valornut = $this->valoreseditar[$id];
+        $exigencia->valormin = $this->valoreseditarmin[$id];
+        $exigencia->valormax = $this->valoreseditarmax[$id];
         $exigencia->save();
         $this->editarforms[$id] = false;
         $this->render();

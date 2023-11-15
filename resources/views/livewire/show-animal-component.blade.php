@@ -22,11 +22,17 @@
                         @if ($editarforms[$nutriente->pivot->id])
                             <td>
                                 <form action="">
-                                    <input type="text" wire:model='valoreseditar.{{ $nutriente->pivot->id }}'>
+                                    <input type="text" wire:model='valoreseditarmin.{{ $nutriente->pivot->id }}'>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="">
+                                    <input type="text" wire:model='valoreseditarmax.{{ $nutriente->pivot->id }}'>
                                 </form>
                             </td>
                         @else
-                            <td>{{ $nutriente->pivot->valornut }}</td>
+                            <td>{{ $nutriente->pivot->valormin }}</td>
+                            <td>{{ $nutriente->pivot->valormax }}</td>
                         @endif
                         <td>{{ $nutriente->unidade }}</td>
                         <td> <button wire:click="deletarNutrienter({{ $nutriente->pivot->id }})"
@@ -64,9 +70,14 @@
                 <div class="card-body">
                     <p>Nutriente: {{ $nutriente->nome }}</p>
                     <form action="" wire:submit="adicionarNutriente({{ $nutriente->id }})">
-                        <label for="">Valor :</label>
-                        <input type="text" wire:model='valores.{{ $nutriente->id }}' class=""><br>
-                        @error("valores.$nutriente->id")
+                        <label for="">Valor Minímo:</label>
+                        <input type="text" wire:model='valoresmin.{{ $nutriente->id }}' class=""><br>
+                        @error("valoresmin.$nutriente->id")
+                            {{ $message }}
+                        @enderror
+                        <label for="">Valor Maxímo:</label>
+                        <input type="text" wire:model='valoresmax.{{ $nutriente->id }}' class=""><br>
+                        @error("valoresmax.$nutriente->id")
                             {{ $message }}
                         @enderror
                         <button type="submit" class="btn btn-success">Adicionar</button>

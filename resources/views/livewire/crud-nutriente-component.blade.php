@@ -4,50 +4,56 @@
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Nutriente</h5>
-                <button type="button" class="close"  wire:click="fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='fechar'
+                aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3 row">
-                        <label for="nutriente" class="col-mb-2 col-form-label">Nutriente:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" wire:model="nome">
+                <div class="modal-title">
+                    <h1>Editar Nutriente</h1>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="row" style="margin-bottom: 19px">
+                            <label for="nutriente" class="col-mb-2 col-form-label">Nome</label>
+                            <div class="col-sm-12">
+                                <input type="nome" maxlength="10" class="form-control" wire:model.live="nome">
+                            </div>
+                            @error('nome')
+                                <div>{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('nome')
-                            <div>{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="unidade" class="col-mb-2 col-form-label">Unidade:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" wire:model="unidade">
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <label for="unidade" class="col-mb-2 col-form-label">Unidade</label>
+                                <div class="col-sm-12">
+                                    <input type="text" maxlength="20" class="form-control"
+                                        wire:model.live="unidade">
+                                </div>
+                                @error('unidade')
+                                    <div>{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="tag" class="col-mb-2 col-form-label">Tag</label>
+                                <div class="col-sm-12">
+                                    <input type="tag" maxlength="12" class="form-control" wire:model.live="tag">
+                                </div>
+                                @error('tag')
+                                    <div>{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                        @error('unidade')
-                            <div>{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="tag" class="col-mb-2 col-form-label">Tag:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" wire:model="tag">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-excluir"wire:click="excluir({{ $id }})"
+                            data-bs-dismiss="modal"><i class='bx bx-trash-alt'></i>  Excluir</button>
+                            <button type="button" class="btn btn-primary" wire:click='salvar'>
+                                <i class='bx bx-arrow-to-bottom'></i> Salvar
+                            </button>
                         </div>
-                        @error('tag')
-                            <div>{{ $message }}</div>
-                        @enderror
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary"wire:click="salvar">Salvar</button>
-                <button type="button" class="btn btn-primary"wire:click="excluir({{ $id }})"
-                    data-bs-dismiss="modal">Excluir</button>
-                <button type="button" class="btn btn-secondary" wire:click="fechar">Fechar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-f
+
 </div>

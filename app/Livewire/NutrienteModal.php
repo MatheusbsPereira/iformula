@@ -32,7 +32,7 @@ class NutrienteModal extends Component
         /**
          * Quando o usuario adiciona seu segundo nutriente em sequencia ele recarrega a pagina
          */
-        if($this->vezesSalvar == 2) {
+        if($this->vezesSalvar == 1) {
             return redirect()->to(route('nutriente.index'));
         }
         $this->close();
