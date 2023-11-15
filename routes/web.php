@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FabricaController;
 use App\Http\Controllers\NutrienteController;
 use App\Http\Controllers\IngredienteController;
+use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Route;
 
