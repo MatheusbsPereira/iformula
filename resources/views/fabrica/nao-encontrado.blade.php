@@ -11,7 +11,7 @@
                    
                     <div class="card-body">
                         
-                        <p>Fábrica não encontrado</p>
+                        <p>Fábrica não encontrada</p>
                         <p>Clique <a href="{{ route('fabrica.index') }}">aqui</a> para voltar</p>
                         
                     </div>

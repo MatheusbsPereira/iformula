@@ -44,13 +44,12 @@
                 <div class="container-ingredientes">
                     @foreach ($fabricas as $key => $fabrica)
                         <a class="card-toggle" href="{{ route('fabrica.show', ['especie' => $fabrica->especie]) }}">
-                            <div title="{{ $fabrica['especie'] }}" class="ingredientes-card card-animation">
+                            <div title="Fábrica - {{ $fabrica['especie'] }}" class="ingredientes-card card-animation">
                                 <div class="card-body">
                                     <div class="card-header">
+                                        <i class='bx bx-buildings' style="font-size: 24px"></i>
                                         <p class='nome-text'>{{ $fabrica['especie'] }}</p>
-                                        
                                     </div>
-                                    
                                 </div>
                             </div>
                         </a>
