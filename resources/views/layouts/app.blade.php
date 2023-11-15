@@ -255,7 +255,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('fabrica.index') }}">
                             <i class='bx bx-buildings icon'></i>
                             <span class="text nav-text">Fábricas</span>
                         </a>

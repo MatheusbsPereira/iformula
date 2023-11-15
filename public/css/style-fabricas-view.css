@@ -1,0 +1,436 @@
+/* Modal */
+.mymodal {
+    --bs-modal-zindex: 1055;
+    --bs-modal-width: 700px;
+    --bs-modal-padding: 2rem;
+    --bs-modal-margin: 0.5rem;
+    --bs-modal-color: ;
+    --bs-modal-bg: #fff;
+    --bs-modal-border-color: var(--bs-border-color-translucent);
+    --bs-modal-border-width: 1px;
+    --bs-modal-border-radius: 0.5rem;
+    --bs-modal-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --bs-modal-inner-border-radius: calc(0.5rem - 1px);
+    --bs-modal-header-padding-x: 1rem;
+    --bs-modal-header-padding-y: 1rem;
+    --bs-modal-header-padding: 1rem 1rem;
+    --bs-modal-header-border-color: var(--bs-border-color);
+    --bs-modal-header-border-width: 1px;
+    --bs-modal-title-line-height: 1.5;
+    --bs-modal-footer-gap: 0.5rem;
+    --bs-modal-footer-bg: ;
+    --bs-modal-footer-border-color: var(--bs-border-color);
+    --bs-modal-footer-border-width: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--bs-modal-zindex);
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+.modal-body h1 {
+    font-size: 1.2rem;
+}
+
+.modal-body form {
+    max-width: 400px;
+}
+
+.modal-body .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal-content .modal-title {
+    max-width: 400px;
+    width: 100%;
+}
+
+.modal-header {
+    border: 0;
+}
+
+.modal-footer {
+    padding: 0;
+    padding-top: 1.5rem;
+}
+
+
+.mb-3 {
+    margin-bottom: 2rem !important;
+}
+
+.btnBack {
+    background: none;
+    border: none;
+}
+
+/* Cards */
+.container-ingredientes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+a.card-toggle {
+    text-decoration: none;
+    min-width: 170px;
+    height: 90px
+}
+
+.ingredientes-card:hover .tag-label {
+    pointer-events: none;
+    visibility: hidden;
+    transition: var(--tran-02);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 0
+}
+
+.ingredientes-card {
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color-light);
+    padding: 10px !important;
+    transition: var(--tran-02);
+    border-radius: 18px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    cursor: pointer;
+    overflow: hidden
+}
+
+.ingredientes-card:hover,
+.tag-label {
+    background-color: var(--light-grey-color)
+}
+
+.ingredientes-card .card-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ingredientes-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 100%
+}
+
+.ingredientes-card .card-body p {
+    margin-bottom: 0 !important
+}
+
+.unidade-text {
+    color: var(--light-text-color);
+    transition: var(--tran-02);
+    font-size: 14px;
+}
+
+.nome-text {
+    max-width: 100%;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.tag-label {
+    font-size: 14px;
+    background-color: var(--light-grey-color);
+    padding: 5px;
+    border-radius: 10px;
+    max-width: max-content;
+    width: 100%;
+}
+
+.nome-text,
+.tag-label {
+    font-weight: 600;
+    white-space: nowrap
+}
+
+.card-animation {
+    animation-name: slideIn;
+    animation-duration: .5s;
+    animation-timing-function: ease
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(.9)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* Botão */
+.btn-primary {
+    background: linear-gradient(270deg, rgba(91, 229, 155, .8) 0, rgba(53, 190, 116, .8) 50%, rgba(12, 182, 90, .8) 100%)
+}
+
+.btn-primary {
+    width: 125px;
+    height: 40px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    border: none
+}
+
+.btn-adicionar,
+.page-item:first-child .page-link,
+.page-item:last-child .page-link,
+.page-link.active {
+    background: var(--grey-button);
+    border: none;
+    color: var(--text-color);
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-adicionar .bx {
+    margin-right: 5px;
+}
+
+.btn-adicionar:hover,
+.page-item:first-child .page-link:hover,
+.page-item:last-child .page-link:hover,
+.page-link.active:hover {
+    background: var(--light-grey-color)
+}
+
+.btn-adicionar:focus,
+.page-item:first-child .page-link:focus,
+.page-item:last-child .page-link:focus,
+.page-link.active:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .ingredientes-card {
+        height: 100%;
+        padding: 10px !important
+    }
+
+    .ingredientes-card .nome-text {
+        white-space: normal
+    }
+
+    a.card-toggle {
+        min-width: 150px !important;
+        height: 120px !important;
+        user-select: none
+    }
+
+    .ingredientes-card .card-header {
+        flex-direction: column-reverse;
+        align-items: start
+    }
+
+    .nome-text {
+        white-space: nowrap
+    }
+
+    .ingredientes-card:hover .tag-label {
+        transition: none;
+        visibility: visible;
+        width: 100%
+    }
+
+    a .ingredientes-card:hover:active {
+        pointer-events: none
+    }
+
+    .container-ingredientes {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .header-tools {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .tools-container {
+        margin-top: 1rem
+    }
+}
+:root {
+
+    /* --- Colors --- */
+  
+    --light-blue-100: 199, 84%, 55%; /* #2bb0ed */
+    --light-blue-500: 202, 83%, 41%; /* #127fbf */
+    --light-blue-900: 204, 96%, 27%; /* #035388 */
+  
+    --blue-100:       210, 22%, 49%; /* #627d98 */
+    --blue-500:       209, 34%, 30%; /* #334e68 */
+    --blue-900:       209, 61%, 16%; /* #102a43 */
+  
+    --gray-100:       210, 36%, 96%; /* #f0f4F8 */
+    --gray-300:       212, 33%, 89%; /* #d9e2ec */
+    --gray-500:       210, 31%, 80%; /* #bcccdc */
+    --gray-700:       211, 27%, 70%; /* #9fb3c8 */
+    --gray-900:       209, 23%, 60%; /* #829ab1 */
+  
+    --white:          0, 0%, 100%;   /* #ffffff */
+}
+/* ==========================================================================
+   Component: Progress Form
+   ========================================================================== */
+
+.progress-form {
+  background-color: hsl(var(--white));
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgb(0, 0, 0, 10%),
+    0 1px 2px -1px rgb(0, 0, 0, 10%);
+}
+
+/* Tabs
+   ========================================================================== */
+
+.progress-form__tabs {
+  column-gap: 0;
+  width: 100%;
+  margin-bottom: 2.6rem !important;
+}
+
+@media only screen and (min-width: 640px) {
+  .progress-form__tabs {
+    column-gap: 0.2rem;
+  }
+}
+
+.progress-form__tabs-item {
+  --button-background-color: transparent;
+  --button-border-width: 5px;
+  --button-border-style: solid;
+  --button-border-color:  hsl(var(--gray-300));
+  --button-border: var(--button-border-width)
+    var(--button-border-style)
+    var(--button-border-color);
+  --button-border-radius: 0;
+  --button-height: 1.4;
+  --button-text-align: left;
+  --button-text-color: hsl(var(--blue-900));
+  --button-text-font-size: 0.9rem;
+  --button-text-letter-spacing: 0.025em;
+  --button-text-shadow: none;
+
+  background-color: var(--button-background-color);
+  border: 0;
+  border-top: var(--button-border);
+  border-radius: var(--button-border-radius);
+  color: var(--button-text-color);
+  display: none;
+  font-size: var(--button-text-font-size);
+  letter-spacing: var(--button-text-letter-spacing);
+  line-height: var(--button-height);
+  position: relative;
+  text-align: var(--button-text-align);
+  text-shadow: var(--button-text-shadow);
+  transition: color 0.2s ease-in-out;
+  white-space: normal;
+}
+
+.progress-form__tabs-item:active {
+  transform: none;
+}
+
+.progress-form__tabs-item:hover,
+.progress-form__tabs-item:focus {
+  background-color: inherit;
+  color: inherit;
+}
+
+.progress-form__tabs-item::before {
+  background: linear-gradient(270deg, rgba(91, 229, 155, .8) 0, rgba(53, 190, 116, .8) 50%, rgba(12, 182, 90, .8) 100%);
+  content: "";
+  height: 5px;
+  left: 0;
+  position: absolute;
+  top: -5px;
+  transition: width 0.2s ease-in-out;
+  width: 0;
+}
+
+.progress-form__tabs-item > .step {
+  color: hsl(var(--blue-100));
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+}
+
+@media only screen and (min-width: 640px) {
+  .progress-form__tabs-item {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* --- Current Step --- */
+
+.progress-form__tabs-item[aria-selected="true"] {
+  display: block;
+}
+
+.progress-form__tabs-item[aria-selected="true"]::before {
+  width: 50%;
+}
+
+.progress-form__tabs-item[aria-selected="true"] > .step {
+  color: hsl(var(--light-blue-500));
+}
+
+/* --- Disabled Step --- */
+
+@media only screen and (min-width: 640px) {
+  .progress-form__tabs-item[aria-disabled="true"] {
+    --button-background-color: transparent;
+    --button-text-color: hsl(var(--blue-100));
+
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+  }
+}
+
+/* --- Completed Step --- */
+
+.progress-form__tabs-item[data-complete="true"]::before {
+  width: 100%;
+}
+
+.progress-form__tabs-item[data-complete="true"] > .step {
+  color: hsl(var(--light-blue-500));
+}
+

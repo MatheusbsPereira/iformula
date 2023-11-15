@@ -2,11 +2,11 @@
 
 namespace App\Rules;
 
-use App\Models\Animal;
+use App\Models\Fabrica;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class NomeAnimal implements ValidationRule
+class EspecieFabrica implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -16,9 +16,9 @@ class NomeAnimal implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         //
-        $nome = Animal::where('nome',$attribute)->where('user_id',auth()->id())->first();
-        if ($nome) {
-            $fail('Você já cadastrou um animal com esse nome');
+        $especie = Fabrica::where('especie',$attribute)->where('user_id',auth()->id())->first();
+        if ($especie) {
+            $fail('Você já cadastrou uma espécie com esse nome');
         }
     }
 }

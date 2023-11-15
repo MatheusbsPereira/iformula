@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        NutrientesSeeder::run();
+        //NutrientesSeeder::run();
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
