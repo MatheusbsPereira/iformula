@@ -42,4 +42,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function exigencias()
+    {
+        return $this->hasMany(Exigencia::class);
+    }
+    public function fabricas()
+    {
+        return $this->hasMany(Fabrica::class);
+    }
+    public function formacoes()
+    {
+        return $this->hasMany(Formacao::class);
+    }
+    public function formulacoes()
+    {
+        return $this->hasMany(Formulacao::class);
+    }
+    public function ingredientes()
+    {
+        return $this->hasMany(Ingrediente::class);
+    }
+    public function nutrientes()
+    {
+        return $this->hasMany(Nutriente::class);
+    }
+    public function racoes()
+    {
+        return $this->hasMany(Racao::class);
+    }
 }

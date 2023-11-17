@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Fabricas')
+@section('titulo', 'Fábricas')
 @section('content')
     <div>
         <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
