@@ -42,45 +42,38 @@
                                 <div class="row-sm-12">
                                     <label for="nutriente" class="col-mb-2 col-form-label">Nome</label>
                                     <div class="col-sm-12">
-                                        <input type="text" maxlength="20" class="form-control"
+                                        <input type="text" maxlength="20" class="form-control @error('nome')erro @enderror"
                                             wire:model.live="nome">
                                     </div>
-                                    @error('nome')
-                                        <div>{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="unidade" class="col-mb-2 col-form-label">Preço</label>
                                     <div class="col-sm-12">
-                                        <input type="tag" maxlength="10" class="form-control" wire:model.live="preco">
+                                        <input type="tag" maxlength="10" class="form-control @error('preco')erro @enderror" wire:model.live="preco">
                                     </div>
-                                    @error('preco')
-                                        <div>{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="unidade" class="col-mb-2 col-form-label">Tag</label>
                                     <div class="col-sm-12">
-                                        <input type="unidade" maxlength="6" class="form-control" wire:model.live="tag">
+                                        <input type="unidade" maxlength="6" class="form-control @error('tag')erro @enderror" wire:model.live="tag">
                                     </div>
-                                    @error('tag')
-                                        <div>{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row-sm-12">
                                 <label for="nutriente" class="col-mb-2 col-form-label">Descrição</label>
                                 <div class="col-sm-12">
-                                    <input type="text" maxlength="70" class="form-control"
+                                    <input type="text" maxlength="70" class="form-control @error('nome')descricao @enderror"
                                         wire:model.live="descricao">
                                 </div>
-                                @error('descricao')
-                                    <div>{{ $message }}</div>
-                                @enderror
                             </div>
-
+                            @if ($errors->isEmpty())
+                            <p style="color: rgb(238, 0, 0);"> </p>
+                        @endif
+                            @if (!$errors->isEmpty())
+                                <p style="color: rgb(238, 0, 0);">*Verifique os campos</p>
+                            @endif
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary btnProximo" wire:click='primeiraEtapa'>
                                     Próximo
