@@ -1,7 +1,7 @@
 /* Modal */
 .mymodal {
     --bs-modal-zindex: 1055;
-    --bs-modal-width: 700px;
+    --bs-modal-width: 600px;
     --bs-modal-padding: 2rem;
     --bs-modal-margin: 0.5rem;
     --bs-modal-color: ;
@@ -235,6 +235,7 @@ a.card-toggle {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Mobile */
 @media (max-width: 768px) {
     .ingredientes-card {
@@ -434,3 +435,6 @@ a.card-toggle {
   color: hsl(var(--light-blue-500));
 }
 
+.erro {
+    box-shadow: 0 0 0 0.15rem rgba(255, 0, 0, 0.637);
+}

@@ -35,7 +35,6 @@ class CrudFabricaComponent extends Component
         }
         $fabrica = Fabrica::find($this->id);
         $fabrica->especie = $this->especie;
-        $fabrica->tag = $this->tag;
         $fabrica->capacidade_do_misturador = $this->capacidade_do_misturador;
         $fabrica->descricao = $this->descricao;
         $fabrica->save();
@@ -46,14 +45,15 @@ class CrudFabricaComponent extends Component
         return [
             'especie' => ['required', 'max:50', new EspecieFabrica],
             'capacidade_do_misturador' => ['required', 'max:9999.99', 'numeric'],
-            'descricao' => ['required', 'max:70'],
+            'descricao' => [ 'max:70'],
         ];
     }
     public function rules()
     {
         return [
             'especie' => ['required', 'max:50',],
-            'unidade' => ['required', 'max:6'],
+            'capacidade_do_misturador' => ['required', 'max:9999.99', 'numeric'],
+            'descricao' => [ 'max:70'],
         ];
     }
     public function message()
