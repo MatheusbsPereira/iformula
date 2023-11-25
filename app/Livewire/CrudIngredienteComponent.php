@@ -77,7 +77,7 @@ class CrudIngredienteComponent extends Component
         $ingrediente = Ingrediente::find($this->id);
         return redirect()->to(route('ingrediente.show',['nome'=>$ingrediente->nome]));
     }
-    public function fechar() {    
+    public function close() {    
         $this->dispatch('close-modal');
     }
 }
