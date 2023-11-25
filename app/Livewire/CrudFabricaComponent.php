@@ -39,7 +39,7 @@ class CrudFabricaComponent extends Component
         $fabrica->capacidade_do_misturador = $this->capacidade_do_misturador;
         $fabrica->descricao = $this->descricao;
         $fabrica->save();
-        return redirect()->to(route('Fabrica.index'));
+        return redirect()->to(route('fabrica.index'));
     }
     public function rulesNewName()
     {
@@ -66,7 +66,7 @@ class CrudFabricaComponent extends Component
     {
         $fabrica = Fabrica::find($this->id);
         $fabrica->delete();
-        return redirect()->to(route('Fabrica.index'));
+        return redirect()->to(route('fabrica.index'));
     }
     public function exibir()
     {
