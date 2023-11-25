@@ -1,5 +1,5 @@
 <div style="height: 100%;">
-    <div style="display: flex;flex-direction: column;justify-content: space-between;"">
+    <div style="display: flex;flex-direction: column;justify-content: space-between;">
         <x-my-modal name="cadastrar">
             <livewire:nutriente_modal />
         </x-my-modal>

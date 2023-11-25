@@ -41,7 +41,8 @@
 
             <div class="container-ingredientes">
                 @foreach ($ingredientes as $key => $ingrediente)
-                    <a class="card-toggle" href="{{ route('ingrediente.show', ['nome' => $ingrediente->nome]) }}">
+                    <a class="card-toggle"x-data x-on:click="$dispatch('open-modal',{name : '{{ $ingrediente['nome'] }}'})"
+                    class="modal-toggle">
                         <div title="{{ $ingrediente['nome'] }}" class="ingredientes-card card-animation">
                             <div class="card-body">
                                 <div class="card-header">
@@ -57,7 +58,12 @@
                 @endforeach
             </div>
         </div>
-        <div>
+        <div style="height: 100%">
+            @foreach ($ingredientes as $ingrediente)
+                <x-my-modal name="{{ $ingrediente->nome }}">
+                    <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']" />
+                </x-my-modal>
+            @endforeach
         </div>
         {{ $ingredientes->links() }}
     </div>
