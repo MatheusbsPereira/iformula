@@ -12,7 +12,7 @@ class CrudFabricaComponent extends Component
     public string $especie;
     public string $first_especie;
     public  $capacidade_do_misturador = '';
-    public string $descricao = '';
+    public string $descricao;
     public function render()
     {
         return view('livewire.crud-fabrica-component');

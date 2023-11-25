@@ -32,7 +32,7 @@
                             <label for="descricao" class="col-mb-2 col-form-label">Descrição:</label>
                             <div class="col-sm-12">
                                 <input type="descricao" maxlength="50"
-                                    class="form-control @error('descricacao')erro @enderror" wire:model.live="descricacao">
+                                    class="form-control @error('descricacao')erro @enderror" wire:model.live="descricao">
                             </div>
                         </div>
                         @if ($errors->isEmpty())
