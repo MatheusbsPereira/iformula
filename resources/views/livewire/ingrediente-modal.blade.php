@@ -1,6 +1,6 @@
 <div style="height: 100%">
     {{-- Nothing in the world is as soft and yielding as water. --}}
-    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data jn-bs-dismiss="modal" wire:click='close'
@@ -47,13 +47,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-6">
                                     <label for="unidade" class="col-mb-2 col-form-label">Preço</label>
                                     <div class="col-sm-12">
                                         <input type="tag" maxlength="10" class="form-control @error('preco')erro @enderror" wire:model.live="preco">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-6">
                                     <label for="unidade" class="col-mb-2 col-form-label">Tag</label>
                                     <div class="col-sm-12">
                                         <input type="unidade" maxlength="6" class="form-control @error('tag')erro @enderror" wire:model.live="tag">
@@ -64,7 +64,7 @@
                             <div class="row-sm-12">
                                 <label for="nutriente" class="col-mb-2 col-form-label">Descrição</label>
                                 <div class="col-sm-12">
-                                    <input type="text" maxlength="70" class="form-control @error('nome')descricao @enderror"
+                                    <input type="text" maxlength="70" class="form-control @error('descricao')descricao @enderror"
                                         wire:model.live="descricao">
                                 </div>
                             </div>

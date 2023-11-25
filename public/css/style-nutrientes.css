@@ -2,7 +2,7 @@
 .mymodal {
     --bs-modal-zindex: 1055;
     --bs-modal-width: 500px;
-    --bs-modal-padding: 1rem;
+    --bs-modal-padding: 2rem;
     --bs-modal-margin: 0.5rem;
     --bs-modal-color: ;
     --bs-modal-bg: #fff;
@@ -19,8 +19,7 @@
     --bs-modal-title-line-height: 1.5;
     --bs-modal-footer-gap: 0.5rem;
     --bs-modal-footer-bg: ;
-    --bs-modal-footer-border-color: var(--bs-border-color);
-    --bs-modal-footer-border-width: 1px;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -30,11 +29,33 @@
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
-  }
-  .bgmodal {
+}
+
+
+.modal-footer {
+    padding: 0;
+    padding-top: 1.5rem;
+}
+
+.modal-body h1 {
+    font-size: 1.2rem;
+}
+
+.modal-body .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header {
+    border: 0;
+}
+
+.bgmodal {
     background-color: gray;
-    
-  }
+
+}
+
 a.modal-toggle {
     text-decoration: none;
     min-width: 170px;

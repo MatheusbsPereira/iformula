@@ -49,15 +49,17 @@ class CrudIngredienteComponent extends Component
             'nome' => ['required', 'max:50', new NomeIngrediente],
             'preco' => ['required', 'max:9999.99', 'numeric'],
             'tag' => ['required', 'max:10'],
-            'descricao' => ['required', 'max:70'],
+            'descricao' => ['max:70'],
         ];
     }
     public function rules()
     {
         return [
+            
             'nome' => ['required', 'max:50',],
-            'unidade' => ['required', 'max:6'],
+            'preco' => ['required', 'max:9999.99', 'numeric'],
             'tag' => ['required', 'max:10'],
+            'descricao' => ['max:70'],
         ];
     }
     public function message()

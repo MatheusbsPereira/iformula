@@ -28,14 +28,11 @@ class NutrienteModal extends Component
         $this->nome = "";
         $this->unidade = "";
         $this->tag = "";
-        $this->vezesSalvar ++;
         /**
          * Quando o usuario adiciona seu segundo nutriente em sequencia ele recarrega a pagina
          */
-        if($this->vezesSalvar == 2) {
-            return redirect()->to(route('nutriente.index'));
-        }
-        $this->close();
+
+        return redirect()->to(route('nutriente.index'));
     }
 
     public function rules()
