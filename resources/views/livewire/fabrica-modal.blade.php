@@ -13,25 +13,25 @@
                 <div class="form-container">
                     <form>
                         <div class="mb-3 row">
-                            <label for="fabrica" class="col-mb-2 col-form-label">Fábrica:</label>
-                            <div class="col-sm-10">
+                            <label for="fabrica" class="col-mb-2 col-form-label">Nome</label>
+                            <div class="col-sm-12">
                                 <input type="text" maxlength="20" class="form-control @error('especie')erro @enderror"
                                     wire:model.live="especie">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="unidade" class="col-mb-2 col-form-label">Capacidade do misturador:</label>
-                            <div class="col-sm-10">
+                            <label for="unidade" class="col-mb-2 col-form-label">Capacidade do misturador</label>
+                            <div class="col-sm-12">
                                 <input type="unidade" maxlength="6"
                                     class="form-control @error('capacidade_do_misturador')erro @enderror"
                                     wire:model.live="capacidade_do_misturador">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="descricacao" class="col-mb-2 col-form-label">Descrição:</label>
-                            <div class="col-sm-10">
-                                <input type="tag" maxlength="10"
-                                    class="form-control @error('descricacao')erro @enderror" wire:model.live="descricacao">
+                            <label for="descricao" class="col-mb-2 col-form-label">Descrição</label>
+                            <div class="col-sm-12">
+                                <input type="descricao" maxlength="50"
+                                    class="form-control @error('descricao')erro @enderror" wire:model.live="descricao">
                             </div>
                         </div>
                         @if ($errors->isEmpty())

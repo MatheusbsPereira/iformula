@@ -617,7 +617,9 @@ body.dark svg ellipse {
 
 
 /* Modal */
-
+.modal-footer {
+    border-top: none !important;
+}
 .mymodal {
     --bs-modal-bg: var(--primary-color-light) !important;
 }
