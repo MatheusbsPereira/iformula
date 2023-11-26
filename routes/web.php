@@ -33,10 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/nutrientes',[NutrienteController::class,'index'])->name('nutriente.index');
     Route::get('/nutrientes/exportxlsx',[NutrienteController::class,'exports'])->name('nutriente.exportsxlsx');
     Route::get('/ingredientes',[IngredienteController::class,'index'])->name('ingrediente.index');
-    Route::get('/ingredientes/exportxlsx',[IngredienteController::class,'exports'])->name('ingrediente.exportsxlsx');
+    Route::get('/ingredientes/exportxlsx',[IngredienteController::class,'exportsxlsx'])->name('ingrediente.exportsxlsx');
     Route::get('/ingredientes/exibir/{nome}',[IngredienteController::class,'show'])->name('ingrediente.show');
     Route::get('/fabricas',[FabricaController::class,'index'])->name('fabrica.index');
     Route::get('/fabricas/exibir/{especie}',[FabricaController::class,'show'])->name('fabrica.show');
+    Route::get('/fabricas/exportxlsx/',[FabricaController::class,'exportsxlsx'])->name('fabrica.exportsxlsx');
 
 });
 Route::fallback(function () {
