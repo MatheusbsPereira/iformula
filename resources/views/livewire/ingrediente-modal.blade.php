@@ -1,4 +1,5 @@
-<div style="height: 100%">
+<div style="height: 99%">
+
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -117,6 +118,13 @@
                     </div>
                     <div class="form-container">
                         <form>
+                            <select name="countries" id="countries">
+                                <option value="1">Afghanistan</option>
+                                <option value="2">Australia</option>
+                                <option value="3">Germany</option>
+                                <option value="4">Canada</option>
+                                <option value="5">Russia</option>
+                            </select>
                             <div class="cards">
                                 <div class="wrapper">
                                     <div class="item">box-1</div>
@@ -136,15 +144,16 @@
                             </div>
                         </form>
                     </div>
-
                     <style>
                         .form-container {
                             width: 100%;
                         }
+
                         .cards {
                             overflow: hidden;
 
                         }
+
                         .form-container form {
                             height: 316px;
                             display: flex;
@@ -255,4 +264,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('wheel', (event) => {
+            const scrollContainer = document.getElementsByClassName("wrapper")[0];
+            if (scrollContainer) {
+                event.preventDefault();
+                scrollContainer.scrollBy({
+                    left: event.deltaY < 0 ? -30 : 30,
+                });
+            }
+        });
+    </script>
 </div>
