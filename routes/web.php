@@ -31,7 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //Route::resource('nutriente',NutrienteController::class);
     Route::get('/nutrientes',[NutrienteController::class,'index'])->name('nutriente.index');
-    Route::get('/nutrientes/exportxlsx',[NutrienteController::class,'exports'])->name('nutriente.exportsxlsx');
+    Route::get('/nutrientes/exportsxlsx',[NutrienteController::class,'exportsxlsx'])->name('nutriente.exportsxlsx');
+    Route::get('/nutrientes/exportspdf',[NutrienteController::class,'exportspdf'])->name('nutriente.exportspdf');
     Route::get('/ingredientes',[IngredienteController::class,'index'])->name('ingrediente.index');
     Route::get('/ingredientes/exportxlsx',[IngredienteController::class,'exportsxlsx'])->name('ingrediente.exportsxlsx');
     Route::get('/ingredientes/exibir/{nome}',[IngredienteController::class,'show'])->name('ingrediente.show');

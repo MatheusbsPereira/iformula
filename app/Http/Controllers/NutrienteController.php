@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\NutrientesExport;
 use App\Models\Nutriente;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -17,9 +18,14 @@ class NutrienteController extends Controller
         //
         return view('nutriente.index');
     }
-    public function exports()
+    public function exportsxlsx()
     {
-        return Excel::download(new NutrientesExport,'nutrientes.xlsx');
+        return Excel::download(new NutrientesExport, 'nutrientes.xlsx');
+    }
+    public function exportspdf()
+    {
+        $pdf = Pdf::loadView('nutriente.pdf');
+        return $pdf->download('nutrientes.pdf');
     }
     /**
      * Show the form for creating a new resource.
