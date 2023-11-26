@@ -29,8 +29,8 @@ class NutrienteComponent extends Component
                 });
         })
         ->paginate($this->perPage);
-        $this->resetPage();
-        return view('livewire.nutriente-component', ['nutrientes' => $nutrientes]);
+        $nutrientes_sem_paginate = Nutriente::where('user_id', auth()->id())->get();
+        return view('livewire.nutriente-component', ['nutrientes' => $nutrientes,'nutrientes_sem_paginate'=>$nutrientes_sem_paginate]);
     }
 
     public function setPerPage($value)

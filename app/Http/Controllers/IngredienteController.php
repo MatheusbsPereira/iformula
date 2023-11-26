@@ -17,7 +17,7 @@ class IngredienteController extends Controller
         //
         return view('ingrediente.index');
     }
-    public function exports()
+    public function exportsxlsx()
     {
         return Excel::download(new IngredientesExport,'ingredientes.xlsx');
     }

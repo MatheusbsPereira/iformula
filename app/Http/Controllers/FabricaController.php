@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FabricasExport;
 use App\Models\Fabrica;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FabricaController extends Controller
 {
@@ -16,7 +18,10 @@ class FabricaController extends Controller
         return view("fabrica.index");
     }
 
-
+    public function exportsxlsx()
+    {
+        return Excel::download(new FabricasExport,'fabricas.xlsx');
+    }
     
 
     /**
