@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('descricao',50)->nullable();
             $table->decimal('preco',6,2);
             $table->string('tag',10);
+            $table->string('categoria',12);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unique(['nome','user_id']);

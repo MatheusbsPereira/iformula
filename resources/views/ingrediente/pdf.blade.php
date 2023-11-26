@@ -40,6 +40,7 @@
                     <th>Preço</th>
                     <th>Tag</th>
                     <th>Descrição</th>
+                    <th>Categoria</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@
                         <td>R$ {{ $ingrediente->preco }}</td>
                         <td>{{ $ingrediente->tag }}</td>
                         <td>{{ $ingrediente->descricao }}</td>
+                        <td>{{ $ingrediente->categoria }}</td>
                     </tr>
                 @endforeach
 
