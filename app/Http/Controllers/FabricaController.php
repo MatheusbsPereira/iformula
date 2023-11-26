@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\FabricasExport;
 use App\Models\Fabrica;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,7 +23,11 @@ class FabricaController extends Controller
     {
         return Excel::download(new FabricasExport,'fabricas.xlsx');
     }
-    
+    public function exportspdf()
+    {
+        $pdf = Pdf::loadView('fabrica.pdf');
+        return $pdf->download('fabricas.pdf');
+    }
 
     /**
      * Display the specified resource.

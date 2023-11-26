@@ -28,7 +28,7 @@
                     <div class="dropdown btn-adicionar">
                         <button class="dropdown-reset"><i class='bx bx-export'></i> Exportar</button>
                         <div class="dropdown-content">
-                            <a href="#" wire:click="exportToPDF">PDF</a>
+                            <a href="{{ route('ingrediente.exportspdf') }}" >PDF</a>
                             <a href="{{ route('ingrediente.exportsxlsx') }}"  >Excel</a>
                         </div>
                     </div>

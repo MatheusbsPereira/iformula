@@ -34,11 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/nutrientes/exportsxlsx',[NutrienteController::class,'exportsxlsx'])->name('nutriente.exportsxlsx');
     Route::get('/nutrientes/exportspdf',[NutrienteController::class,'exportspdf'])->name('nutriente.exportspdf');
     Route::get('/ingredientes',[IngredienteController::class,'index'])->name('ingrediente.index');
-    Route::get('/ingredientes/exportxlsx',[IngredienteController::class,'exportsxlsx'])->name('ingrediente.exportsxlsx');
+    Route::get('/ingredientes/exportsxlsx',[IngredienteController::class,'exportsxlsx'])->name('ingrediente.exportsxlsx');
+    Route::get('/ingredientes/exportspdf',[IngredienteController::class,'exportspdf'])->name('ingrediente.exportspdf');
     Route::get('/ingredientes/exibir/{nome}',[IngredienteController::class,'show'])->name('ingrediente.show');
     Route::get('/fabricas',[FabricaController::class,'index'])->name('fabrica.index');
     Route::get('/fabricas/exibir/{especie}',[FabricaController::class,'show'])->name('fabrica.show');
     Route::get('/fabricas/exportxlsx/',[FabricaController::class,'exportsxlsx'])->name('fabrica.exportsxlsx');
+    Route::get('/fabricas/exportspdf/',[FabricaController::class,'exportspdf'])->name('fabrica.exportspdf');
 
 });
 Route::fallback(function () {

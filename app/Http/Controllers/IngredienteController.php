@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\IngredientesExport;
 use App\Models\Ingrediente;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,6 +21,11 @@ class IngredienteController extends Controller
     public function exportsxlsx()
     {
         return Excel::download(new IngredientesExport,'ingredientes.xlsx');
+    }
+    public function exportspdf()
+    {
+        $pdf = Pdf::loadView('ingrediente.pdf');
+        return $pdf->download('ingredientes.pdf');
     }
     /**
      * Show the form for creating a new resource.
