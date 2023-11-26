@@ -12,7 +12,7 @@
                         <span class="subtitle-painel">Fabricas</span>
                     </div>
                     <div>
-                        <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
+                        <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)" class="text-center">
                             <option value="0" style="display:none;"></option>
                             <option value="20">20 itens</option>
                             <option value="30">30 itens</option>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div style="height: 100%">
-                @foreach ($fabricas as $fabrica)
+                @foreach ($fabricaAlt as $fabrica)
                     <x-my-modal name="{{ $fabrica->especie }}">
                         <livewire:crud-fabrica-component :id="$fabrica['id']" :key="$fabrica['id']" />
                     </x-my-modal>

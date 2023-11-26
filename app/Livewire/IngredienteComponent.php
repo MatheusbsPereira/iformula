@@ -35,9 +35,11 @@ class IngredienteComponent extends Component
         })
         ->paginate($this->perPage);
 
-    $this->resetPage();
 
-    return view('livewire.ingrediente-component', ['nutrientes_escolher' => $nutrientes_escolher, 'ingredientes' => $ingredientes]);
+    $ingredientesAlt = Ingrediente::orderByDesc('id')
+    ->where('user_id', auth()->id());
+
+    return view('livewire.ingrediente-component', ['nutrientes_escolher' => $nutrientes_escolher, 'ingredientes' => $ingredientes, 'ingredientesAlt' => $ingredientesAlt]);
 }
 
     public function save()

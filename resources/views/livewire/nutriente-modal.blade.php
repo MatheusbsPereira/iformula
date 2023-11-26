@@ -1,5 +1,4 @@
 <div style="height: 100%">
-    {{-- fAZ UM MODAL APARECER QUANDO CLICAR NO BOOTAO DE ADICIONAR INGREDIENTE --}}
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

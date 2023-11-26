@@ -59,7 +59,7 @@
             </div>
         </div>
         <div style="height: 100%">
-            @foreach ($ingredientes as $ingrediente)
+            @foreach ($ingredientesAlt as $ingrediente)
                 <x-my-modal name="{{ $ingrediente->nome }}">
                     <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']" />
                 </x-my-modal>
