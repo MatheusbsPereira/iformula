@@ -13,7 +13,7 @@
                 <div class="form-container">
                     <form>
                         <div class="mb-3 row">
-                            <label for="fabrica" class="col-mb-2 col-form-label">Nome</label>
+                            <label for="fabrica" class="col-mb-2 col-form-label">Espécie</label>
                             <div class="col-sm-12">
                                 <input type="text" maxlength="20" class="form-control @error('especie')erro @enderror"
                                     wire:model.live="especie">

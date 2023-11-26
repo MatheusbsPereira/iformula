@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fabricas', function (Blueprint $table) {
             $table->id();
             $table->string('especie');
-            $table->unsignedDecimal('capacidade_do_misturador',12,2);
+            $table->unsignedDecimal('capacidade_do_misturador',12,6);
             $table->text('descricao')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

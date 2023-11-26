@@ -19,7 +19,7 @@ class IngredientesExport implements FromCollection, WithMapping, WithHeadings
         return $data;
     }
     public function headings(): array{
-        return ['Nome','Tag','Descrição','Preço'];
+        return ['Nome','Tag','Descrição','Preço','Categoria'];
     }
     public function map($linha): array
     {
@@ -28,7 +28,8 @@ class IngredientesExport implements FromCollection, WithMapping, WithHeadings
             $linha->nome,
             $linha->tag,
             $linha->descricao,
-            'R$ '.$linha->preco
+            'R$ '.$linha->preco,
+            $linha->categoria
         ];
     }
 }

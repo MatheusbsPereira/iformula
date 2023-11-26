@@ -49,6 +49,9 @@ class NutrienteComponent extends Component
     public function exportToExcel(){
          return redirect()->to(route('nutriente.exportsxlsx'));
     }
+    public function exportToPDF(){
+         return redirect()->to(route('nutriente.exportspdf'));
+    }
 
     
 }

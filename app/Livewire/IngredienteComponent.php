@@ -37,7 +37,7 @@ class IngredienteComponent extends Component
 
 
     $ingredientesAlt = Ingrediente::orderByDesc('id')
-    ->where('user_id', auth()->id());
+    ->where('user_id', auth()->id())->get();
 
     return view('livewire.ingrediente-component', ['nutrientes_escolher' => $nutrientes_escolher, 'ingredientes' => $ingredientes, 'ingredientesAlt' => $ingredientesAlt]);
 }
