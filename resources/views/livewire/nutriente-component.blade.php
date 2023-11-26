@@ -64,7 +64,7 @@
             </div>
         </div>
         <div style="height: 100%">
-            @foreach ($nutrientes as $nutriente)
+            @foreach ($nutrientes_sem_paginate as $nutriente)
                 <x-my-modal name="{{ $nutriente->nome }}">
                     <livewire:crud-nutriente-component :id="$nutriente['id']" :key="$nutriente['id']" />
                 </x-my-modal>
