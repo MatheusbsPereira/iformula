@@ -114,16 +114,17 @@
                     <!-- / End Step Navigation -->
 
                     <div class="modal-title">
-                        <h1>Adicionar Ingrediente</h1>
+                        <h1>Adicionar Nutriente</h1>
                     </div>
                     <div class="form-container">
                         <form>
-                            <select name="countries" id="countries">
-                                <option value="1">Afghanistan</option>
-                                <option value="2">Australia</option>
-                                <option value="3">Germany</option>
-                                <option value="4">Canada</option>
-                                <option value="5">Russia</option>
+                            <input wire:model="search" type="text" placeholder="Search..." id="myInput" />
+
+
+                            <select id="mySelect" wire:model="search" class="form-control">
+                                @foreach ($nutrientes as $nutriente)
+                                    <option>{{ $nutriente->nome }}</option>
+                                @endforeach
                             </select>
                             <div class="cards">
                                 <div class="wrapper">
@@ -274,6 +275,12 @@
                     left: event.deltaY < 0 ? -30 : 30,
                 });
             }
+        });
+
+        $(document).ready(function() {
+            $('#mySelect').select2({
+                minimumInputLength: 1 // só abre o dropdown após digitar 1 caractere
+            });
         });
     </script>
 </div>
