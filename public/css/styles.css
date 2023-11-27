@@ -104,7 +104,7 @@ body, .sidebar .menu-bar,
 .sidebar .image, .sidebar li, .sidebar li .icon, .sidebar li a,
 .menu-bar .mode .moon-sun, .menu-bar .mode .toggle-switch,
 .page-item:first-child .page-link,
-.page-item:last-child .page-link, .active>.page-link {
+.page-item:last-child .page-link, .active>.page-link, .align-center {
     display: flex;
     align-items: center
 }

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data jn-bs-dismiss="modal" wire:click='close'
+                <button @click="showModal = false; $dispatch('modal-close')" type="button" class="btn-close" data jn-bs-dismiss="modal" wire:click='close'
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -76,7 +76,7 @@
                                 <p style="color: rgb(238, 0, 0);"> </p>
                             @endif
                             @if (!$errors->isEmpty())
-                                <p style="color: rgb(238, 0, 0);">*Verifique os campos</p>
+                                <p style="color: rgb(238, 0, 0); margin: 0">*Verifique os campos</p>
                             @endif
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary btnProximo" wire:click='primeiraEtapa'>
@@ -126,13 +126,17 @@
                                     <option>{{ $nutriente->nome }}</option>
                                 @endforeach
                             </select>
+                            <p style="margin: 0" class="align-center">Navegue com o scroll do mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
                             <div class="cards">
                                 <div class="wrapper">
-                                    <div class="item">box-1</div>
-                                    <div class="item">box-1</div>
-                                    <div class="item">box-1</div>
-                                    <div class="item">box-1</div>
-                                    <div class="item">box-1</div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
+                                    <div class="item"> </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -166,11 +170,18 @@
                         }
 
                         .wrapper {
-                            max-height: 130px;
+                            height: 163px;
                             max-width: 400px;
                             width: 100%;
                             display: flex;
                             overflow-x: auto !important;
+                            background-color: rgb(245, 245, 245);
+                            border-radius: 10px; 
+                            padding: 25px
+                        }
+
+                        .overflow-hidden {
+                            overflow: hidden;
                         }
 
                         .wrapper::-webkit-scrollbar {
@@ -183,9 +194,18 @@
                             height: 110px;
                             line-height: 110px;
                             text-align: center;
-                            background-color: #ddd;
-                            margin-right: 3px;
+                            background-color: var(--primary-color-light);
+                            margin-right: 10px;
+                            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0);
+                            border-radius: 10px 
+                        }
 
+                        .btnBack {
+                            margin-right: 15px;
+                        }
+                        
+                        .modal-content {
+                            height: 556px;
                         }
                     </style>
                 @endif
@@ -270,7 +290,6 @@
         document.addEventListener('wheel', (event) => {
             const scrollContainer = document.getElementsByClassName("wrapper")[0];
             if (scrollContainer) {
-                event.preventDefault();
                 scrollContainer.scrollBy({
                     left: event.deltaY < 0 ? -30 : 30,
                 });
