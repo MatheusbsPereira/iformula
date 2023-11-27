@@ -1,6 +1,6 @@
-<div style="height: 100%;">
-    <div style="display: flex;flex-direction: column;justify-content: space-between;">
-        <x-my-modal name="cadastrar">
+<div style="height: 100%;" x-data="{ showModal: false }" x-bind:class="{ 'overflow-hidden': showModal }" x-on:keydown.escape.window="showModal = false">
+    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+        <x-my-modal  name="cadastrar">
             <livewire:ingrediente_modal />
         </x-my-modal>
         <div class="container">
@@ -22,7 +22,7 @@
 
             <div class="header-tools">
                 <div class="left-tools">
-                    <button id="btnAddIng" class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
+                    <button @click="showModal = true; $dispatch('open-modal', { name: 'cadastrar' })" id="btnAddIng" class="btn-adicionar">
                         <i class='bx bx-plus'></i> Adicionar
                     </button>
                     <div class="dropdown btn-adicionar">

@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            NutrientesSeeder::class,
-            IngredientesSeeder::class
+            IngredientesSeeder::class,
+            NutrientesSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 
