@@ -6,3 +6,6 @@
         <livewire:show_fabrica_component :fabrica="$fabrica" />
     </div>
 @endsection
+@section('scriptcss')
+    <link rel="stylesheet" href="{{ asset('css/style-fabricas-view.css') }}"/>
+@endsection

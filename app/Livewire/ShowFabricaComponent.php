@@ -14,6 +14,7 @@ class ShowFabricaComponent extends Component
     public array $ingredientes_adicionados = [];
     public array $racoes_adicionados = [];
     public $fabrica;
+    public $id;
     public function render()
     {
 
@@ -23,6 +24,7 @@ class ShowFabricaComponent extends Component
     public function mount($fabrica)
     {
         $this->fabrica = $fabrica;
+        $this->id = $fabrica->id;
     }
     public function adicionar($id)
     {
