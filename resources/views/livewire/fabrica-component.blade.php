@@ -24,7 +24,7 @@
     
                 <div class="header-tools">
                     <div class="left-tools">
-                        <button id="btnAddIng" class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
+                        <button @click="showModal = true; $dispatch('open-modal', { name: 'cadastrar' })" id="btnAddIng" class="btn-adicionar" x-data x-on:click="$dispatch('open-modal',{name : 'cadastrar'})">
                             <i class='bx bx-plus'></i> Adicionar
                         </button>
                         <div class="dropdown btn-adicionar">
@@ -43,7 +43,7 @@
     
                 <div class="container-ingredientes">
                     @foreach ($fabricas as $key => $fabrica)
-                        <a class="card-toggle"x-data x-on:click="$dispatch('open-modal',{name : '{{ $fabrica['especie'] }}'})"
+                        <a class="card-toggle"x-data x-on:click="showModal = true;$dispatch('open-modal',{name : '{{ $fabrica['especie'] }}'})"
                         class="modal-toggle">
                             <div title="Fábrica - {{ $fabrica['especie'] }}" class="ingredientes-card card-animation">
                                 <div class="card-body">

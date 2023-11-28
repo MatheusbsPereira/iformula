@@ -221,9 +221,7 @@
                             padding: 25px
                         }
 
-                        .overflow-hidden {
-                            overflow: hidden;
-                        }
+
 
                         .wrapper::-webkit-scrollbar {
                             width: 0;

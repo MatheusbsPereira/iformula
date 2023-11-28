@@ -1,4 +1,4 @@
-<div style="height: 100%;" x-data="{ showModal: false }" x-bind:class="{ 'overflow-hidden': showModal }" >
+<div style="height: 100%;"  >
     <div style="display: flex; flex-direction: column; justify-content: space-between;">
         <x-my-modal  name="cadastrar">
             <livewire:ingrediente_modal />

@@ -1,8 +1,8 @@
-<div style="height: 100%">
+<div style="height: 99%">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='close'
+                <button @click="showModal = false; $dispatch('modal-close')" type="button" class="btn-close" data-bs-dismiss="modal" wire:click='close'
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
