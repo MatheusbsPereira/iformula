@@ -16,7 +16,7 @@ class IngredienteModal extends Component
     public string $descricao;
     public array $nutrientes_adicionados = [];
     public array $valores;
-    public  $preco = '';
+    public $preco = '';
     public int $etapa = 1;
     public $search = '';
     public $isMobile;
@@ -26,8 +26,7 @@ class IngredienteModal extends Component
     {
         return [
             'nome' => ['required', 'max:50', new NomeIngrediente],
-            'preco' => ['required', 'max:9999.99','regex:/^\d{1,3}(\.\d{3})*(\,\d{2})?$/'],
-
+            'preco' => ['required', 'max:9999.99'],
             'tag' => ['required', 'max:10'],
             'descricao' => ['max:70'],
         ];
@@ -85,25 +84,27 @@ class IngredienteModal extends Component
         // Se a validação for bem-sucedida, avança para a próxima etapa
         $this->etapa = 2;
     }
-    public function adicionar($id){
-        $this->nutrientes_adicionados[]= $id;
+    public function adicionar($id)
+    {
+        $this->nutrientes_adicionados[] = $id;
     }
     public function segundaEtapa()
     {
         $this->primeiraEtapa();
         //dd($this->valores);
-        
+
         $rules = [];
-        foreach ($this->nutrientes_adicionados as  $nutriente) {
+        foreach ($this->nutrientes_adicionados as $nutriente) {
             $rules["valores.$nutriente"] = 'required|numeric|max:999999.99';
             $messages["valores.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
             $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
         }
         $this->etapa = 2;
-        $this->validate($rules,$messages);
+        $this->validate($rules, $messages);
         $this->etapa = 3;
     }
-    public function terceiraEtapa(){
+    public function terceiraEtapa()
+    {
         Ingrediente::create([
             'nome' => $this->nome,
             'preco' => $this->preco,
@@ -118,7 +119,7 @@ class IngredienteModal extends Component
                 'valor' => $this->valores[$nutriente],
                 'nutriente_id' => $nutriente,
                 'ingrediente_id' => $ingrediente->id,
-                'user_id'=>auth()->id()
+                'user_id' => auth()->id()
             ]);
         }
     }

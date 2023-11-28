@@ -1,6 +1,6 @@
-<div style="height: 100%;"  >
+<div style="height: 100%;">
     <div style="display: flex; flex-direction: column; justify-content: space-between;">
-        <x-my-modal  name="cadastrar">
+        <x-my-modal name="cadastrar">
             <livewire:ingrediente_modal />
         </x-my-modal>
         <div class="container">
@@ -22,14 +22,15 @@
 
             <div class="header-tools">
                 <div class="left-tools">
-                    <button @click="showModal = true; $dispatch('open-modal', { name: 'cadastrar' })" id="btnAddIng" class="btn-adicionar">
+                    <button @click="showModal = true; $dispatch('open-modal', { name: 'cadastrar' })" id="btnAddIng"
+                        class="btn-adicionar">
                         <i class='bx bx-plus'></i> Adicionar
                     </button>
                     <div class="dropdown btn-adicionar">
                         <button class="dropdown-reset"><i class='bx bx-export'></i> Exportar</button>
                         <div class="dropdown-content">
-                            <a href="{{ route('ingrediente.exportspdf') }}" >PDF</a>
-                            <a href="{{ route('ingrediente.exportsxlsx') }}"  >Excel</a>
+                            <a href="{{ route('ingrediente.exportspdf') }}">PDF</a>
+                            <a href="{{ route('ingrediente.exportsxlsx') }}">Excel</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,8 @@
 
             <div class="container-ingredientes">
                 @foreach ($ingredientes as $key => $ingrediente)
-                <a x-on:click="showModal = true; $dispatch('open-modal', { name: '{{$ingrediente['nome'] }}' })" class="card-toggle modal-toggle">
+                    <a x-on:click="showModal = true; $dispatch('open-modal', { name: '{{ $ingrediente['nome'] }}' })"
+                        class="card-toggle modal-toggle">
                         <div title="{{ $ingrediente['nome'] }}" class="ingredientes-card card-animation">
                             <div class="card-body">
                                 <div class="card-header">
@@ -60,7 +62,7 @@
         <div style="height: 100%">
             @foreach ($ingredientesAlt as $ingrediente)
                 <x-my-modal name="{{ $ingrediente->nome }}">
-                    <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']"/>
+                    <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']" />
                 </x-my-modal>
             @endforeach
         </div>
