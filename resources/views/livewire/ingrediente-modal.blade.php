@@ -4,8 +4,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button @click="showModal = false; $dispatch('modal-close')" type="button" class="btn-close" data jn-bs-dismiss="modal" wire:click='close'
-                    aria-label="Close"></button>
+                <button @click="showModal = false; $dispatch('modal-close')" type="button" class="btn-close" data
+                    jn-bs-dismiss="modal" wire:click='close' aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 @if ($this->etapa == 1)
@@ -43,41 +43,36 @@
                                 <div class="row-sm-12">
                                     <label for="nutriente" class="col-mb-2 col-form-label">Nome</label>
                                     <div class="col-sm-12">
-                                        <input type="text" maxlength="20"
+                                        <input type="nutriente" maxlength="20"
                                             class="form-control @error('nome')erro @enderror" wire:model.live="nome">
                                     </div>
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="unidade" class="col-mb-2 col-form-label">Preço</label>
+                                    <label for="preco" class="col-mb-2 col-form-label">Preço</label>
                                     <div class="col-sm-12">
-                                        <input type="tag" maxlength="10"
-                                            class="form-control @error('preco')erro @enderror" wire:model.live="preco">
+                                        <input type="preco" maxlength="10"
+                                            class="form-control real @error('preco')erro @enderror"
+                                            wire:model.live="preco">
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <label for="unidade" class="col-mb-2 col-form-label">Tag</label>
+                                    <label for="tag" class="col-mb-2 col-form-label">Tag</label>
                                     <div class="col-sm-12">
-                                        <input type="unidade" maxlength="6"
+                                        <input type="tag" maxlength="6"
                                             class="form-control @error('tag')erro @enderror" wire:model.live="tag">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row-sm-12">
-                                <label for="nutriente" class="col-mb-2 col-form-label">Descrição</label>
+                                <label for="descricao" class="col-mb-2 col-form-label">Descrição</label>
                                 <div class="col-sm-12">
                                     <input type="text" maxlength="70"
                                         class="form-control @error('descricao')descricao @enderror"
                                         wire:model.live="descricao">
                                 </div>
                             </div>
-                            @if ($errors->isEmpty())
-                                <p style="color: rgb(238, 0, 0);"> </p>
-                            @endif
-                            @if (!$errors->isEmpty())
-                                <p style="color: rgb(238, 0, 0); margin: 0">*Verifique os campos</p>
-                            @endif
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary btnProximo" wire:click='primeiraEtapa'>
                                     Próximo
@@ -120,26 +115,55 @@
                     <div class="form-container">
                         <form>
 
-                            <select name="countries" id="countries">
+                            {{-- <select name="countries" id="countries">
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Australia</option>
                                 <option value="3">Germany</option>
                                 <option value="4">Canada</option>
                                 <option value="5">Russia</option>
-                            </select>
-                            <p style="margin: 0" class="align-center">Navegue com o scroll do mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
+                            </select> --}}
+
+
+
                             <div class="cards">
-                                <div class="wrapper">
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
-                                    <div class="item"> </div>
+                                <div class="wrapper faded right">
+
+                                    <div class="item">
+                                        <p class="nome-text">Pistache</p>
+                                        <p class="sub-label">kcal/kg</p>
+                                        <div class="input-container">
+                                            <input type="text" maxlength="70" class="form-control text-center"
+                                                wire:model.live="pistache">
+
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <p class="nome-text">Ácidos graxos</p>
+                                        <p class="sub-label">kcal/kg</p>
+                                        <div class="input-container">
+                                            <input type="text" maxlength="70" class="form-control text-center"
+                                                wire:model.live="acidosgraxos">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <p class="nome-text">Proteína</p>
+                                        <p class="sub-label">kcal/kg</p>
+                                        <div class="input-container">
+                                            <input type="text" maxlength="70" class="form-control text-center"
+                                                wire:model.live="proteina">
+                                        </div>
+                                    </div>
                                 </div>
+                                
                             </div>
+                            @if ($isMobile)
+                            <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
+                                deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
+                            @else
+                                <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue com
+                                    o scroll do
+                                    mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
+                            @endif
                             <div class="modal-footer">
                                 <button type="button" class="btnBack" wire:click='anterior'>
                                     Voltar
@@ -151,7 +175,20 @@
                         </form>
                     </div>
                     <style>
+                        .sub-label {
+                            margin: -25px 0 0 0;
+                        }
+
+                        .input-container {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
                         .form-container {
+                            height: 316px;
                             width: 100%;
                         }
 
@@ -175,9 +212,10 @@
                             max-width: 400px;
                             width: 100%;
                             display: flex;
+                            
                             overflow-x: auto !important;
                             background-color: rgb(245, 245, 245);
-                            border-radius: 10px; 
+                            border-radius: 10px;
                             padding: 25px
                         }
 
@@ -191,22 +229,61 @@
                         }
 
                         .wrapper .item {
-                            min-width: 110px;
+                            min-width: 150px;
+                            max-width: 150px;
                             height: 110px;
-                            line-height: 110px;
+
                             text-align: center;
                             background-color: var(--primary-color-light);
                             margin-right: 10px;
-                            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0);
-                            border-radius: 10px 
+                            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0);
+                            border-radius: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            padding: 10px
+                        }
+
+                        .item .form-control {
+                            max-width: 90%;
                         }
 
                         .btnBack {
                             margin-right: 15px;
                         }
-                        
+
                         .modal-content {
                             height: 556px;
+                        }
+
+                        .faded {
+                            overflow: auto;
+                            --mask: linear-gradient(to right,
+                                    rgba(0, 0, 0, 0) -5%,
+                                    rgba(0, 0, 0, 1) 15%,
+                                    rgba(0, 0, 0, 1) 85%,
+                                    rgba(0, 0, 0, 0) 105%,
+                                    rgba(0, 0, 0, 0) 0) 100% 50% / 100% 100% repeat-x;
+                            -webkit-mask: var(--mask);
+                            mask: var(--mask);
+                        }
+
+                        .left {
+                            --mask: linear-gradient(to right,
+                                    rgba(0, 0, 0, 0) -5%,
+                                    rgba(0, 0, 0, 1) 15%,
+                                    rgba(0, 0, 0, 1) 100%,
+                                    rgba(0, 0, 0, 0) 0) 100% 50% / 100% 100% repeat-x;
+
+                        }
+
+                        .right {
+                            --mask: linear-gradient(to right,
+                                    rgba(0, 0, 0, 1) 85%,
+                                    rgba(0, 0, 0, 0) 105%,
+                                    rgba(0, 0, 0, 0) 0) 100% 50% / 100% 100% repeat-x;
                         }
                     </style>
                 @endif
@@ -290,11 +367,56 @@
     <script>
         document.addEventListener('wheel', (event) => {
             const scrollContainer = document.getElementsByClassName("wrapper")[0];
+
             if (scrollContainer) {
                 scrollContainer.scrollBy({
                     left: event.deltaY < 0 ? -30 : 30,
                 });
+
+                const scrollLeft = scrollContainer.scrollLeft;
+                const scrollWidth = scrollContainer.scrollWidth;
+                const clientWidth = scrollContainer.clientWidth;
+
+                if (scrollLeft === 0) {
+                    scrollContainer.classList.remove('left');
+                    scrollContainer.classList.add('right');
+                } else if (scrollLeft + clientWidth === scrollWidth) {
+                    scrollContainer.classList.remove('right');
+                    scrollContainer.classList.add('left');
+                } else {
+                    scrollContainer.classList.remove('left', 'right');
+                    scrollContainer.classList.add('faded');
+                }
             }
         });
+        document.addEventListener('touchmove', (event) => {
+            const scrollContainer = document.getElementsByClassName("wrapper")[0];
+
+            if (scrollContainer) {
+
+                const scrollLeft = scrollContainer.scrollLeft;
+                const scrollWidth = scrollContainer.scrollWidth;
+                const clientWidth = scrollContainer.clientWidth;
+
+                if (scrollLeft === 0) {
+                    scrollContainer.classList.remove('left');
+                    scrollContainer.classList.add('right');
+                } else if (scrollLeft + clientWidth >= scrollWidth) {
+                    scrollContainer.classList.remove('right');
+                    scrollContainer.classList.add('left');
+                } else {
+                    scrollContainer.classList.remove('left', 'right');
+                    scrollContainer.classList.add('faded');
+                }
+            }
+        });
+
+        // document.querySelector('.real').addEventListener('input', (e) => {
+        //     let input = e.target;
+        //     let value = input.value.replace(/\D/g, '');
+        //     value = (value / 100).toFixed(2).split('.');
+        //     value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
+        //     input.value = value.join(',');
+        // });
     </script>
 </div>

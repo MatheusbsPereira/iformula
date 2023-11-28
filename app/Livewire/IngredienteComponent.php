@@ -21,6 +21,7 @@ class IngredienteComponent extends Component
     public $perPage = 30;
 
     public $search = '';
+
     public function render()
 {
     $nutrientes_escolher = Nutriente::where('user_id', auth()->id())->get();

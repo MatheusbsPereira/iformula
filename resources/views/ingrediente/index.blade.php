@@ -5,6 +5,7 @@
 @endsection
 @section('scriptcss')
     <link rel="stylesheet" href="{{ asset('css/style-ingredientes-view.css') }}"/>
+    
 @endsection
 
     

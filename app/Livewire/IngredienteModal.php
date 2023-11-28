@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Rules\NomeIngrediente;
+use Jenssegers\Agent\Agent;
 class IngredienteModal extends Component
 {
     public string $nome;
@@ -11,6 +12,14 @@ class IngredienteModal extends Component
     public string $descricao;
     public  $preco = '';
     public int $etapa = 1;
+    public $isMobile;
+
+    public function mount() {
+        $agent = new Agent();
+        $this->isMobile = $agent->isMobile();
+    }
+
+
     public function render()
     {
         return view('livewire.ingrediente-modal');
