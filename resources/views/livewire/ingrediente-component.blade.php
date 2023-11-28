@@ -41,8 +41,7 @@
 
             <div class="container-ingredientes">
                 @foreach ($ingredientes as $key => $ingrediente)
-                    <a class="card-toggle"x-data x-on:click="$dispatch('open-modal',{name : '{{ $ingrediente['nome'] }}'})"
-                    class="modal-toggle">
+                <a x-on:click="showModal = true; $dispatch('open-modal', { name: '{{$ingrediente['nome'] }}' })" class="card-toggle modal-toggle">
                         <div title="{{ $ingrediente['nome'] }}" class="ingredientes-card card-animation">
                             <div class="card-body">
                                 <div class="card-header">

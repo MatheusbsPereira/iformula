@@ -1,11 +1,11 @@
-<div style="height: 100%">
+<div style="height: 99%">
     {{-- Be like water. --}}
     <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Ingrediente</h5>
                 <button type="button" class="btn-close" data jn-bs-dismiss="modal" wire:click='close'
-                    aria-label="Close"></button>
+                    aria-label="Close" @click="showModal = false; $dispatch('modal-close')"></button>
             </div>
             <div class="modal-body">
                 <div class="form-container">

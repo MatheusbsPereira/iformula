@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Nutriente;
 use Livewire\Component;
 use App\Rules\NomeIngrediente;
-
+use Jenssegers\Agent\Agent;
 class IngredienteModal extends Component
 {
     public string $nome;
@@ -14,6 +14,14 @@ class IngredienteModal extends Component
     public  $preco = '';
     public int $etapa = 1;
     public $search = '';
+    public $isMobile;
+
+    public function mount() {
+        $agent = new Agent();
+        $this->isMobile = $agent->isMobile();
+    }
+
+
     public function render()
     {
         $nutrientes = Nutriente::orderByDesc('id')

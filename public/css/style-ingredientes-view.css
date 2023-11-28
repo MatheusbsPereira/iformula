@@ -31,6 +31,11 @@
     outline: 0;
 }
 
+.form-container, .form-container>form {
+    height: 316px;
+    width: 100%;
+}
+
 .modal-body h1 {
     font-size: 1.2rem;
 }
@@ -39,10 +44,23 @@
     max-width: 400px;
 }
 
-.modal-body .form-container {
+.modal-body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container>form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 .modal-body {
@@ -438,5 +456,5 @@ a.card-toggle {
 }
 
 .erro {
-    box-shadow: 0 0 0 0.15rem rgba(255, 0, 0, 0.637);
+    border: 2px solid red;
 }
