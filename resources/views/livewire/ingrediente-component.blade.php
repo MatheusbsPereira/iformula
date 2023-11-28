@@ -1,4 +1,4 @@
-<div style="height: 100%;" x-data="{ showModal: false }" x-bind:class="{ 'overflow-hidden': showModal }" x-on:keydown.escape.window="showModal = false">
+<div style="height: 100%;" x-data="{ showModal: false }" x-bind:class="{ 'overflow-hidden': showModal }" >
     <div style="display: flex; flex-direction: column; justify-content: space-between;">
         <x-my-modal  name="cadastrar">
             <livewire:ingrediente_modal />
@@ -60,7 +60,7 @@
         <div style="height: 100%">
             @foreach ($ingredientesAlt as $ingrediente)
                 <x-my-modal name="{{ $ingrediente->nome }}">
-                    <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']" />
+                    <livewire:crud-ingrediente-component :id="$ingrediente['id']" :key="$ingrediente['id']"/>
                 </x-my-modal>
             @endforeach
         </div>

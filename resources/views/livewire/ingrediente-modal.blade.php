@@ -152,15 +152,15 @@
                                 </div>
                             </div>
                             <div class="">
-                            @if ($isMobile)
-                            <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
-                                deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
-                            @else
-                                <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue com
-                                    o scroll do
-                                    mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
-                            @endif
-                        </div>
+                                @if ($isMobile)
+                                    <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
+                                        deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
+                                @else
+                                    <p id="alerta-dispositivo" style="margin: 0" class="align-center">Utilize
+                                        o scroll do
+                                        mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
+                                @endif
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btnBack" wire:click='anterior'>
                                     Voltar
@@ -176,6 +176,7 @@
                             white-space: nowrap;
                             line-height: 20px;
                         }
+
                         .sub-label {
                             margin: -25px 0 0 0;
                         }
@@ -213,7 +214,7 @@
                             max-width: 400px;
                             width: 100%;
                             display: flex;
-                            
+
                             overflow-x: auto !important;
                             background-color: rgb(245, 245, 245);
                             border-radius: 10px;
@@ -411,13 +412,12 @@
                 }
             }
         });
-
-        // document.querySelector('.real').addEventListener('input', (e) => {
-        //     let input = e.target;
-        //     let value = input.value.replace(/\D/g, '');
-        //     value = (value / 100).toFixed(2).split('.');
-        //     value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
-        //     input.value = value.join(',');
-        // });
+        document.querySelector('.real').addEventListener('input', (e) => {
+            let input = e.target;
+            let value = input.value.replace(/\D/g, '');
+            value = (value / 100).toFixed(2).split('.');
+            value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
+            input.value = value.join(',');
+        });
     </script>
 </div>

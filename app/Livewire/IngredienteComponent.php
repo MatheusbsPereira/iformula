@@ -47,7 +47,7 @@ class IngredienteComponent extends Component
     {
         $rules = [
             'nome' => ['required', 'max:50', new NomeIngrediente],
-            'preco' => ['required', 'max:9999.99','numeric'],
+            'preco' => ['required', 'max:9999.99','regex:/^\d+(\,\d{1,2})?$/'],
             'tag' => ['required', 'max:10'],
         ];
         $messages = [];

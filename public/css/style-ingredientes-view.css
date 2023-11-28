@@ -75,6 +75,14 @@
     width: 100%;
 }
 
+.modal-crud .modal-content {
+    height: 500px !important;
+}
+
+.modal-crud {
+    max-width: 550px;
+}
+
 .modal-content {
     height: 560px !important;
 }
@@ -82,6 +90,7 @@
 .modal-header {
     border: 0;
 }
+
 
 .modal-footer {
     padding: 0;

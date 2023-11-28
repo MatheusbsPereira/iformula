@@ -1,4 +1,4 @@
-<div style="height: 100%">
+<div style="height: 99%">
     {{-- Success is as dangerous as failure. --}}
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
