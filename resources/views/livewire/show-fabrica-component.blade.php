@@ -58,7 +58,7 @@
                                         @endif
                                     @endforeach
                                 </select></th>
-                            <th></th>
+                            <th><button class="btn-adicionar" wire:click='formular'>Formular</button></th>
                             <th></th>
                             <th></th>
                             <th></th>

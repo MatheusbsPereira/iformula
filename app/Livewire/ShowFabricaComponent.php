@@ -12,7 +12,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 class ShowFabricaComponent extends Component
 {
     public array $ingredientes_adicionados = [];
-    public array $racoes_adicionados = [];
+    public array $racoes_adicionados = [3,4];
     public $fabrica;
     public $id;
     public function render()
@@ -36,25 +36,20 @@ class ShowFabricaComponent extends Component
         $data = [];
         $ingredientes = Ingrediente::with('nutrientes')->whereIn('id', $this->ingredientes_adicionados)->get();
         $racoes = Racao::with('nutrientes')->whereIn('id', $this->racoes_adicionados)->get();
+        //dd($racoes);
         foreach ($racoes as $racao) {
             // Codifique seus dados em JSON
             $data = json_encode(['ingredientes' => $ingredientes, 'racao' => $racao]);
-
+            dd($data);
             // Escreva os dados em um arquivo
             file_put_contents('data.json', $data);
 
             // Crie o processo
-            $process = new Process(['python', 'Formular.py']);
-
-            // Execute o processo e retorne a saída
-            try {
-                $process->mustRun();
-
-                echo $process->getOutput();
-                $dados[] = $process->getOutput();
-            } catch (ProcessFailedException $exception) {
-                echo $exception->getMessage();
-            }
+            $output = shell_exec("python Formular.py");
+            
+            $dados[]= $output;
+            
+            
         }
         dd($dados);
     }
