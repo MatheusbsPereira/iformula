@@ -64,6 +64,9 @@
         </div>
     </div>
     <style>
+        .modal-crud .modal-title h1 {
+            margin-bottom: 1rem;
+        }
         .modal-crud .modal-title button {
             width: 100% !important; 
         }
