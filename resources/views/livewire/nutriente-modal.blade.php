@@ -43,7 +43,7 @@
                         @endif
                         <div class="modal-footer">
                             <button type="button" class="btn-adicionar" wire:click='save'>
-                                <i class='bx bx-plus'></i> Finalizar
+                                <i class='bx bx-plus'></i> Adicionar
                             </button>
                         </div>
                     </form>
