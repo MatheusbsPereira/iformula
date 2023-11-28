@@ -1,9 +1,8 @@
-<div style="height: 100%">
-    {{-- fAZ UM MODAL APARECER QUANDO CLICAR NO BOOTAO DE ADICIONAR INGREDIENTE --}}
+<div style="height: 99%">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click='fechar'
+                <button @click="showModal = false; $dispatch('modal-close')" type="button" class="btn-close" data-bs-dismiss="modal" wire:click='fechar'
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">

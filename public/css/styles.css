@@ -631,7 +631,3 @@ body.dark svg ellipse {
     color: #fff !important;
     margin-right: 3px;
 }
-
-.btn-excluir {
-    background: linear-gradient(270deg, rgba(248, 48, 22, 0.8) 0, rgba(243, 45, 10, 0.8) 50%, rgba(238, 7, 7, 0.8) 100%);
-}

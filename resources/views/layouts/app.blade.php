@@ -25,7 +25,7 @@
     
 </head>
 
-<body class="{{ $theme == 'dark' ? 'dark' : ''}}">
+<body class="{{ $theme == 'dark' ? 'dark' : ''}} " x-data="{ showModal: false }" x-bind:class="{ 'overflow-hidden': showModal }">
     <script src="{{ asset('scripts/dark-theme.js') }}"></script>
     <nav class="sidebar close">
         <header>

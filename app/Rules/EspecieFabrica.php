@@ -16,7 +16,7 @@ class EspecieFabrica implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         //
-        $especie = Fabrica::where('especie',$attribute)->where('user_id',auth()->id())->first();
+        $especie = Fabrica::where('especie',$value)->where('user_id',auth()->id())->first();
         if ($especie) {
             $fail('Você já cadastrou uma espécie com esse nome');
         }
