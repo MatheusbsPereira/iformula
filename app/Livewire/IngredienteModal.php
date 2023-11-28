@@ -9,9 +9,11 @@ use App\Models\Nutriente;
 use App\Rules\NomeIngrediente;
 use Jenssegers\Agent\Agent;
 
+
 class IngredienteModal extends Component
 {
     public string $nome;
+    public string $categoria;
     public string $tag;
     public string $descricao;
     public array $nutrientes_adicionados = [];
@@ -21,6 +23,8 @@ class IngredienteModal extends Component
     public $search = '';
     public $isMobile;
 
+
+    
     // Inicialize as regras no método rules()
     protected function rules()
     {
@@ -29,9 +33,10 @@ class IngredienteModal extends Component
             'preco' => ['required', 'max:9999.99', 'numeric'],
             'tag' => ['required', 'max:10'],
             'descricao' => ['max:70'],
+            'categoria' => ['required', 'tipo_ingrediente'],
         ];
     }
-
+    
     protected $messages = [
         'preco.numeric' => 'Valor inválido',
     ];
@@ -44,7 +49,7 @@ class IngredienteModal extends Component
 
     public function render()
     {
-        $nutrientes = Nutriente::orderByDesc('id')
+        $nutrientes = Nutriente::orderBy('nome')
             ->where(function ($query) {
                 $query->where('user_id', auth()->id())->where('nome', 'like', "{$this->search}%");
             })->get();

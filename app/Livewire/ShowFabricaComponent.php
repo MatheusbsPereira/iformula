@@ -52,7 +52,7 @@ class ShowFabricaComponent extends Component
                 'max' => 100,
             ];
         }
-    
+        dd($requisitos);
         // Converte o array de ingredientes em JSON
         $dados_json = json_encode(["ingredientes" => $dados_ingredientes, "requisitos" => $requisitos]);
 
