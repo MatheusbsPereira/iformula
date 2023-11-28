@@ -12,7 +12,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 class ShowFabricaComponent extends Component
 {
     public array $ingredientes_adicionados = [];
-    public array $racoes_adicionados = [3,4];
+    public array $racoes_adicionados = [3, 4];
     public $fabrica;
     public $id;
     public function render()
@@ -40,16 +40,16 @@ class ShowFabricaComponent extends Component
         foreach ($racoes as $racao) {
             // Codifique seus dados em JSON
             $data = json_encode(['ingredientes' => $ingredientes, 'racao' => $racao]);
-            dd($data);
+            //dd($data);
             // Escreva os dados em um arquivo
-            file_put_contents('data.json', $data);
+            $path = base_path('livewire/arquivo.json');
+            file_put_contents(base_path('livewire/arquivo.json'), $data);
+            
 
             // Crie o processo
             $output = shell_exec("python Formular.py");
-            
-            $dados[]= $output;
-            
-            
+
+            $dados[] = $output;
         }
         dd($dados);
     }

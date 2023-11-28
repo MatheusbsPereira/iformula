@@ -1,6 +1,5 @@
 import json
 from pulp import *
-
 # Lê os dados do arquivo JSON
 with open('data.json', 'r') as f:
     data = json.load(f)
