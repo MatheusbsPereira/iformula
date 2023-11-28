@@ -381,14 +381,13 @@
                 }
             }
         });
-
-        // document.querySelector('.real').addEventListener('input', (e) => {
-        //     let input = e.target;
-        //     let value = input.value.replace(/\D/g, '');
-        //     value = (value / 100).toFixed(2).split('.');
-        //     value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
-        //     input.value = value.join(',');
-        // });
+        document.querySelector('.real').addEventListener('input', (e) => {
+            let input = e.target;
+            let value = input.value.replace(/\D/g, '');
+            value = (value / 100).toFixed(2).split('.');
+            value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
+            input.value = value.join(',');
+        });
     </script>
   
 </div>
