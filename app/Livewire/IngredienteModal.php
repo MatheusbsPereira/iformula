@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
+use Livewire\Component;
 use App\Models\Formacao;
 use App\Models\Ingrediente;
 use App\Models\Nutriente;
-use Livewire\Component;
 use App\Rules\NomeIngrediente;
 use Jenssegers\Agent\Agent;
 
@@ -26,7 +26,7 @@ class IngredienteModal extends Component
     {
         return [
             'nome' => ['required', 'max:50', new NomeIngrediente],
-            'preco' => ['required', 'max:9999.99'],
+            'preco' => ['required', 'max:9999.99', 'numeric'],
             'tag' => ['required', 'max:10'],
             'descricao' => ['max:70'],
         ];
@@ -65,11 +65,13 @@ class IngredienteModal extends Component
     public function anterior()
     {
         $this->etapa -= 1;
+        $this->dispatch('etapaMudou');
     }
 
     public function voltarTudo()
     {
         $this->etapa = 1;
+        $this->dispatch('etapaMudou');
     }
 
     public function updated($propertyName)
@@ -87,6 +89,11 @@ class IngredienteModal extends Component
     public function adicionar($id)
     {
         $this->nutrientes_adicionados[] = $id;
+    }
+
+    public function updatedPreco($value)
+    {
+        $this->preco = $value;
     }
     public function segundaEtapa()
     {

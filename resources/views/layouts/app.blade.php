@@ -310,6 +310,7 @@
     </main>
 
     @livewireScripts
+
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <div style="height: 99%">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -51,7 +51,7 @@
                                 <div class="col-6">
                                     <label for="preco" class="col-mb-2 col-form-label">Preço</label>
                                     <div class="col-sm-12">
-                                        <input type="preco" maxlength="10"
+                                        <input id="preco" placeholder="0.00" type="text" maxlength="10"
                                             class="form-control real @error('preco')erro @enderror"
                                             wire:model.live="preco">
                                     </div>
@@ -380,7 +380,19 @@
                 }
             }
         });
-
-
+    </script>
+    <Script>
+        $(document).ready(function() {
+            $('#preco').mask('0000.00', {
+                reverse: true
+            });
+        });
+        document.addEventListener('etapaMudou', function() {
+            setTimeout(() => {
+                $('#preco').mask('0000.00', {
+                    reverse: true
+                });
+            }, 0);
+        });
     </script>
 </div>
