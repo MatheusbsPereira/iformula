@@ -113,59 +113,49 @@
                     </div>
                     <div class="form-container">
                         <form>
-                            <input wire:model="search" type="text" placeholder="Search..." id="myInput" />
 
-                            <select id="mySelect" wire:model="search" class="form-control">
+                            <select wire:change="adicionar($event.target.value)" class="form-control ">
+                                <option value="0">Adicionar</option>
                                 @foreach ($nutrientes as $nutriente)
-                                    <option>{{ $nutriente->nome }}</option>
+                                    @if (!in_array($nutriente->id, $nutrientes_adicionados))
+                                        <option value="{{ $nutriente->id }}">{{ $nutriente->nome }}</option>
+                                    @endif
                                 @endforeach
                             </select>
 
                             <div class="cards">
                                 <div class="wrapper faded right">
+                                    @foreach ($nutrientes as $nutriente)
+                                        @if (in_array($nutriente->id, $nutrientes_adicionados))
+                                            <div class="item">
+                                                <p class="nome-text">{{$nutriente->nome}}</p>
+                                                <p class="sub-label">{{$nutriente->unidade}}/kg</p>
+                                                <div class="input-container">
+                                                    <input type="text" maxlength="70"
+                                                        class="form-control @error("valores.$nutriente->id")erro @enderror text-center" wire:model.live="valores.{{$nutriente->id}}">
 
-                                    <div class="item">
-                                        <p class="nome-text">Pistache</p>
-                                        <p class="sub-label">kcal/kg</p>
-                                        <div class="input-container">
-                                            <input type="text" maxlength="70" class="form-control text-center"
-                                                wire:model.live="pistache">
-
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <p class="nome-text">Ácidos graxos</p>
-                                        <p class="sub-label">kcal/kg</p>
-                                        <div class="input-container">
-                                            <input type="text" maxlength="70" class="form-control text-center"
-                                                wire:model.live="acidosgraxos">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <p class="nome-text">Proteína</p>
-                                        <p class="sub-label">kcal/kg</p>
-                                        <div class="input-container">
-                                            <input type="text" maxlength="70" class="form-control text-center"
-                                                wire:model.live="proteina">
-                                        </div>
-                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    
                                 </div>
                             </div>
                             <div class="">
-                            @if ($isMobile)
-                            <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
-                                deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
-                            @else
-                                <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue com
-                                    o scroll do
-                                    mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
-                            @endif
-                        </div>
+                                @if ($isMobile)
+                                    <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
+                                        deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
+                                @else
+                                    <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue com
+                                        o scroll do
+                                        mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
+                                @endif
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btnBack" wire:click='anterior'>
                                     Voltar
                                 </button>
-                                <button type="button" class="btn btn-primary btnProximo" wire:click='primeiraEtapa'>
+                                <button type="button" class="btn btn-primary btnProximo" wire:click='segundaEtapa'>
                                     Próximo
                                 </button>
                             </div>
@@ -176,6 +166,7 @@
                             white-space: nowrap;
                             line-height: 20px;
                         }
+
                         .sub-label {
                             margin: -25px 0 0 0;
                         }
@@ -213,7 +204,7 @@
                             max-width: 400px;
                             width: 100%;
                             display: flex;
-                            
+
                             overflow-x: auto !important;
                             background-color: rgb(245, 245, 245);
                             border-radius: 10px;
@@ -299,7 +290,7 @@
                         </button>
                         <button id="progress-form__tab-2" class="flex-1 px-0 pt-2 progress-form__tabs-item"
                             type="button" role="tab" aria-controls="progress-form__panel-2"
-                            aria-selected="false" tabindex="-1" aria-disabled="true">
+                            aria-selected="false" tabindex="-1" aria-disabled="true" data-complete="true">
                             <span class="d-block step" aria-hidden="true">Etapa 2 <span class="sm:d-none">de
                                     3</span></span>
                             Tabela nutricional
@@ -317,48 +308,27 @@
                         <h1>Adicionar Ingrediente</h1>
                     </div>
                     <div class="form-container">
-                        <form>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <label for="nutriente" class="col-mb-2 col-form-label">Nome</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" maxlength="20" class="form-control"
-                                            wire:model.live="nome">
+
+                            <div title="{{ $nome }}" class="ingredientes-card card-animation">
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <p class='nome-text'>{{ $nome }}</p>
+                                    <div class='tag-label'>
+                                        <p class='text'>{{ $tag }}</p>
                                     </div>
-                                    @error('nome')
-                                        <div>{{ $message }}</div>
-                                    @enderror
                                 </div>
-                                <div class="col-sm-4">
-                                    <label for="unidade" class="col-mb-2 col-form-label">Tag</label>
-                                    <div class="col-sm-12">
-                                        <input type="unidade" maxlength="6" class="form-control"
-                                            wire:model.live="tag">
-                                    </div>
-                                    @error('tag')
-                                        <div>{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                <p class='unidade-text text'>R${{ $preco }}</p>
                             </div>
-                            <div class="mb-3 row">
-                                <label for="unidade" class="col-mb-2 col-form-label">Preço</label>
-                                <div class="col-sm-12">
-                                    <input type="tag" maxlength="10" class="form-control"
-                                        wire:model.live="preco">
-                                </div>
-                                @error('preco')
-                                    <div>{{ $message }}</div>
-                                @enderror
-                            </div>
+                        </div>
                             <div class="modal-footer">
                                 <button type="button" class="btnBack" wire:click='anterior'>
                                     Voltar
                                 </button>
-                                <button type="button" class="btn btn-primary" wire:click='segundaEtapa'>
-                                    Próximo
+                                <button type="button" class="btn btn-primary" wire:click='terceiraEtapa'>
+                                    Finalizar
                                 </button>
                             </div>
-                        </form>
+                        
                     </div>
                 @endif
             </div>
@@ -420,4 +390,5 @@
         //     input.value = value.join(',');
         // });
     </script>
+  
 </div>
