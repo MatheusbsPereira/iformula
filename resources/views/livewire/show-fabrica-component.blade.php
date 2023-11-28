@@ -3,7 +3,7 @@
     <div style="height: 100%;">
         <div style="display: flex;flex-direction: column;justify-content: space-between;">
             <x-my-modal name="cadastrar">
-                <livewire:racao_modal :id=$id > 
+                <livewire:racao_modal :id=$id>
             </x-my-modal>
             <div class="container">
                 <div class="title-container">
@@ -12,7 +12,7 @@
                         <span class="subtitle-painel">Fábrica {{ $fabrica->especie }}</span>
                     </div>
                     <div>
-                        
+
                     </div>
                 </div>
 
@@ -43,7 +43,33 @@
                 <table>
                     <thead>
                         <tr>
+                            <th></th>
+                            <th>Rações</th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                @if ($racao_contagem>0 && $ingredientes_adicionados)
+                                    <button class="btn-adicionar" wire:click='formular'>Formular</button>
+                                @endif
+                            </th>
+                        </tr>
+                        <tr>
                             <th>Ingredientes</th>
+                            <th>
+                                @if ($racao_contagem >= 5)
+                                    Limite atingido
+                                @else
+                                    <select wire:change="adicionarRacao($event.target.value)">
+                                        <option value="0">Adicionar</option>
+                                        @foreach ($racoes as $racao)
+                                            @if (!in_array($racao->id, $racoes_adicionadas))
+                                                <option value="{{ $racao->id }}">{{ $racao->nome }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                @endif
+
+                            </th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -57,11 +83,16 @@
                                             <option value="{{ $ingrediente->id }}">{{ $ingrediente->nome }}</option>
                                         @endif
                                     @endforeach
-                                </select></th>
-                            <th><button class="btn-adicionar" wire:click='formular'>Formular</button></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                                </select>
+                            </th>
+                            <th>Valor mínimo</th>
+                            <th>Valor máximo</th>
+                            @foreach ($racoes as $racao)
+                                @if (in_array($racao->id, $racoes_adicionadas))
+                                    <th> {{ $racao->nome }}</th>
+                                @endif
+                            @endforeach
+
                         </tr>
                     </thead>
                     <tbody>
@@ -69,16 +100,16 @@
                             @if (in_array($ingrediente->id, $ingredientes_adicionados))
                                 <tr>
                                     <td>{{ $ingrediente->nome }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><input type="text" maxlength="70"
+                                        class="form-control @error("valoresmin.$ingrediente->id")erro @enderror text-center" wire:model="valoresmin.{{$ingrediente->id}}"></td>
+                                    <td><input type="text" maxlength="70"
+                                        class="form-control @error("valoresmax.$ingrediente->id")erro @enderror text-center" wire:model="valoresmax.{{$ingrediente->id}}"></td>
+                                    
                                 </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
-                <th><button class="btn-adicionar" wire:click='formular'>Formular</button></th>
             </div>
             {{-- $fabricas->links() --}}
         </div>
