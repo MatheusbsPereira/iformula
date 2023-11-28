@@ -78,6 +78,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <th><button class="btn-adicionar" wire:click='formular'>Formular</button></th>
             </div>
             {{-- $fabricas->links() --}}
         </div>

@@ -3,11 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Ingrediente;
-use App\Models\Racao;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
+
 
 class ShowFabricaComponent extends Component
 {
@@ -18,7 +15,7 @@ class ShowFabricaComponent extends Component
     public function render()
     {
 
-        $ingredientes_adicionar  = Ingrediente::where('user_id', auth()->id())->get();;
+        $ingredientes_adicionar = Ingrediente::where('user_id', auth()->id())->get();
         return view('livewire.show-fabrica-component', ['ingredientes' => $ingredientes_adicionar]);
     }
     public function mount($fabrica)
@@ -32,30 +29,40 @@ class ShowFabricaComponent extends Component
     }
     public function formular()
     {
-        $dados = [];
-        $data = [];
         $ingredientes = Ingrediente::with('nutrientes')->whereIn('id', $this->ingredientes_adicionados)->get();
-        $racoes = Racao::with('nutrientes')->whereIn('id', $this->racoes_adicionados)->get();
-        foreach ($racoes as $racao) {
-            // Codifique seus dados em JSON
-            $data = json_encode(['ingredientes' => $ingredientes, 'racao' => $racao]);
+    
+        // Criar um array associativo com os dados relevantes dos ingredientes
+        $dados_ingredientes = [];
+        foreach ($ingredientes as $ingrediente) {
+            $nutrientes = $ingrediente->nutrientes;
+            $nutrientes_array = [];
+            foreach ($nutrientes as $nutriente) {
+                $requisitos[$nutriente->nome] = [
+                    'min' => 30, 
+                    'max' => 100, 
+                ];
 
-            // Escreva os dados em um arquivo
-            file_put_contents('data.json', $data);
-
-            // Crie o processo
-            $process = new Process(['python', 'Formular.py']);
-
-            // Execute o processo e retorne a saída
-            try {
-                $process->mustRun();
-
-                echo $process->getOutput();
-                $dados[] = $process->getOutput();
-            } catch (ProcessFailedException $exception) {
-                echo $exception->getMessage();
+                $nutrientes_array[$nutriente->nome] = is_numeric($nutriente->pivot->valor) ? $nutriente->pivot->valor : 0;
             }
+    
+            $dados_ingredientes[$ingrediente->nome] = [
+                'custo' => $ingrediente->preco,
+                'nutrientes' => $nutrientes_array,
+                'min' => 0,
+                'max' => 100,
+            ];
         }
-        dd($dados);
+    
+        // Converte o array de ingredientes em JSON
+        $dados_json = json_encode(["ingredientes" => $dados_ingredientes, "requisitos" => $requisitos]);
+
+        $dados_json = str_replace('"', '\"', $dados_json);
+
+        $currentDirectory = getcwd();
+        chdir(__DIR__);
+        exec("2>&1 python3 Formular.py $dados_json", $output, $e);
+        chdir($currentDirectory);
+        dd($output);
+    
     }
 }
