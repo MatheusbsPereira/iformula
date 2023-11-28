@@ -3,7 +3,7 @@
     <div style="height: 100%;">
         <div style="display: flex;flex-direction: column;justify-content: space-between;">
             <x-my-modal name="cadastrar">
-                {{-- <livewire:fabrica_modal /> --}}
+                <livewire:racao_modal :id=$id > 
             </x-my-modal>
             <div class="container">
                 <div class="title-container">
@@ -12,13 +12,7 @@
                         <span class="subtitle-painel">Fábrica {{ $fabrica->especie }}</span>
                     </div>
                     <div>
-                        <select id="per_page" wire:model="perPage" wire:change="setPerPage($event.target.value)">
-                            <option value="0" style="display:none;"></option>
-                            <option value="20">20 itens</option>
-                            <option value="30">30 itens</option>
-                            <option value="50">50 itens</option>
-                            <option value="9999">Todos</option>
-                        </select>
+                        
                     </div>
                 </div>
 
