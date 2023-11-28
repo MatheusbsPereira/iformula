@@ -128,17 +128,18 @@
                                     @foreach ($nutrientes as $nutriente)
                                         @if (in_array($nutriente->id, $nutrientes_adicionados))
                                             <div class="item">
-                                                <p class="nome-text">{{$nutriente->nome}}</p>
-                                                <p class="sub-label">{{$nutriente->unidade}}/kg</p>
+                                                <p class="nome-text">{{ $nutriente->nome }}</p>
+                                                <p class="sub-label">{{ $nutriente->unidade }}/kg</p>
                                                 <div class="input-container">
                                                     <input type="text" maxlength="70"
-                                                        class="form-control @error("valores.$nutriente->id")erro @enderror text-center" wire:model.live="valores.{{$nutriente->id}}">
+                                                        class="form-control @error("valores.$nutriente->id")erro @enderror text-center"
+                                                        wire:model.live="valores.{{ $nutriente->id }}">
 
                                                 </div>
                                             </div>
                                         @endif
                                     @endforeach
-                                    
+
                                 </div>
                             </div>
                             <div class="">
@@ -307,7 +308,7 @@
                     </div>
                     <div class="form-container">
 
-                            <div title="{{ $nome }}" class="ingredientes-card card-animation">
+                        <div title="{{ $nome }}" class="ingredientes-card card-animation">
                             <div class="card-body">
                                 <div class="card-header">
                                     <p class='nome-text'>{{ $nome }}</p>
@@ -318,15 +319,15 @@
                                 <p class='unidade-text text'>R${{ $preco }}</p>
                             </div>
                         </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btnBack" wire:click='anterior'>
-                                    Voltar
-                                </button>
-                                <button type="button" class="btn btn-primary" wire:click='terceiraEtapa'>
-                                    Finalizar
-                                </button>
-                            </div>
-                        
+                        <div class="modal-footer">
+                            <button type="button" class="btnBack" wire:click='anterior'>
+                                Voltar
+                            </button>
+                            <button type="button" class="btn btn-primary" wire:click='terceiraEtapa'>
+                                Finalizar
+                            </button>
+                        </div>
+
                     </div>
                 @endif
             </div>
@@ -379,13 +380,7 @@
                 }
             }
         });
-        document.querySelector('.real').addEventListener('input', (e) => {
-            let input = e.target;
-            let value = input.value.replace(/\D/g, '');
-            value = (value / 100).toFixed(2).split('.');
-            value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
-            input.value = value.join(',');
-        });
+
+
     </script>
-  
 </div>
