@@ -9,7 +9,7 @@ use Livewire\Component;
 class ShowFabricaComponent extends Component
 {
     public array $ingredientes_adicionados = [];
-    public array $racoes_adicionados = [];
+    public array $racoes_adicionados = [3, 4];
     public $fabrica;
     public $id;
     public function render()

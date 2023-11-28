@@ -59,7 +59,7 @@
                                 <div class="col-6">
                                     <label for="tag" class="col-mb-2 col-form-label">Tag</label>
                                     <div class="col-sm-12">
-                                        <input type="tag" maxlength="6"
+                                        <input type="tag" maxlength="10"
                                             class="form-control @error('tag')erro @enderror" wire:model.live="tag">
                                     </div>
                                 </div>

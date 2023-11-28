@@ -12,7 +12,7 @@ class Racao extends Model
     protected $guarded = [];
     public function nutrientes()
     {
-        return $this->belongsToMany(Nutriente::class, 'exigencias')->withPivot('valornut', 'id');
+        return $this->belongsToMany(Nutriente::class, 'exigencias')->withPivot('valormin','valormax', 'id');
     }
     public function fabrica()
     {
