@@ -115,13 +115,12 @@
                         <form>
                             <input wire:model="search" type="text" placeholder="Search..." id="myInput" />
 
-
                             <select id="mySelect" wire:model="search" class="form-control">
                                 @foreach ($nutrientes as $nutriente)
                                     <option>{{ $nutriente->nome }}</option>
                                 @endforeach
                             </select>
-                            <p style="margin: 0" class="align-center">Navegue com o scroll do mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
+
                             <div class="cards">
                                 <div class="wrapper faded right">
 
@@ -151,8 +150,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
+                            <div class="">
                             @if ($isMobile)
                             <p id="alerta-dispositivo" style="margin: 0" class="align-center">Navegue
                                 deslizando o ecrã<i class='bx bxs-hand-left' style="margin-left: 5px"></i></p>
@@ -161,6 +160,7 @@
                                     o scroll do
                                     mouse<i class='bx bx-mouse' style="margin-left: 5px"></i></p>
                             @endif
+                        </div>
                             <div class="modal-footer">
                                 <button type="button" class="btnBack" wire:click='anterior'>
                                     Voltar
@@ -172,6 +172,10 @@
                         </form>
                     </div>
                     <style>
+                        #alerta-dispositivo {
+                            white-space: nowrap;
+                            line-height: 20px;
+                        }
                         .sub-label {
                             margin: -25px 0 0 0;
                         }
