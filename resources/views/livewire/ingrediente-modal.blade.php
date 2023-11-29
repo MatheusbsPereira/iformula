@@ -51,6 +51,7 @@
                                     <label for="nutriente" class="col-mb-2 col-form-label">Categoria *</label>
                                     <div class="col-sm-12">
                                         <select class="form-select @error('categoria')erro @enderror" wire:model.live="categoria">
+                                            <option value="0">Selecione</option>
                                             <option value="Macro-ingrediente">Macro-ingrediente</option>
                                             <option value="Micro-ingrediente">Micro-ingrediente</option>
                                         </select>
