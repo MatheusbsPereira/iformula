@@ -30,7 +30,7 @@
                                 <label for="preco" class="col-mb-2 col-form-label">Preço</label>
                                 <div class="col-sm-12">
                                     <input type="preco" maxlength="10"
-                                        class="form-control real @error('preco')erro @enderror" wire:model.live="preco">
+                                        class="preco form-control @error('preco')erro @enderror" wire:model.live="preco">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -103,4 +103,11 @@
             width: 100%;
         }
     </style>
+        <Script>
+        $(document).ready(function() {
+            $('.preco').mask('0000.00', {
+                reverse: true
+            });
+        });
+        </script>
 </div>

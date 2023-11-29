@@ -24,13 +24,6 @@
                                     3</span></span>
                             Tabela nutricional
                         </button>
-                        <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-3" aria-selected="false"
-                            tabindex="-1" aria-disabled="true">
-                            <span class="d-block step" aria-hidden="true">Etapa 3 <span class="sm:d-none">de
-                                    3</span></span>
-                            Finalizar
-                        </button>
                     </div>
                     <!-- / End Step Navigation -->
 
@@ -52,8 +45,8 @@
                                     <div class="col-sm-12">
                                         <select class="form-select @error('categoria')erro @enderror" wire:model.live="categoria">
                                             <option value="0">Selecione</option>
-                                            <option value="Macro-ingrediente">Macro-ingrediente</option>
-                                            <option value="Micro-ingrediente">Micro-ingrediente</option>
+                                            <option value="Macro">Macro-ingrediente</option>
+                                            <option value="Micro">Micro-ingrediente</option>
                                         </select>
                                     </div>
                                 </div>
@@ -62,8 +55,8 @@
                                 <div class="col-6">
                                     <label for="preco" class="col-mb-2 col-form-label">Preço *</label>
                                     <div class="col-sm-12">
-                                        <input id="preco" placeholder="0.00" type="text" maxlength="10"
-                                            class="form-control real @error('preco')erro @enderror"
+                                        <input placeholder="0.00" type="text" maxlength="10"
+                                            class="form-control preco @error('preco')erro @enderror"
                                             wire:model.live="preco">
                                     </div>
                                 </div>
@@ -109,13 +102,6 @@
                                 3</span></span>
                         Tabela nutricional
                     </button>
-                    <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                        type="button" role="tab" aria-controls="progress-form__panel-3" aria-selected="false"
-                        tabindex="-1" aria-disabled="true">
-                        <span class="d-block step" aria-hidden="true">Etapa 3 <span class="sm:d-none">de
-                                3</span></span>
-                        Finalizar
-                    </button>
                 </div>
                 <!-- / End Step Navigation -->
 
@@ -139,11 +125,12 @@
                                     @if (in_array($nutriente->id, $nutrientes_adicionados))
                                         <div class="item">
                                             <div class="row">
-                                                <button class="btn-remover"><i class='bx bx-x'></i></button>
+                                                <button tabindex="-1" class="btn-remover"><i class='bx bx-x'></i></button>
                                             </div>
 
                                             <p class="nome-text">{{ $nutriente->nome }}</p>
-                                            <p class="sub-label">{{ $nutriente->unidade }}/kg</p>
+                                            <p class="sub-label">{{ $nutriente->unidade }}</p>
+
                                             <div class="input-container">
                                                 <input type="number" maxlength="70"
                                                     class="form-control @error("valores.$nutriente->id")erro @enderror text-center"
@@ -171,7 +158,7 @@
                                 Voltar
                             </button>
                             <button type="button" class="btn btn-primary btnProximo" wire:click='segundaEtapa'>
-                                Próximo
+                                Finalizar
                             </button>
                         </div>
                     </form>
@@ -346,60 +333,6 @@
                     }
                 </style>
             @endif
-            @if ($this->etapa == 3)
-                <div class="d-flex align-items-start mb-3 sm:mb-5 progress-form__tabs" role="tablist">
-                    <button id="progress-form__tab-1" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                        type="button" role="tab" aria-controls="progress-form__panel-1" aria-selected="false"
-                        data-complete="true">
-                        <span class="d-block step" aria-hidden="true">Etapa 1 <span class="sm:d-none">de
-                                3</span></span>
-                        Informações
-                    </button>
-                    <button id="progress-form__tab-2" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                        type="button" role="tab" aria-controls="progress-form__panel-2" aria-selected="false"
-                        tabindex="-1" aria-disabled="true" data-complete="true">
-                        <span class="d-block step" aria-hidden="true">Etapa 2 <span class="sm:d-none">de
-                                3</span></span>
-                        Tabela nutricional
-                    </button>
-                    <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                        type="button" role="tab" aria-controls="progress-form__panel-3" aria-selected="true"
-                        tabindex="-1" aria-disabled="false">
-                        <span class="d-block step" aria-hidden="false" data-complete="true">Etapa 3 <span
-                                class="sm:d-none">de
-                                3</span></span>
-                        Finalizar
-                    </button>
-                </div>
-                <div class="modal-title">
-                    <h1>Adicionar Ingrediente</h1>
-                </div>
-                <div class="form-container">
-                    <form>
-                        <div class="container-fim">
-                            <div title="Molho Soja" class="ingredientes-card card-animation">
-                                <div class="card-body">
-                                    <div class="card-header">
-                                        <p class="nome-text">Molho Soja</p>
-                                        <div class="tag-label">
-                                            <p class="text">molho_soja</p>
-                                        </div>
-                                    </div>
-                                    <p class="unidade-text text">7.47</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btnBack" wire:click='anterior'>
-                                Voltar
-                            </button>
-                            <button type="button" class="btn btn-primary btnProximo" wire:click='segundaEtapa'>
-                                Próximo
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            @endif
         </div>
     </div>
 </div>
@@ -450,19 +383,11 @@
             }
         }
     });
-</script>
-<Script>
+
     $(document).ready(function() {
-        $('#preco').mask('0000.00', {
-            reverse: true
-        });
-    });
-    document.addEventListener('etapaMudou', function() {
-        setTimeout(() => {
-            $('#preco').mask('0000.00', {
+            $('.preco').mask('0000.00', {
                 reverse: true
             });
-        }, 0);
-    });
+        });
 </script>
 </div>

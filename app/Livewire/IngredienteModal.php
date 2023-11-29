@@ -87,8 +87,6 @@ class IngredienteModal extends Component
     public function primeiraEtapa()
     {
         $this->validate();
-
-        // Se a validação for bem-sucedida, avança para a próxima etapa
         $this->etapa = 2;
     }
     public function adicionar($id)
@@ -112,19 +110,18 @@ class IngredienteModal extends Component
             $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
         }
         $this->etapa = 2;
-        $this->validate($rules, $messages);
-        $this->etapa = 3;
-    }
-    public function terceiraEtapa()
-    {
+        $this->validate($rules, $messages); 
+        // Converter para decimal
         Ingrediente::create([
             'nome' => $this->nome,
+            'descricao' => $this->descricao,
             'preco' => $this->preco,
             'tag' => $this->tag,
-            'descricao' => $this->descricao,
+
             'categoria' => $this->categoria,
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
         ]);
+        
         $ingrediente = Ingrediente::orderByDesc('id')->first();
         foreach ($this->nutrientes_adicionados as $key => $nutriente) {
             Formacao::create([
@@ -134,5 +131,7 @@ class IngredienteModal extends Component
                 'user_id' => auth()->id()
             ]);
         }
+        return redirect()->to(route('ingrediente.show',['nome'=>$ingrediente->nome]));
     }
+
 }

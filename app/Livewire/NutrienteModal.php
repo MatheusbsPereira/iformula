@@ -39,13 +39,17 @@ class NutrienteModal extends Component
     {
         return [
             'nome' => ['required', 'max:50', new NomeNutriente],
-            'unidade' => ['required', 'max:6'],
+            'unidade' => ['required', 'unidade'],
             'tag' => ['required', 'max:10'],
         ];
     }
-
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function close()
     {
+        $this->resetar();
         $this->dispatch('close-modal');
     }
     public function resetar()
@@ -53,5 +57,6 @@ class NutrienteModal extends Component
         $this->nome = '';
         $this->unidade = '';
         $this->tag = '';
+        $this->resetErrorBag();
     }
 }

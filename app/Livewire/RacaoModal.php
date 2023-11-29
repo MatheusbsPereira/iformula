@@ -93,10 +93,6 @@ class RacaoModal extends Component
         }
         $this->etapa = 2;
         $this->validate($rules, $messages);
-        $this->etapa = 3;
-    }
-    public function terceiraEtapa()
-    {
         $this->peso = str_replace(',', '.', $this->peso);
 
         // Converter para decimal
@@ -123,5 +119,9 @@ class RacaoModal extends Component
         }
         $fabrica = Fabrica::find($this->fabrica_id);
         return redirect()->to(route('fabrica.show', ['especie' => $fabrica->especie]));
+    }
+    public function terceiraEtapa()
+    {
+       
     }
 }

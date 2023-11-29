@@ -40,11 +40,15 @@ class CrudNutrienteComponent extends Component
         $nutriente->save();
         return redirect()->to(route('nutriente.index'));
     }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function rulesNewName()
     {
         return [
             'nome' => ['required', 'max:50', new NomeNutriente],
-            'unidade' => ['required', 'max:6'],
+            'unidade' => ['required', 'unidade'],
             'tag' => ['required', 'max:10'],
         ];
     }
@@ -52,7 +56,7 @@ class CrudNutrienteComponent extends Component
     {
         return [
             'nome' => ['required', 'max:50',],
-            'unidade' => ['required', 'max:6'],
+            'unidade' => ['required', 'unidade'],
             'tag' => ['required', 'max:10'],
         ];
     }
@@ -64,5 +68,10 @@ class CrudNutrienteComponent extends Component
     }
     public function fechar() {    
         $this->dispatch('close-modal');
+        $this->resetErrorBag();
+        $nutriente = Nutriente::find($this->id);
+        $this->nome = $nutriente->nome;
+        $this->tag = $nutriente->tag;
+        $this->unidade = $nutriente->unidade;
     }
 }
