@@ -10,16 +10,14 @@ class ShowIngredienteComponent extends Component
 {
 
     public $ingrediente;
-    public $valores = [];
     public $valoreseditar = [];
     public $editarforms = [];
+    
     public function render()
     {
-        $nutrientesNaoRelacionados = Nutriente::whereDoesntHave('ingredientes', function ($query) {
-            $query->where('ingrediente_id', $this->ingrediente->id)->where('ingredientes.user_id',auth()->id());
-        })->where('nutrientes.user_id',auth()->id())->get();
         
-        return view('livewire.show-ingrediente-component', ['nutrientes_adicionar' => $nutrientesNaoRelacionados]);
+        
+        return view('livewire.show-ingrediente-component');
     }
     public function mount($ingrediente)
     {
@@ -32,27 +30,7 @@ class ShowIngredienteComponent extends Component
             $this->valoreseditar[$nutriente->pivot->id] = $nutriente->pivot->valor;
         }
     }
-    public function adicionarNutriente($id)
-    {
-        $rules = [
-            "valores.$id" => 'required|numeric|max:999999.99'
-        ];
-        $messages = [
-            "valores.$id.required" => "O valor do nutriente escolhido é obrigatório.",
-            "valores.$id.numeric" => "O valor do nutriente escolhido deve ser numérico.",
-        ];
-        $this->validate($rules, $messages);
-        Formacao::create([
-            'valor' => $this->valores[$id],
-            'nutriente_id' => $id,
-            'ingrediente_id' => $this->ingrediente->id,
-            'user_id' => auth()->id()
-        ]);
-        
-        return redirect()->to(route('ingrediente.show',['nome'=>$this->ingrediente->nome]));
-
-
-    }
+    
     public function deletarNutrienter($id)
     {
         $formacao = Formacao::find($id);
@@ -77,6 +55,8 @@ class ShowIngredienteComponent extends Component
         $formacao->valor = $this->valoreseditar[$id];
         $formacao->save();
         $this->editarforms[$id] = false;
-        $this->render();
+        return redirect()->to(route('ingrediente.show',['nome'=>$this->ingrediente->nome]));
     }
+    
+    
 }
