@@ -21,8 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Validator::extend('unidade', function ($attribute, $value, $parameters, $validator) {
+            return in_array($value, ['kcal', 'Mcal', 'J', '%', 'g', 'µg', 'UI', 'ppb']);
+        });
+
         Validator::extend('tipo_ingrediente', function ($attribute, $value, $parameters, $validator) {
-            return in_array($value, ['Macro-ingrediente', 'Micro-ingrediente']);
+            return in_array($value, ['Macro', 'Micro']);
         });
 
         view()->share('theme', \Cookie::get('theme', 'light'));

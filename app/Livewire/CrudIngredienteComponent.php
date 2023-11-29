@@ -27,6 +27,7 @@ class CrudIngredienteComponent extends Component
         $this->preco = $ingrediente->preco;
         $this->descricao = $ingrediente->descricao;
         $this->tag = $ingrediente->tag;
+        $this->dispatch('etapaMudou');
     }
     public function save()
     {
@@ -80,6 +81,12 @@ class CrudIngredienteComponent extends Component
         return redirect()->to(route('ingrediente.show',['nome'=>$ingrediente->nome]));
     }
     public function close() {    
+        $ingrediente = Ingrediente::find($this->id);
         $this->dispatch('close-modal');
+        $this->resetErrorBag();
+        $this->nome = $ingrediente->nome;
+        $this->tag = $ingrediente->tag;
+        $this->preco = $ingrediente->preco;
+        $this->descricao = $ingrediente->descricao;
     }
 }

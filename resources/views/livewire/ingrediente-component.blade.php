@@ -68,4 +68,19 @@
         </div>
         {{ $ingredientes->links() }}
     </div>
+    <Script>
+        $(document).ready(function() {
+            $('.preco').mask('0000.00', {
+                reverse: true
+            });
+        });
+        document.addEventListener('etapaMudou', function() {
+            setTimeout(() => {
+                $('.preco').mask('0000.00', {
+                    reverse: true
+                });
+            }, 0);
+        });
+    </script>
+
 </div>

@@ -1,6 +1,6 @@
 <div style="height: 99%">
-
-    {{-- Do your work, then step back. --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,20 +22,13 @@
                             tabindex="-1" aria-disabled="true">
                             <span class="d-block step" aria-hidden="true">Etapa 2 <span class="sm:d-none">de
                                     3</span></span>
-                            Tabela nutricional
-                        </button>
-                        <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-3" aria-selected="false"
-                            tabindex="-1" aria-disabled="true">
-                            <span class="d-block step" aria-hidden="true">Etapa 3 <span class="sm:d-none">de
-                                    3</span></span>
-                            Finalizar
+                            Exigência nutricional
                         </button>
                     </div>
                     <!-- / End Step Navigation -->
 
                     <div class="modal-title">
-                        <h1>Adicionar Rações</h1>
+                        <h1>Adicionar Ração</h1>
                     </div>
                     <div class="form-container">
                         <form>
@@ -62,7 +55,7 @@
                                             wire:model.live="idade">
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-6">
                                     <label for="tag" class="col-mb-2 col-form-label">Tag</label>
                                     <div class="col-sm-12">
@@ -103,25 +96,17 @@
                             tabindex="-1" aria-disabled="false">
                             <span class="d-block step" aria-hidden="true">Etapa 2 <span class="sm:d-none">de
                                     3</span></span>
-                            Tabela nutricional
-                        </button>
-                        <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-3"
-                            aria-selected="false" tabindex="-1" aria-disabled="true">
-                            <span class="d-block step" aria-hidden="true">Etapa 3 <span class="sm:d-none">de
-                                    3</span></span>
-                            Finalizar
+                            Exigência nutricional
                         </button>
                     </div>
                     <!-- / End Step Navigation -->
 
                     <div class="modal-title">
-                        <h1>Adicionar Nutriente</h1>
+                        <h1>Adicionar Ração</h1>
                     </div>
                     <div class="form-container">
                         <form>
-
-                            <select wire:change="adicionar($event.target.value)" class="form-control ">
+                            <select wire:change="adicionar($event.target.value)" class="form-select ">
                                 <option value="0">Adicionar</option>
                                 @foreach ($nutrientes as $nutriente)
                                     @if (!in_array($nutriente->id, $nutrientes_adicionados))
@@ -138,21 +123,25 @@
                                                 <div class="row">
                                                     <button type="button" class="btn-remover" wire:click="tirar({{$nutriente->id}})"><i class='bx bx-x'></i></button>
                                                 </div>
-                                                <div class="input-container">
-                                                    <p class="nome-text">{{$nutriente->nome}}</p>
-                                                    Min:<input type="text" maxlength="70"
-                                                        class="form-control @error("valoresmin.$nutriente->id")erro @enderror text-center" wire:model.live="valoresmin.{{$nutriente->id}}">
+                                                <p class="nome-text">{{ $nutriente->nome }}</p>
+                                                <p class="sub-label">{{ $nutriente->unidade }}</p>
+                                               
 
-                                                </div>
-                                                <div class="input-container">
-                                                    Max:<input type="text" maxlength="70"
-                                                        class="form-control @error("valoresmax.$nutriente->id")erro @enderror text-center" wire:model.live="valoresmax.{{$nutriente->id}}">
+                                                    <input type="number" maxlength="70" placeholder="Mínimo"
+                                                        class="form-control @error("valoresmin.$nutriente->id")erro @enderror text-center"
+                                                        wire:model.live="valoresmin.{{ $nutriente->id }}">
 
-                                                </div>
+                                           
+                        
+                                                    <input type="number" maxlength="70" placeholder="Máximo"
+                                                        class="form-control @error("valoresmax.$nutriente->id")erro @enderror text-center"
+                                                        wire:model.live="valoresmax.{{ $nutriente->id }}">
+
+                                                
                                             </div>
                                         @endif
                                     @endforeach
-                                    
+
                                 </div>
                             </div>
                             <div class="">
@@ -170,12 +159,67 @@
                                     Voltar
                                 </button>
                                 <button type="button" class="btn btn-primary btnProximo" wire:click='segundaEtapa'>
-                                    Próximo
+                                    Finalizar
                                 </button>
                             </div>
                         </form>
                     </div>
                     <style>
+                        p {
+                            margin: 0 !important;
+                        }
+                        .container-fim {
+                            height: 150px;
+                            max-width: 400px;
+                        }
+
+                        .form-container.etapa-fim {
+                            flex-direction: column;
+                        }
+
+                        input[type='number']::-webkit-inner-spin-button,
+                        input[type='number']::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+
+                        input[type='number'] {
+                            margin: 3px;
+                        }
+
+                        .btn-remover i {
+                            font-size: 23px;
+                        }
+
+
+
+                        .btn-remover {
+                            width: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center
+                        }
+
+                        .item .row {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            margin-top: -5px;
+                            margin-right: -23px;
+                        }
+
+                        .btn-remover {
+                            top: 5px;
+                            right: 5px;
+                            background-color: transparent;
+                            /* ou a cor desejada */
+                            color: white;
+                            border: none;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            font-size: 14px;
+                        }
+
                         #alerta-dispositivo {
                             white-space: nowrap;
                             line-height: 20px;
@@ -194,7 +238,7 @@
                         }
 
                         .form-container {
-                            height: 316px;
+                            height: 376px;
                             width: 100%;
                         }
 
@@ -204,7 +248,7 @@
                         }
 
                         .form-container form {
-                            height: 316px;
+                            height: 376px;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;
@@ -214,20 +258,17 @@
                         }
 
                         .wrapper {
-                            height: 163px;
                             max-width: 400px;
                             width: 100%;
                             display: flex;
-
+                            height: 193px;
                             overflow-x: auto !important;
                             background-color: rgb(245, 245, 245);
                             border-radius: 10px;
-                            padding: 25px
+                            padding: 20px
                         }
 
-                        .overflow-hidden {
-                            overflow: hidden;
-                        }
+
 
                         .wrapper::-webkit-scrollbar {
                             width: 0;
@@ -237,7 +278,7 @@
                         .wrapper .item {
                             min-width: 150px;
                             max-width: 150px;
-                            height: 110px;
+                            height: 153px;
 
                             text-align: center;
                             background-color: var(--primary-color-light);
@@ -254,6 +295,7 @@
 
                         .item .form-control {
                             max-width: 90%;
+                            height: 30px;
                         }
 
                         .btnBack {
@@ -261,7 +303,7 @@
                         }
 
                         .modal-content {
-                            height: 556px;
+                            height: 625px;
                         }
 
                         .faded {
@@ -291,59 +333,11 @@
                                     rgba(0, 0, 0, 0) 105%,
                                     rgba(0, 0, 0, 0) 0) 100% 50% / 100% 100% repeat-x;
                         }
-                    </style>
-                @endif
-                @if ($this->etapa == 3)
-                    <div class="d-flex align-items-start mb-3 sm:mb-5 progress-form__tabs" role="tablist">
-                        <button id="progress-form__tab-1" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-1"
-                            aria-selected="false" data-complete="true">
-                            <span class="d-block step" aria-hidden="true">Etapa 1 <span class="sm:d-none">de
-                                    3</span></span>
-                            Informações
-                        </button>
-                        <button id="progress-form__tab-2" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-2"
-                            aria-selected="false" tabindex="-1" aria-disabled="true" data-complete="true">
-                            <span class="d-block step" aria-hidden="true">Etapa 2 <span class="sm:d-none">de
-                                    3</span></span>
-                            Tabela nutricional
-                        </button>
-                        <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item"
-                            type="button" role="tab" aria-controls="progress-form__panel-3"
-                            aria-selected="true" tabindex="-1" aria-disabled="false">
-                            <span class="d-block step" aria-hidden="false" data-complete="true">Etapa 3 <span
-                                    class="sm:d-none">de
-                                    3</span></span>
-                            Finalizar
-                        </button>
-                    </div>
-                    <div class="modal-title">
-                        <h1>Adicionar Ingrediente</h1>
-                    </div>
-                    <div class="form-container">
 
-                            <div title="{{ $nome }}" class="ingredientes-card card-animation">
-                            <div class="card-body">
-                                <div class="card-header">
-                                    <p class='nome-text'>{{ $nome }}</p>
-                                    <div class='tag-label'>
-                                        <p class='text'>{{ $idade }}</p>
-                                    </div>
-                                </div>
-                                <p class='unidade-text text'>{{ $peso }} Kg</p>
-                            </div>
-                        </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btnBack" wire:click='anterior'>
-                                    Voltar
-                                </button>
-                                <button type="button" class="btn btn-primary" wire:click='terceiraEtapa'>
-                                    Finalizar
-                                </button>
-                            </div>
-                        
-                    </div>
+                        .modal-footer {
+                            margin: 0;
+                        }
+                    </style>
                 @endif
             </div>
         </div>
@@ -395,13 +389,19 @@
                 }
             }
         });
-        document.querySelector('.real').addEventListener('input', (e) => {
-            let input = e.target;
-            let value = input.value.replace(/\D/g, '');
-            value = (value / 100).toFixed(2).split('.');
-            value[0] = value[0].split(/(?=(?:...)*$)/).join('.');
-            input.value = value.join(',');
+    </script>
+    <Script>
+        $(document).ready(function() {
+            $('#preco').mask('0000.00', {
+                reverse: true
+            });
+        });
+        document.addEventListener('etapaMudou', function() {
+            setTimeout(() => {
+                $('#preco').mask('0000.00', {
+                    reverse: true
+                });
+            }, 0);
         });
     </script>
-  
 </div>

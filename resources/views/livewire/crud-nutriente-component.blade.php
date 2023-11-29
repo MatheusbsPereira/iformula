@@ -22,10 +22,17 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label for="unidade" class="col-mb-2 col-form-label">Unidade</label>
-                                <div class="col-sm-12">
-                                    <input type="text" maxlength="20"
-                                        class="form-control  @error('unidade')erro @enderror" wire:model.live="unidade">
-                                </div>
+                                <select class="form-select @error('unidade')erro @enderror" wire:model.live="unidade">
+                                    <option value="0">Selecione</option>
+                                    <option value="kcal">kcal</option>
+                                    <option value="Mcal">Mcal</option>
+                                    <option value="J">J</option>
+                                    <option value="%">%</option>
+                                    <option value="g">g</option>
+                                    <option value="µg">µg</option>
+                                    <option value="UI">UI</option>
+                                    <option value="ppb">ppb</option>
+                                </select>
                             </div>
                             <div class="col-6">
                                 <label for="tag" class="col-mb-2 col-form-label">Tag</label>
@@ -35,12 +42,6 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($errors->isEmpty())
-                            <p style="color: rgb(238, 0, 0);"> </p>
-                        @endif
-                        @if (!$errors->isEmpty())
-                            <p style="color: rgb(238, 0, 0);">*Verifique os campos</p>
-                        @endif
                         <div class="modal-footer">
                             <button type="button" class="btn-adicionar"wire:click="salvar"><i
                                     class='bx bxs-download'></i> Salvar</button>
