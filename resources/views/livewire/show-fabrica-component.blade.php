@@ -8,8 +8,8 @@
             <div class="container">
                 <div class="title-container">
                     <div class="page-title">
-                        <span class="title-painel">Painel de Controle</span>
-                        <span class="subtitle-painel">Fábrica {{ $fabrica->especie }}</span>
+                        <span class="title-painel">Painel da Fábrica</span>
+                        <span class="subtitle-painel">{{ $fabrica->especie }}</span>
                     </div>
                     <div>
 
