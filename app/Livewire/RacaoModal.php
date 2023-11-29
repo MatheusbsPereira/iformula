@@ -77,6 +77,13 @@ class RacaoModal extends Component
     {
         $this->nutrientes_adicionados[] = $id;
     }
+    public function tirar($id)
+    {
+        $key = array_search($id, $this->nutrientes_adicionados);
+        unset($this->nutrientes_adicionados[$key]);
+        unset($this->valoresmin[$key]);
+        unset($this->valoresmax[$key]);
+    }
     public function segundaEtapa()
     {
         $this->primeiraEtapa();

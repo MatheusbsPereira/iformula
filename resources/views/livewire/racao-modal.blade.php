@@ -135,7 +135,9 @@
                                     @foreach ($nutrientes as $nutriente)
                                         @if (in_array($nutriente->id, $nutrientes_adicionados))
                                             <div class="item">
-                    
+                                                <div class="row">
+                                                    <button type="button" class="btn-remover" wire:click="tirar({{$nutriente->id}})"><i class='bx bx-x'></i></button>
+                                                </div>
                                                 <div class="input-container">
                                                     <p class="nome-text">{{$nutriente->nome}}</p>
                                                     Min:<input type="text" maxlength="70"
