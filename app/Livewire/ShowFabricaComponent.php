@@ -16,6 +16,7 @@ class ShowFabricaComponent extends Component
     public array $valoresmax;
     public $fabrica;
     public $id;
+    public array $valoresAssociados = [];
     public function render()
     {
         $ingredientes_adicionar = Ingrediente::where('user_id', auth()->id())->get();
@@ -38,6 +39,7 @@ class ShowFabricaComponent extends Component
     }
     public function formular()
     {
+        $dados = [];
         $rules = [];
         foreach ($this->ingredientes_adicionados as $ingrediente) {
             $rules["valoresmin.$ingrediente"] = 'required|numeric|max:999999.99';
@@ -47,7 +49,7 @@ class ShowFabricaComponent extends Component
         $ingredientes = Ingrediente::with('nutrientes')->whereIn('id', $this->ingredientes_adicionados)->get();
         $racoes = Racao::with('nutrientes')->whereIn('id', $this->racoes_adicionadas)->get();
         // Criar um array associativo com os dados relevantes dos ingredientes
-        $dados = [];
+        
         $dados_ingredientes = [];
         foreach ($racoes as $racao) {
             $lista_exigencias = [];
@@ -86,8 +88,26 @@ class ShowFabricaComponent extends Component
             chdir(__DIR__);
             exec("2>&1 python Formular.py $dados_json", $output, $e);
             chdir($currentDirectory);
-            dd($output);
-            $dados[] = $output;
+            
         }
+        $dados[] = $output;
+
+        $dadosAssociados = [];
+        foreach ($ingredientes as $ingrediente) {
+            if (isset($dados[0])) {
+                foreach ($dados[0] as $linha) {
+                    // Extraímos os dados do ingrediente e da ração
+                    if (preg_match("/Ing_" . str_replace(" ", "", $ingrediente->nome) . " = (\d+\.\d+)/", $linha, $matches)) {
+                        // Adicionamos o valor associado ao array multidimensional
+                        $dadosAssociados[$ingrediente->id][$racao->id] = $matches[1];
+                    }
+                }
+            }
+        }
+    
+        $this->valoresAssociados = $dadosAssociados;
+
     }
+
+
 }
