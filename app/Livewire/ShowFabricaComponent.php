@@ -39,7 +39,7 @@ class ShowFabricaComponent extends Component
     public function formular()
     {
         $rules = [];
-        foreach ($this->ingredientes_adicionados as  $ingrediente) {
+        foreach ($this->ingredientes_adicionados as $ingrediente) {
             $rules["valoresmin.$ingrediente"] = 'required|numeric|max:999999.99';
             $rules["valoresmax.$ingrediente"] = 'required|numeric|max:999999.99';
         }
@@ -50,46 +50,44 @@ class ShowFabricaComponent extends Component
         $dados = [];
         $dados_ingredientes = [];
         foreach ($racoes as $racao) {
-            # code...
             $lista_exigencias = [];
             foreach ($racao->nutrientes as $nutriente) {
-                $requisitos[$nutriente->nome] = [
+                $requisitos[str_replace(" ", "" ,$nutriente->nome)] = [
                     'min' => floatval($nutriente->pivot->valormin),
                     'max' => floatval($nutriente->pivot->valormax),
                 ];
                 $lista_exigencias[] = $nutriente->id;
             }
             foreach ($ingredientes as $ingrediente) {
+                if($ingrediente->nutrientes->isEmpty()) continue;
                 $nutrientes = $ingrediente->nutrientes;
                 $nutrientes_array = [];
                 foreach ($nutrientes as $nutriente) {
-                    if(in_array($nutriente->id, $lista_exigencias)){
-                        $nutrientes_array[$nutriente->nome] = is_numeric($nutriente->pivot->valor) ? $nutriente->pivot->valor : 0;
+                    if (in_array($nutriente->id, $lista_exigencias)) {
+                        $nutrientes_array[str_replace(" ", "" ,$nutriente->nome)] = is_numeric(floatval($nutriente->pivot->valor)) ? floatval($nutriente->pivot->valor) : 0;
                     }
-                    
                 }
 
-                $dados_ingredientes[$ingrediente->nome] = [
-                    'custo' => $ingrediente->preco,
+                $dados_ingredientes[str_replace(" ", "", $ingrediente->nome)] = [
+                    'custo' => floatval($ingrediente->preco),
                     'nutrientes' => $nutrientes_array,
                     'min' => floatval($this->valoresmin[$ingrediente->id]),
                     'max' => floatval($this->valoresmax[$ingrediente->id]),
                 ];
             }
-            //dd($requisitos,$dados_ingredientes);
+
             // Converte o array de ingredientes em JSON
-            $misturador = floatval($this->fabrica->capacidade_do_misturador);
-            $dados_json = json_encode(["ingredientes" => $dados_ingredientes, "requisitos" => $requisitos, "misturador" => ["capacidade"=>$misturador]]);
+            $misturador["capacidade"] = floatval($this->fabrica->capacidade_do_misturador);
+            $dados_json = json_encode(["ingredientes" => $dados_ingredientes, "requisitos" => $requisitos, "misturador" => $misturador]);
+
 
             $dados_json = str_replace('"', '\"', $dados_json);
-
             $currentDirectory = getcwd();
             chdir(__DIR__);
             exec("2>&1 python Formular.py $dados_json", $output, $e);
             chdir($currentDirectory);
-            //dd($output);
-            //$dados[]=  $output;
+            dd($output);
+            $dados[] = $output;
         }
-        dd($output);
     }
 }

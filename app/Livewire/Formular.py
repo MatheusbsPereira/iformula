@@ -13,8 +13,13 @@ misturador_capacidade = float(dados["misturador"]["capacidade"])
 for ingrediente in dados["ingredientes"]:
     dados["ingredientes"][ingrediente]["custo"] = float(dados["ingredientes"][ingrediente]["custo"])
 
-    for nutriente, valor in dados["ingredientes"][ingrediente]["nutrientes"].items():
-        dados["ingredientes"][ingrediente]["nutrientes"][nutriente] = float(valor)
+    if dados["ingredientes"][ingrediente]["nutrientes"]:
+        for nutriente, valor in dados["ingredientes"][ingrediente]["nutrientes"].items():
+            dados["ingredientes"][ingrediente]["nutrientes"][nutriente] = float(valor)
+    else:
+        # Se não houver nutrientes, crie um dicionário vazio
+        dados["ingredientes"][ingrediente]["nutrientes"] = {}
+
 
 # Extrai os ingredientes e requisitos do JSON
 ingredientes = dados["ingredientes"]
@@ -37,13 +42,16 @@ for nutriente in requisitos:
 # Adiciona as restrições de quantidade mínima e máxima para cada ingrediente
 for ingrediente in ingredientes:
     prob += ingredient_vars[ingrediente] >= ingredientes[ingrediente]["min"], f"min{ingrediente}"
+
     prob += ingredient_vars[ingrediente] <= ingredientes[ingrediente]["max"], f"max{ingrediente}"
+
+    prob += ingredient_vars[ingrediente] >= 0, f"maior_que_zero_{ingrediente}"
 
 # Adiciona a restrição de capacidade do misturador
 prob += lpSum([ingredient_vars[i] for i in ingredientes]) == misturador_capacidade, "CapacidadeMisturador"
 
 # Resolve o problema de otimização
-prob.solve(PULP_CBC_CMD(msg=0))
+prob.solve(PULP_CBC_CMD(fracGap=0, msg=0))
 
 # Exibe os resultados
 print("Status:", LpStatus[prob.status])
