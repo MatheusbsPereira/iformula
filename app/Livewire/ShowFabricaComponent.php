@@ -54,19 +54,19 @@ class ShowFabricaComponent extends Component
         foreach ($racoes as $racao) {
             $lista_exigencias = [];
             foreach ($racao->nutrientes as $nutriente) {
-                $requisitos[str_replace(" ", "" ,$nutriente->nome)] = [
+                $requisitos[str_replace(" ", "", $nutriente->nome)] = [
                     'min' => floatval($nutriente->pivot->valormin),
                     'max' => floatval($nutriente->pivot->valormax),
                 ];
                 $lista_exigencias[] = $nutriente->id;
             }
             foreach ($ingredientes as $ingrediente) {
-                if($ingrediente->nutrientes->isEmpty()) continue;
+                if ($ingrediente->nutrientes->isEmpty()) continue;
                 $nutrientes = $ingrediente->nutrientes;
                 $nutrientes_array = [];
                 foreach ($nutrientes as $nutriente) {
                     if (in_array($nutriente->id, $lista_exigencias)) {
-                        $nutrientes_array[str_replace(" ", "" ,$nutriente->nome)] = is_numeric(floatval($nutriente->pivot->valor)) ? floatval($nutriente->pivot->valor) : 0;
+                        $nutrientes_array[str_replace(" ", "", $nutriente->nome)] = is_numeric(floatval($nutriente->pivot->valor)) ? floatval($nutriente->pivot->valor) : 0;
                     }
                 }
 

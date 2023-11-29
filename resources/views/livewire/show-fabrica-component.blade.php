@@ -25,6 +25,8 @@
                                 <a href="#{{-- route('ingrediente.exportsxlsx') --}}">Excel</a>
                             </div>
                         </div>
+                        <button type="button" wire:click='racoes'> Rações
+                        </button>
                     </div>
 
                     <div class="right-tools">

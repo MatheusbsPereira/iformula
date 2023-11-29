@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/fabricas',[FabricaController::class,'index'])->name('fabrica.index');
     Route::get('/fabricas/exibir/{especie}',[FabricaController::class,'show'])->name('fabrica.show');
+    Route::get('/fabricas/exibir/{especie}/racoes',[FabricaController::class,'racoes'])->name('fabrica.racoes');
     Route::get('/fabricas/exportxlsx/',[FabricaController::class,'exportsxlsx'])->name('fabrica.exportsxlsx');
     Route::get('/fabricas/exportspdf/',[FabricaController::class,'exportspdf'])->name('fabrica.exportspdf');
 

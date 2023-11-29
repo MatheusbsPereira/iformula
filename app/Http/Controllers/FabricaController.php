@@ -42,6 +42,16 @@ class FabricaController extends Controller
             return view('fabrica.nao-encontrado');
         }
     }
+    public function racoes(string $especie)
+    {
+        //
+        $fabrica = Fabrica::where('especie',$especie)->where('user_id',auth()->id())->first();
+        if($fabrica){
+            return view('fabrica.racoes',['fabrica'=>$fabrica]);
+        }else{
+            return view('fabrica.nao-encontrado');
+        }
+    }
 
     
 }
