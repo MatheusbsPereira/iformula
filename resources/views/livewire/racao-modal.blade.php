@@ -121,8 +121,13 @@
                                         @if (in_array($nutriente->id, $nutrientes_adicionados))
                                             <div class="item">
                                                 <div class="row">
-                                                    <button tabindex="-1" class="btn-remover"><i
-                                                            class='bx bx-x'></i></button>
+                                                    <button type="button" class="btn-remover" wire:click="tirar({{$nutriente->id}})"><i class='bx bx-x'></i></button>
+                                                </div>
+                                                <div class="input-container">
+                                                    <p class="nome-text">{{$nutriente->nome}}</p>
+                                                    Min:<input type="text" maxlength="70"
+                                                        class="form-control @error("valoresmin.$nutriente->id")erro @enderror text-center" wire:model.live="valoresmin.{{$nutriente->id}}">
+
                                                 </div>
                                                 <p class="nome-text">{{ $nutriente->nome }}</p>
                                                 <p class="sub-label">{{ $nutriente->unidade }}</p>

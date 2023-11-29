@@ -24,7 +24,7 @@ class IngredienteModal extends Component
     public $isMobile;
 
 
-    
+
     // Inicialize as regras no método rules()
     protected function rules()
     {
@@ -36,7 +36,7 @@ class IngredienteModal extends Component
             'categoria' => ['required', 'tipo_ingrediente'],
         ];
     }
-    
+
     protected $messages = [
         'preco.numeric' => 'Valor inválido',
     ];
@@ -93,6 +93,12 @@ class IngredienteModal extends Component
     {
         $this->nutrientes_adicionados[] = $id;
     }
+    public function tirar($id)
+    {
+        $key = array_search($id, $this->nutrientes_adicionados);
+        unset($this->nutrientes_adicionados[$key]);
+        unset($this->valores[$key]);
+    }
 
     public function updatedPreco($value)
     {
@@ -106,8 +112,6 @@ class IngredienteModal extends Component
         $rules = [];
         foreach ($this->nutrientes_adicionados as $nutriente) {
             $rules["valores.$nutriente"] = 'required|numeric|max:999999.99';
-            $messages["valores.$nutriente.required"] = "O valor do nutriente escolhido é obrigatório.";
-            $messages["valores.$nutriente.numeric"] = "O valor do nutriente escolhido deve ser numérico.";
         }
         $this->etapa = 2;
         $this->validate($rules, $messages); 

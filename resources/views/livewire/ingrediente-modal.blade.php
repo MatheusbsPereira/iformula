@@ -125,7 +125,7 @@
                                     @if (in_array($nutriente->id, $nutrientes_adicionados))
                                         <div class="item">
                                             <div class="row">
-                                                <button tabindex="-1" class="btn-remover"><i class='bx bx-x'></i></button>
+                                                <button type="button" class="btn-remover" wire:click="tirar({{$nutriente->id}})"><i class='bx bx-x'></i></button>
                                             </div>
 
                                             <p class="nome-text">{{ $nutriente->nome }}</p>
