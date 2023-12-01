@@ -91,7 +91,7 @@ class ShowFabricaComponent extends Component
             
         }
         $dados[] = $output;
-
+        // dd($dados);
         $dadosAssociados = [];
         foreach ($ingredientes as $ingrediente) {
             if (isset($dados[0])) {
@@ -104,10 +104,13 @@ class ShowFabricaComponent extends Component
                 }
             }
         }
-    
+        $dadosAssociados["solucao"] = $dados[0][0];
         $this->valoresAssociados = $dadosAssociados;
 
     }
 
-
+  public function racoes()
+  {
+    return redirect()->to(route('fabrica.racoes', ['especie' => $this->fabrica->especie]));
+  }
 }

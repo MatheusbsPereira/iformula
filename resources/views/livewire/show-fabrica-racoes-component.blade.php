@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="title-container">
                         <div class="page-title">
-                            <span class="title-painel">Painel da Fábrica</span>
+                            <span class="title-painel">Painel de Rações</span>
                             <span class="subtitle-painel">{{ $fabrica->especie }}</span>
                         </div>
                         <div>
@@ -38,9 +38,29 @@
                         </div>
                     </div>
                     
-    
+                    
                 </div>
-    
+                <div class="container-ingredientes">
+                    @foreach ($racoes as $key => $racao)
+                        <a x-on:click="showModal = true; $dispatch('open-modal', { name: '{{ $racao['nome'] }}' })"
+                            class="card-toggle modal-toggle">
+                            <div title="{{ $racao['nome'] }}" class="ingredientes-card card-animation">
+                                <div class="card-body">
+                                    <div class="card-header">
+                                        <p class='nome-text'>{{ $racao['nome'] }} - {{ $racao['idade'] }} anos</p>
+                                        <div class='tag-label'>
+                                            <p class='text'>{{ $racao['tag'] }}</p>
+                                        </div>
+                                    </div>
+                                    <p class='unidade-text text'>{{ $racao['peso'] }} kgs - {{ $racao['idade'] }} anos</p>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            
+            
                 
                 {{-- $fabricas->links() --}}
             </div>

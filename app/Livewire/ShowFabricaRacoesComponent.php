@@ -8,7 +8,8 @@ class ShowFabricaRacoesComponent extends Component
 {
     public function render()
     {
-        return view('livewire.show-fabrica-racoes-component');
+        $racoes = $this->fabrica->racoes;
+        return view('livewire.show-fabrica-racoes-component',['racoes'=>$racoes]);
     }
     public function mount($fabrica)
     {

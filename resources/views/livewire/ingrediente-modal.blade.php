@@ -389,5 +389,6 @@
                 reverse: true
             });
         });
+        
 </script>
 </div>

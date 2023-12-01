@@ -7,7 +7,7 @@
     </div>
 @endsection
 @section('scriptcss')
-    <link rel="stylesheet" href="{{ asset('css/style-fabricas-view.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/style-ingredientes-view.css') }}" />
 @endsection<div>
     
 

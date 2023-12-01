@@ -26,7 +26,9 @@ class HomeController extends Controller
     {
         if (Auth::check()) {
             // O usuário está logado...
-            return view('home');
+            //return view('home');
+        return redirect()->to(route('fabrica.index'));
+            
         }else {
             return view('welcome');
         }

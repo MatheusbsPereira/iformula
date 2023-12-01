@@ -25,7 +25,7 @@
                                 <a href="#{{-- route('ingrediente.exportsxlsx') --}}">Excel</a>
                             </div>
                         </div>
-                        <button type="button" wire:click='racoes'> Rações
+                        <button type="button" class="btn-adicionar"wire:click='racoes'><i class='bx bx-baguette'></i> Rações
                         </button>
                     </div>
 
@@ -65,8 +65,8 @@
                                         @endforeach
                                     </select> --}}
                                 </th>
-                                <th><span>Máximo</span></th>
                                 <th><span>Mínimo</span></th>
+                                <th><span>Máximo</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,8 +92,10 @@
 <div class="col-12 col-sm-6">
     <table class="table table-responsive" style="min-width: 100%">
         <thead>
-            <th>Rações</th>
+            <th>Rações: @isset($valoresAssociados["solucao"]) {{$valoresAssociados["solucao"]}} @endisset</th>
             <tr>
+                
+            
                 <!-- Adiciona caixa de seleção para adicionar rações -->
                 @if ($racao_contagem <= 4)
                     <th>
@@ -132,8 +134,8 @@
                                 <td>
                                     @if (isset($valoresAssociados[$ingrediente->id][$racao->id]))
                                         {{ $valoresAssociados[$ingrediente->id][$racao->id] }}
-                                    @else
-                                        0 <!-- Adicione esta linha para exibir 0 se o valor não estiver definido -->
+                                    
+                                        
                                     @endif
                                 </td>
                             @endif

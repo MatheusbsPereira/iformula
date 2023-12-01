@@ -15,7 +15,7 @@ class IngredienteModal extends Component
     public string $nome;
     public string $categoria;
     public string $tag;
-    public string $descricao;
+    public string $descricao = '';
     public array $nutrientes_adicionados = [];
     public array $valores;
     public $preco = '';
@@ -114,7 +114,7 @@ class IngredienteModal extends Component
             $rules["valores.$nutriente"] = 'required|numeric|max:999999.99';
         }
         $this->etapa = 2;
-        $this->validate($rules, $messages); 
+        $this->validate($rules); 
         // Converter para decimal
         Ingrediente::create([
             'nome' => $this->nome,
